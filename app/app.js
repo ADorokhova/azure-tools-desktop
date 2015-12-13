@@ -1,24 +1,29 @@
 ﻿(function() {
     'use strict';
     //require('process');
-    var angular = require('angular'),
-        angularRoute = require('angular-ui-router'),
-        dataTable = require('datatables'),
-        uiGrid = require('ui-grid'),
-        dranDrop = require('angular-dragdrop'),
-        resizable = require('angular-resizable'),
-        app;
+
 
     window.$ = require('jquery');
     window.$.DataTable = dataTable;
     window.$.dataTable = dataTable;
+    window.jQuery = $;
+    var angular = require('angular');
+    window.angular = angular;
+
+    var angularRoute = require('angular-ui-router'),
+        dataTable = require('datatables'),
+        uiGrid = require('angular-ui-grid'),
+        dranDrop = require('angular-dragdrop'),
+        resizable = require('angular-resizable'),
+        app;
+
 
     var jqueryUI = require('jquery-ui');
 
-    var reorder = require('colReorder');
+    /*var reorder = require('colReorder');
     var colVis = require('colVis');
     var colResize = require('colResize');
-    var select = require('dataTablesSelect')($);
+    var select = require('dataTablesSelect')($);*/
 
     window.isDebugVersion = false;
     require('./exceptionHandling/exceptionHandlingModule.js').register(angular);
