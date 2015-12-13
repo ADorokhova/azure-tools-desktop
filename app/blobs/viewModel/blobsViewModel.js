@@ -10,7 +10,6 @@
             'blobsSettings',
             'azureStorage',
             'blobsPresenter',
-            'bufferFactory',
             function(
                 $scope,
                 $timeout,
@@ -20,8 +19,7 @@
                 $notifyViewModel,
                 blobsSettings,
                 azureStorage,
-                blobsPresenter,
-                bufferFactory) {
+                blobsPresenter) {
 
                 var self = this;
                 var listContainersOperation = 'listContainersOperation';
@@ -223,7 +221,7 @@
                         var selectedBlob = $scope.blobOptions.selectedBlob;
                         var selectedContainer = $scope.containerOptions.selectedContainer;
 
-                        var buffer = bufferFactory.Buffer;
+                        var buffer = Buffer;
                         var stream = defaultClientFactory().createReadStream(selectedContainer.name, selectedBlob.name);
                         var chunks = [];
                         stream.on('data', function(chunk) {
