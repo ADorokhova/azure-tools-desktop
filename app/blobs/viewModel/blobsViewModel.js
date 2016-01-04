@@ -280,7 +280,7 @@
                         var selectedBlob = $scope.blobOptions.selectedBlob;
                         var selectedContainer = $scope.containerOptions.selectedContainer;
 
-                        var buffer = bufferFactory.Buffer;
+                        var buffer = Buffer;
                         var stream = defaultClientFactory().createReadStream(selectedContainer.name, selectedBlob.name);
                         var chunks = [];
                         stream.on('data', function(chunk) {

@@ -6,7 +6,6 @@
 @import "blobs.scss"; 
 
 #wrapperAzure {
-	margin: 10px;
 	font-family: $fontFamily;
 	height: calc(100% - 20px);
 }
@@ -189,16 +188,13 @@
 /*Body*/
 
 #content {
-	height: calc(100% - 40px);
 }
 
 .wrapLeftBlock {
-	margin: 0px 3px 10px 10px;
 	height: 100%;
 }
 
 .wrapRightBlock {
-	margin: 0px 10px 10px 6px;
 	height: 100%;
 	.headBlock .fa {
 		padding-right: 4px;

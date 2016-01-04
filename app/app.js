@@ -1,12 +1,7 @@
 ﻿(function() {
     'use strict';
-    //require('process');
 
-
-    window.$ = require('jquery');
-    window.$.DataTable = dataTable;
-    window.$.dataTable = dataTable;
-    window.jQuery = $;
+    window.jQuery = window.$ = require('jquery');
     var angular = require('angular');
     window.angular = angular;
 
@@ -17,13 +12,7 @@
         resizable = require('angular-resizable'),
         app;
 
-
     var jqueryUI = require('jquery-ui');
-
-    /*var reorder = require('colReorder');
-    var colVis = require('colVis');
-    var colResize = require('colResize');
-    var select = require('dataTablesSelect')($);*/
 
     window.isDebugVersion = false;
     require('./exceptionHandling/exceptionHandlingModule.js').register(angular);
@@ -53,7 +42,10 @@
             'tiles.tables',
             'tiles.blobs',
         ], function() {});
+
     require('./directives/appDirectives.js')
         .register(app)
-        .controller('AppController', ['$state', function() {}]);
+        .controller('AppController', ['$state', function($state) {
+            $state.go('tiles');
+        }]);
 }());

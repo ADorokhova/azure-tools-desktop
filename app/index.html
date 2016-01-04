@@ -38,8 +38,13 @@
     <link rel="stylesheet" href="content/css/splitter.css" />
 
     <!--js-->
-    <script type="text/javascript" src="content/js/jquery.js"></script>
-    <script type="text/javascript" src="content/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        window.jQuery = window.$ = require('jquery');
+        window.angular =require('angular');
+        require('bootstrap');
+    </script>
+    <!--<script type="text/javascript" src="content/js/jquery.js"></script>
+    <script type="text/javascript" src="content/js/bootstrap.js"></script>-->
     <script type="text/javascript" src="content/js/ui-grid.min.js"></script>
     <script type="text/javascript" src="content/js/ng-grid-flexible-height.js"></script>
     
@@ -48,10 +53,10 @@
 
 <body ng-controller="AppController">
     <div ng-controller="ActionBarController" id="wrapperAzure" ng-class="{'forTables': state.current.name === 'tables', 'forRedis': state.current.name === 'redis', 'forBlobs': state.current.name === 'blobs', 'forTiles': state.current.name === 'tiles'}">
-        <nav class="navbar navbar-default" role="navigation">
+        <nav class="navbar navbar-default" role="navigation" style="-webkit-app-region: drag">
             <div>
                 <div class="navbar-header">
-                    <a class="row-fluid navbar-brand" ui-sref="tiles">
+                    <a class="row-fluid navbar-brand" ui-sref="tiles" style="-webkit-app-region: no-drag;">
                         <i ng-show="state.current.name !== 'tiles'" class="fa fa-arrow-circle-left"></i><span ng-show="state.current.name === 'tiles'" class="icon-cloud"></span>
                         <span>Azure Tools</span>
                         <span ng-show="state.current.name !== 'tiles'">{{ActionBarItems.ModuleName}}</span>

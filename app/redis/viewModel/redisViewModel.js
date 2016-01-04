@@ -1,4 +1,4 @@
-﻿exports.register = function(module) {
+exports.register = function(module) {
     module
         .controller('RedisController', [
             '$scope',
@@ -7,7 +7,6 @@
             '$redisRepositoryFactory',
             'redisRepo',
             '$redisScannerFactory',
-            '$dataTablePresenter',
             '$actionBarItems',
             '$dialogViewModel',
             '$confirmViewModel',
@@ -17,6 +16,7 @@
             '$messageBus',
             '$validator',
             'uiGridConstants',
+            'dialog',
             function(
                 $scope,
                 $timeout,
@@ -24,7 +24,6 @@
                 $redisRepositoryFactory,
                 redisRepo,
                 $redisScannerFactory,
-                $dataTablePresenter,
                 $actionBarItems,
                 $dialogViewModel,
                 $confirmViewModel,
@@ -33,7 +32,8 @@
                 $busyIndicator,
                 $messageBus,
                 $validator,
-                uiGridConstants) {
+                uiGridConstants,
+                dialog) {
                 var loadKeysOperation = 'loadKeys';
                 var loadDetailsOperation = 'loadDetails';
 
@@ -292,7 +292,7 @@
                     $scope.removeKey();
                 };
 
-                $actionBarItems.refresh = function() {
+                $actionBarItems.refresh = function() {showError()
                     searchViewModel.search();
                 };
 
@@ -487,21 +487,8 @@
                 };
 
                 var showError = function(data) {
-                    if (data !== undefined && data !== null) {
-                        if (data.name && data.name === 'Error') {
-                            $timeout(function() {
-                                $notifyViewModel.scope().$apply(function() {
-                                    $notifyViewModel.showWarning(data.message);
-                                });
-                            });
-                        } else {
-                            $timeout(function() {
-                                $notifyViewModel.scope().$apply(function() {
-                                    $notifyViewModel.showWarning(data);
-                                });
-                            });
-                        }
-                    }
+
+    dialog.showErrorBox("Temp", 'Test')
                 };
 
                 var showInfo = function(msg) {
@@ -513,13 +500,6 @@
                     //    });
                     //}
                 };
-
-
-                $scope.$on('splitter-resize', function() {
-                    $timeout(function() {
-                        $dataTablePresenter.adjustColumns();
-                    });
-                });
 
                 $messageBus.subscribe(
                     ['redis-communication-error'],
