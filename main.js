@@ -1,5 +1,6 @@
 'use strict';
 const electron = require('electron');
+const dialog = require('dialog');
 const app = electron.app;  // Module to control application life.
 const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
 
@@ -18,6 +19,7 @@ app.on('window-all-closed', function() {
     app.quit();
   }
 });
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -38,4 +40,8 @@ app.on('ready', function() {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+
+
+
 });

@@ -15,23 +15,37 @@ module.exports = function(grunt) {
             dist: {
                 src: './app/app.js',
                 dest: './app/bundle.js',
-                transform: [nwjsify /** or nwjsify.with('_require') **/],
                 options: {
                     alias: {
                         'jquery': 'jquery-browserify',
                         'colReorder': './libs/datatables-colreorder',
                         'colResize': './libs/colResize/dataTables.colResize',
                         'colVis': 'drmonty-datatables-colvis',
-                        'dataTablesSelect' : './libs/select/js/dataTables.select',
-                        'ui-grid' : './app/content/js/ui-grid.min',
+                        'dataTablesSelect': './libs/select/js/dataTables.select',
+                        'ui-grid': './app/content/js/ui-grid.min',
                     },
                     debug: true
                 }
             }
         },
+
+        'create-windows-installer': {
+            x64: {
+                appDirectory: './node_modules/electron-prebuilt/dist',
+                outputDirectory: '/tmp/build/installer64',
+                authors: 'My App Inc.',
+                exe: 'myapp.exe'
+            },
+            ia32: {
+                appDirectory: './',
+                outputDirectory: '/tmp/build/installer32',
+                authors: 'My App Inc.',
+                exe: 'myapp.exe'
+            }
+        }
     });
 
-    grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-electron-installer')
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.registerTask('default', 'build', ['browserify']);
+    grunt.registerTask('default', 'build', ['create-windows-installer']);
 };
