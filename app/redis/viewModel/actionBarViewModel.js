@@ -19,6 +19,7 @@ exports.register = function(module) {
             'dialog',
             'searchViewModel',
             'keyViewModel',
+            'Notification',
             function(
                 $timeout,
                 keyViewModel,
@@ -37,7 +38,8 @@ exports.register = function(module) {
                 uiGridConstants,
                 dialog,
                 searchViewModel,
-                keyViewModel) {
+                keyViewModel,
+                Notification) {
                 var self = this;
 
                 self.init = function() {
@@ -117,15 +119,31 @@ exports.register = function(module) {
 
                         $timeout(function() {
                             $confirmViewModel.scope().$apply(function() {
-                                $confirmViewModel.Body = 'Are you sure you want to delete "' + (keyViewModel.selectedKeys.length === 1 ? keyViewModel.selectedKeys[0].Key : keyViewModel.selectedKeys.length) + '"?';
+                                $confirmViewModel.Body =
+                                    keyViewModel.selectedKeys.length === 1 
+                                    ? 'Are you sure you want to delete "' + keyViewModel.selectedKeys[0].Key + '"?' 
+                                    : 'Are you sure you want to delete ' + keyViewModel.selectedKeys.length + ' items?';
                                 $confirmViewModel.show(function() {
+                                    var areAllDeleted = true;
                                     for (var i = 0; i < keyViewModel.selectedKeys.length; i++) {
                                         var type = keyViewModel.selectedKeys[i].Type;
                                         var repo = $redisRepositoryFactory(type);
-                                        repo.delete(keyViewModel.selectedKeys[i]);
+
+                                        try {
+                                            repo.delete(keyViewModel.selectedKeys[i]);
+                                            _.remove(keyViewModel.data, {
+                                                Key: keyViewModel.selectedKeys[i].Key
+                                            });
+                                        } catch (ex) {
+                                            areAllDeleted = false;
+                                        }
                                     };
-                                    keyViewModel.selectedKeys = [];
-                                    searchViewModel.search();
+
+                                    if (areAllDeleted) {
+                                        Notification.success('Key(s) deleted successfully');
+                                    } else {
+                                        Notification.warning('Not all keys were deleted');
+                                    }
                                 });
                             });
                         });

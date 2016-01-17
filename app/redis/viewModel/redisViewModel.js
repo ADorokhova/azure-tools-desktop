@@ -19,6 +19,7 @@ exports.register = function(module) {
             'dialog',
             'searchViewModel',
             'keyViewModel',
+            'Notification',
 
             function(
                 $scope,
@@ -38,7 +39,8 @@ exports.register = function(module) {
                 uiGridConstants,
                 dialog,
                 searchViewModel,
-                keyViewModel) {
+                keyViewModel,
+                Notification) {
                 var self = this;
                 var loadDetailsOperation = 'loadDetails';
 
@@ -53,22 +55,32 @@ exports.register = function(module) {
 
                 // extend keyViewModel
                 keyViewModel.onRegisterApi = function(gridApi) {
-                    $scope.keyApi = gridApi;
-                    $scope.keyApi.selection.on.rowSelectionChanged($scope, function(row) {
-                        if ($busyIndicator.getIsBusy(loadDetailsOperation) === false) {
-                            $busyIndicator.setIsBusy(loadDetailsOperation, true);
-                            redisRepo.getKey(row.entity.Key, function(result) {
-                                $busyIndicator.setIsBusy(loadDetailsOperation, false);
-                                keyViewModel.selectedKeys = [result];
-                                $scope.$broadcast('redisViewModel-key-selected-type-' + result.Type, result);
-                            });
+
+                    var selectOneOrMany = function(selectedItems) {
+                        if (selectedItems.length === 1) {
+                            console.log(selectedItems[0])
+                            if ($busyIndicator.getIsBusy(loadDetailsOperation) === false) {
+                                $busyIndicator.setIsBusy(loadDetailsOperation, true);
+                                redisRepo.getKey(selectedItems[0].Key, function(result) {
+                                    $busyIndicator.setIsBusy(loadDetailsOperation, false);
+                                    keyViewModel.selectedKeys = [result];
+                                    $scope.$broadcast('redisViewModel-key-selected-type-' + result.Type, result);
+                                });
+                            }
+                        } else if (selectedItems.length > 1) {
+                            keyViewModel.selectedKeys.length = 0;
+                            for (var i = 0; i < selectedItems.length; i++) {
+                                keyViewModel.selectedKeys.push(selectedItems[i]);
+                            };
                         }
+                    };
+
+                    gridApi.selection.on.rowSelectionChanged($scope, function() {
+                        selectOneOrMany(gridApi.selection.getSelectedRows());
                     });
-                    gridApi.selection.on.rowSelectionChangedBatch($scope, function(rows) {
-                        keyViewModel.selectedKeys.length = 0;
-                        for (var i = 0; i < rows.length; i++) {
-                            keyViewModel.selectedKeys.push(rows[i].entity);
-                        };
+
+                    gridApi.selection.on.rowSelectionChangedBatch($scope, function() {
+                        selectOneOrMany(gridApi.selection.getSelectedRows());
                     });
                 };
                 keyViewModel.getStyle = function() {
@@ -85,8 +97,6 @@ exports.register = function(module) {
                 $scope.DatabaseViewModel = databaseViewModel;
 
                 // load redis data
-                var maxItemsToLoad = 100;
-
                 searchViewModel.onSuccess = function(keys) {
                     for (var i = 0, len = keys.length; i < len; i++) {
                         keyViewModel.data.push({
@@ -94,6 +104,7 @@ exports.register = function(module) {
                         });
                     }
                 };
+
                 searchViewModel.beforeSearch = function() {
                     $scope.$emit('reload');
 

@@ -4,12 +4,14 @@
     window.jQuery = window.$ = require('jquery');
     var angular = require('angular');
     window.angular = angular;
+    window._ = require('lodash');
 
     var angularRoute = require('angular-ui-router'),
         dataTable = require('datatables'),
         uiGrid = require('angular-ui-grid'),
         dranDrop = require('angular-dragdrop'),
         resizable = require('angular-resizable'),
+        notifications = require('angular-ui-notification'),
         app;
 
     var jqueryUI = require('jquery-ui');
@@ -26,6 +28,7 @@
 
     app = angular
         .module('app', [
+            'ui-notification',
             'ui.grid',
             'ui.grid.autoResize',
             'ui.grid.selection',
