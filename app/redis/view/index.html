@@ -3,59 +3,23 @@
 		<bg-splitter orientation="horizontal">
 			<bg-pane min-size="170" init-percentage="26.666666">
 				<div class="wrapLeftBlock">
+					<div id="headBlock-Database" class="headBlock">
+						<i class="fa fa-database"></i><span>Database</span>
+						
+						<div class="dropdown">
+							<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								{{DatabaseViewModel.Current}}
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+								<li role="presentation" ng-repeat="n in [0, 1, 2, 3,4,5,6,7,8,9,10]"><a ng-click="DatabaseViewModel.setCurrent(n)">{{n}}</a></li>
+							</ul>
+						</div>
+						<div class="clearFloat"></div>
+					</div>
 					<div class="bodyLeftBlock">
 						<div class="searchBar">
-
-
-
-            <ul class="nav navbar-nav" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'redis'">
-                <li ng-show="ActionBarItems.IsSettingsVisible">
-                    <div class="tileFunction">
-                        <a class="fa-links" title="Account storage" ng-click="ActionBarItems.changeSettings()">
-                            <i class="fa fa-cog"></i><br /><span>Setting</span>
-                        </a>
-                    </div>
-                </li>
-                <li ng-show="ActionBarItems.IsRefreshVisible">
-                    <div class="tileFunction">
-                        <a class="fa-links" title="Refresh table key" ng-click="ActionBarItems.refresh()">
-                            <i class="fa fa-refresh"></i><br /><span>Refresh</span>
-                        </a>
-                    </div>
-                </li>
-                <li class="delimiter-tiles"></li>
-                <li ng-show="ActionBarItems.IsAddKeyVisible">
-                    <div class="tileFunction">
-                        <a class="fa-links" title="Add Key" ng-click="ActionBarItems.addKey()">
-                            <i class="fa fa-plus-circle"></i><br /><span>Add Key</span>
-                        </a>
-                    </div>
-                </li>  
-                <li>
-                    <div class="tileFunction">
-                        <a class="fa-links" title="Delete Key"  ng-click="ActionBarItems.removeKey()">
-                            <i class="fa fa-trash-o"></i><br /><span>Delete</span>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-
-
-<!--<i class="fa fa-database"></i><span>Database</span>
-						
-							<div class="dropdown">
-								<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									{{DatabaseViewModel.Current}}
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-									<li role="presentation" ng-repeat="n in [0, 1, 2, 3,4,5,6,7,8,9,10]"><a ng-click="DatabaseViewModel.setCurrent(n)">{{n}}</a></li>
-								</ul>
-							</div>
-							<div class="clearFloat"></div>-->
-
-
-							<div class="saerchText">
+         					<div class="saerchText">
 								<input ng-model="SearchViewModel.Pattern"
 								ng-change="SearchViewModel.onChange()"
 								ng-enter="SearchViewModel.search()"
@@ -80,6 +44,9 @@
 			</bg-pane>
 			<bg-pane>
 				<div class="wrapRightBlock">
+					<div class="headBlock">
+						
+					</div>
 					<div class="bodyRightBlock">
 						<div id="navbarValue">
 							<div class="typeValue">
@@ -116,7 +83,7 @@
 								<bg-pane min-size="119">
 									<div class="editValue">
 										<p>Edit Value</p>
-										<textarea type="text" class="set-form-control" autofocus  ng-model="setMemberForEdit.Value"></textarea>
+										<textarea type="text" class="form-control set-form-control" autofocus  ng-model="setMemberForEdit.Value"></textarea>
 										<span class="tileFunction">
 											<a class="fa-links" title="Save value" ng-click="updateSet()">Save</a>
 										</span>

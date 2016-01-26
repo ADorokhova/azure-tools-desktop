@@ -69,7 +69,38 @@
         <div ng-controller="ActionBarController" class="collapse navbar-collapse" id="navbarTilesFunction">
 
             <!--Redis Action Bar-->
-
+            <ul class="nav navbar-nav" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'redis'">
+                <li ng-show="ActionBarItems.IsSettingsVisible">
+                    <div class="tileFunction">
+                        <a class="fa-links" title="Account storage" ng-click="ActionBarItems.changeSettings()">
+                            <i class="fa fa-cog"></i><br /><span>Setting</span>
+                        </a>
+                    </div>
+                </li>
+                <li ng-show="ActionBarItems.IsRefreshVisible">
+                    <div class="tileFunction">
+                        <a class="fa-links" title="Refresh table key" ng-click="ActionBarItems.refresh()">
+                            <i class="fa fa-refresh"></i><br /><span>Refresh</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="delimiter-tiles"></li>
+                <li ng-show="ActionBarItems.IsAddKeyVisible">
+                    <div class="tileFunction">
+                        <a class="fa-links" title="Add Key" ng-click="ActionBarItems.addKey()">
+                            <i class="fa fa-plus-circle"></i><br /><span>Add Key</span>
+                        </a>
+                    </div>
+                </li>  
+                <li>
+                    <div class="tileFunction">
+                        <a class="fa-links" title="Delete Key"  ng-click="ActionBarItems.removeKey()">
+                            <i class="fa fa-trash-o"></i><br /><span>Delete</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            
             <!--Tables Action Bar-->
             <ul class="nav navbar-nav" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'tables'">
                 <li ng-show="ActionBarItems.IsSettingsVisible">

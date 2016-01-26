@@ -1,12 +1,11 @@
 .forRedis {
 	@include colorsModule($bg-colorHead-Redis, $bg-colorTile-Redis);
 
-	.wrapRightBlock .headBlock span {
-		padding-left: 10px;
-	}
+	// .wrapRightBlock .headBlock span {
+	// 	padding-left: 10px;
+	// }
 
 	.bodyLeftBlock {
-		padding-left: 9px;
 		display:flex; 
 		flex-direction: column; 
 		padding-bottom: 56px;
@@ -21,7 +20,7 @@
 #headBlock-Database {
 	.fa {
 		float: left;
-		padding: 6px 8px 6px 10px;
+		padding: 6px 9px;
 	}
 	span:not(.caret) {
 		float: left;
@@ -93,11 +92,10 @@
 .editValue {
 	height: 100%;
 	p {
-		margin: 0 0 8px;
-		
+		margin: 5px 0;	
 	}
 	.form-control {
-		height: calc(100% - 66px);
+		height: calc(50% - 49px);
 		border: $borderTable;
 		padding: 8px 12px;
 		font-size: 13px;
@@ -105,19 +103,23 @@
 		min-height: 36px;
 		resize: none;
 	}
+
+	.set-form-control {
+		height: calc(100% - 68px);
+	}
 	.tileFunction {
 		width: 48px;
 		height: 30px;
 		-webkit-user-select: none;
 		line-height: 30px;
 		float: right;
-		margin: 8px 0 7px 8px;
+		margin: 8px 0 8px 8px;
 	}
 }
 
 #value-String {
-	height: 100%;
+	height: calc(100% - 38px);
 	.form-control {
-		height: calc(100% - 112px);
+		height: calc(100% - 71px);
 	}
 }

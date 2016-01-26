@@ -7,7 +7,7 @@
 
 #wrapperAzure {
 	font-family: $fontFamily;
-	height: calc(100% - 20px);
+	height: 100%;
 }
 
 /*Header*/
@@ -187,9 +187,6 @@
 
 /*Body*/
 
-#content {
-}
-
 .wrapLeftBlock {
 	height: 100%;
 }
@@ -198,6 +195,7 @@
 	height: 100%;
 	.headBlock .fa {
 		padding-right: 4px;
+		padding-left: 10px;
 	} 
 }
 
@@ -208,7 +206,7 @@
 	font-size: 16px;
 	white-space: nowrap;
 	.fa {
-		padding: 0 8px 0 10px;
+		padding: 0 9px;
 		font-size: 18px;
 		vertical-align: -10%;
 	} 
@@ -216,9 +214,13 @@
 
 .bodyLeftBlock, .bodyRightBlock {
 	background: $bg-colorBlock;
-	border: $borderBlock;
 	height: calc(100% - 30px);
-	padding: 8px;
+	padding: 8px 9px;
+}
+
+.bodyRightBlock {
+	background: #fff;
+	padding: 8px 9px 8px 10px;
 }
 
 .searchBar {

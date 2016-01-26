@@ -74,7 +74,7 @@ table.dataTable td {
 	border-bottom: $borderTH;
 	.ui-grid-cell-contents {
 		font-size: 13px;
-		padding: 6px 4px 6px 8px;
+		//padding: 6px 4px 6px 8px;
 		.ui-grid-header-cell-label {
 			font-weight: bold;
 		}
@@ -112,8 +112,8 @@ table.dataTable td {
 /*Body table*/
 .ui-grid-canvas {
 	.ui-grid-cell {
-		border-right: $borderTD;
-		border-bottom: $borderTD;
+		//border-right: $borderTD;
+		//border-bottom: $borderTD;
 	}
 
 	.ui-grid-row:last-child .ui-grid-cell {
@@ -121,7 +121,7 @@ table.dataTable td {
 	}
 
 	.ui-grid-cell-contents {
-		font-size: 13px;
+		font-size: 14px;
 		line-height: 16px;
 		padding: 6px 8px 7px;
 		-webkit-user-select: text;
@@ -135,9 +135,14 @@ table.dataTable td {
 	}
 	
 	.ui-grid-row, .ui-grid-cell {
-		height: auto !important;
+		//height: auto !important;
 	}
 
+}
+
+.ui-grid-cell-contents {
+  padding: 0px 0px 0px 10px !important;
+  color: black;
 }
 
 
