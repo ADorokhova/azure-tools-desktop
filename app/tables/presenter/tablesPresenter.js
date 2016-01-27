@@ -13,7 +13,7 @@
         };
 
         var calcDataTableHeight = function() {
-            var headerHeight = 243 + $('#filterArea').height() + 42;
+            var headerHeight = 123 + $('#filterArea').height() + 36;
             return ($(window).height() - headerHeight);
         };
 

@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'iconFont';
-  src: url('/content/css/metro-ui-css/iconFont.eot');
-  src: url('/content/css/metro-ui-css/iconFont.eot?#iefix') format('embedded-opentype'), url('/content/css/metro-ui-css/iconFont.woff') format('woff'), url('/content/css/metro-ui-css/iconFont.ttf') format('truetype'), url('/content/css/metro-ui-css/iconFont.svg#iconFont') format('svg');
+  src: url('iconFont.eot');
+  src: url('iconFont.eot?#iefix') format('embedded-opentype'), url('iconFont.woff') format('woff'), url('iconFont.ttf') format('truetype'), url('iconFont.svg#iconFont') format('svg');
   font-weight: normal;
   font-style: normal;
 }
