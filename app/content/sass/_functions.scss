@@ -66,6 +66,10 @@
 	.headBlock {
 		background: $colorHead;
 	}
+
+	.functionButton a:hover {
+		color: hsl(hue($colorTile), 100%, 92%);
+	}
 	
 	.dataTables_scrollHead {
 		th {

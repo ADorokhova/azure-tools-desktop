@@ -1,11 +1,49 @@
 <div class="container">
 	<div class="metro grid" ng-controller="RedisController as redisController">
 		<bg-splitter orientation="horizontal">
-			<bg-pane min-size="170" init-percentage="26.666666">
+			<bg-pane min-size="200" init-percentage="25">
 				<div class="wrapLeftBlock">
-					<div id="headBlock-Database" class="headBlock">
-						<i class="fa fa-database"></i><span>Database</span>
+					<div class="headBlock">
 						
+						<div class="collapse navbar-collapse" id="navbarFunction">
+							<ul class="nav navbar-nav" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'redis'">
+								<li ng-show="ActionBarItems.IsSettingsVisible">
+									<div class="functionButton">
+										<a class="fa-links" title="Account storage" ng-click="ActionBarItems.changeSettings()">
+											<i class="fa fa-cog"></i>
+										</a>
+									</div>
+								</li>
+								<li ng-show="ActionBarItems.IsRefreshVisible">
+									<div class="functionButton">
+										<a class="fa-links" title="Refresh table key" ng-click="ActionBarItems.refresh()">
+											<i class="fa fa-refresh"></i>
+										</a>
+									</div>
+								</li>
+								<li class="delimiter-tiles"></li>
+								<li ng-show="ActionBarItems.IsAddKeyVisible">
+									<div class="functionButton">
+										<a class="fa-links" title="Add Key" ng-click="ActionBarItems.addKey()">
+											<i class="fa fa-plus-circle"></i>
+										</a>
+									</div>
+								</li>  
+								<li>
+									<div class="functionButton">
+										<a class="fa-links" title="Delete Key"  ng-click="ActionBarItems.removeKey()">
+											<i class="fa fa-trash-o"></i>
+										</a>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+
+					<!-- <div id="block-Database">
+						<i class="fa fa-database"></i><span>Db</span>
+
 						<div class="dropdown">
 							<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								{{DatabaseViewModel.Current}}
@@ -15,9 +53,26 @@
 								<li role="presentation" ng-repeat="n in [0, 1, 2, 3,4,5,6,7,8,9,10]"><a ng-click="DatabaseViewModel.setCurrent(n)">{{n}}</a></li>
 							</ul>
 						</div>
-						<div class="clearFloat"></div>
-					</div>
+						<div class="clearFloat"></div> 
+					</div> -->
+
 					<div class="bodyLeftBlock">
+						<div>
+						<div id="block-Database">
+							<span>Database</span>
+
+							<div class="dropdown">
+								<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									{{DatabaseViewModel.Current}}
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+									<li role="presentation" ng-repeat="n in [0, 1, 2, 3,4,5,6,7,8,9,10]"><a ng-click="DatabaseViewModel.setCurrent(n)">{{n}}</a></li>
+								</ul>
+							</div>
+							<!-- <div class="clearFloat"></div> -->
+						</div>
+
 						<div class="searchBar">
          					<div class="saerchText">
 								<input ng-model="SearchViewModel.Pattern"
@@ -32,9 +87,10 @@
 									<i class="fa fa-search"></i>
 								</a>
 							</span>
-							<div class="clearFloat"></div>
+							<!-- <div class="clearFloat"></div> -->
 						</div>
-
+						<div class="clearFloat"></div>
+					</div>
 
 						<!--<table id="data" cellpadding="0" cellspacing="0" border="0" class="table striped hovered dataTable" style="width:100%"></table>-->
 

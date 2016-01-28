@@ -17,21 +17,24 @@
 }
 
 
-#headBlock-Database {
-	.fa {
-		float: left;
-		padding: 6px 9px;
-	}
+#block-Database {
+	float: left;
+	// .fa {
+	// 	float: left;
+	// 	padding: 6px 9px;
+	// }
 	span:not(.caret) {
 		float: left;
+		color: #000;
+		padding-top: 3px;
 	}
 	.dropdown {
 		float: left;
-		margin: -1px 2px -1px 8px; 
+		margin: 0px 9px 0px 4px; 
 	}
 	button {
-		padding: 3px 9px 3px 5px;
-		width: 46px;
+		padding: 3px 3px 3px 1px;
+		width: 34px;
 		background-color: $bg-colorTile-Redis;
 		color: #ffffff;
 		font-family: $fontFamily;
