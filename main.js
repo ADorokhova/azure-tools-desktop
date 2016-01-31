@@ -3,7 +3,7 @@ const electron = require('electron');
 const dialog = require('dialog');
 const app = electron.app;  // Module to control application life.
 const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
-
+const showWindowFrame = process.platform !== 'win32';
 // Report crashes to our server.
 electron.crashReporter.start();
 
@@ -24,8 +24,9 @@ app.on('window-all-closed', function() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
+
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1200, height: 800, frame: false});
+  mainWindow = new BrowserWindow({width: 1200, height: 800, frame: showWindowFrame});
 
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/app/index.html`);
