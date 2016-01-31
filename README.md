@@ -2,4 +2,16 @@
 
 # Azure Tools Desktop
 
+### Building the installer
+
+#### OSX
+
+```
+grunt osx
+```
+
+Result azuretools.dmg will be in builds/Azure Tools-darwin-x64.
+
+
+
 
