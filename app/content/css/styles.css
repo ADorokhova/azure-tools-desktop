@@ -111,8 +111,14 @@
 .forRedis .headBlock {
   background: #039BC1;
 }
-.forRedis .functionButton a:hover {
+.forRedis .functionButton a:active, .forRedis .functionButton a:hover {
   color: #d6f9ff;
+}
+.forRedis .searchBar .functionButton a {
+  color: #6FDEF2;
+}
+.forRedis .searchBar .functionButton a:hover {
+  color: #9ee9f6;
 }
 .forRedis .dataTables_scrollHead th {
   background-color: #edf6f7;
@@ -172,6 +178,10 @@
 #block-Database button:active, #block-Database button:hover {
   background-color: #9ee9f6 !important;
 }
+#block-Database button:active {
+  transform: perspective(200px) rotateX(0.2rad);
+  transform-origin: 50% bottom;
+}
 #block-Database button:focus {
   border: 1px transparent solid;
   background-color: #9ee9f6 !important;
@@ -203,15 +213,10 @@
   background-color: #edf6f7;
 }
 
-.typeValue {
-  margin-bottom: 10px;
-}
-
 .metro .typeValue p {
-  padding: 0px 6px 4px 0;
   font-size: 15px;
   margin: 0;
-  line-height: 32px;
+  line-height: 25px;
   color: #2A2A2A;
 }
 .metro .typeValue span {
@@ -247,7 +252,7 @@
 }
 
 #value-String {
-  height: calc(100% - 38px);
+  height: calc(100% - 22px);
 }
 #value-String .form-control {
   height: calc(100% - 71px);
@@ -305,8 +310,14 @@
 .forTables .headBlock {
   background: #039BC1;
 }
-.forTables .functionButton a:hover {
+.forTables .functionButton a:active, .forTables .functionButton a:hover {
   color: #d6f9ff;
+}
+.forTables .searchBar .functionButton a {
+  color: #6FDEF2;
+}
+.forTables .searchBar .functionButton a:hover {
+  color: #9ee9f6;
 }
 .forTables .dataTables_scrollHead th {
   background-color: #edf6f7;
@@ -388,13 +399,13 @@
   height: 426px;
 }
 #createTableEntity .wrapListFields {
-  background: #F8F8F8;
+  background: #F1F1F1;
   border: 1px solid #e2e2e2;
   height: calc(100% - 38px);
   padding: 6px 4px 6px 6px;
 }
 #createTableEntity .wrapListFields div:first-child {
-  background: #F8F8F8;
+  background: #F1F1F1;
   overflow: auto;
   height: 100%;
 }
@@ -599,8 +610,14 @@
 .forBlobs .headBlock {
   background: #039BC1;
 }
-.forBlobs .functionButton a:hover {
+.forBlobs .functionButton a:active, .forBlobs .functionButton a:hover {
   color: #d6f9ff;
+}
+.forBlobs .searchBar .functionButton a {
+  color: #6FDEF2;
+}
+.forBlobs .searchBar .functionButton a:hover {
+  color: #9ee9f6;
 }
 .forBlobs .dataTables_scrollHead th {
   background-color: #edf6f7;
@@ -694,7 +711,7 @@
   margin: 10px 10px 10px 0px;
 }
 .tileFunction:active {
-  transform: perspective(400px) rotateX(0.2rad);
+  transform: perspective(200px) rotateX(0.2rad);
   transform-origin: 50% bottom;
 }
 .tileFunction a {
@@ -771,7 +788,7 @@
   width: 100%;
   font-size: 13px;
   padding: 6px;
-  background: #F8F8F8;
+  background: #F1F1F1;
   border: 1px solid #b4b4b4;
 }
 
@@ -850,19 +867,15 @@
   position: relative;
   text-align: center;
   color: #fff;
-  transition: color ease 1s;
 }
 .functionButton a:hover {
   text-decoration: none;
-  transition: color ease 0.5s;
+  border: 1px solid;
+  margin: -1px 0 0 0px;
 }
-.functionButton a:hover .fa {
-  font-size: 26px;
-  margin-top: -3px;
-}
-.functionButton a:active .fa {
-  font-size: 18px;
-  margin-top: 2px;
+.functionButton a:active {
+  transform: perspective(200px) rotateX(0.2rad);
+  transform-origin: 50% bottom;
 }
 .functionButton .fa {
   font-size: 20px;
@@ -877,7 +890,7 @@
 
 /*End functional panel*/
 .bodyLeftBlock, .bodyRightBlock {
-  background: #F8F8F8;
+  background: #F1F1F1;
   height: calc(100% - 30px);
   padding: 8px 9px;
 }
@@ -900,23 +913,29 @@
   width: 100%;
   resize: vertical;
 }
-.searchBar .tileFunction {
+.searchBar .functionButton {
   width: 24px;
   height: 24px;
-  margin: 0 0 0 6px;
+  margin: 0;
+  float: left;
 }
-.searchBar .tileFunction:active {
-  transform: perspective(50px) rotateX(0.2rad);
+.searchBar .functionButton a:hover {
+  border: none;
+  margin: 0px;
+}
+.searchBar .functionButton a:active {
+  transform: perspective(200px) rotateX(0.2rad);
   transform-origin: 50% bottom;
 }
-.searchBar .tileFunction .fa {
-  font-size: 18px;
-  padding-top: 3px;
+.searchBar .functionButton .fa {
+  font-size: 22px;
+  padding-top: 0px;
+  padding-left: 2px;
 }
 
 .saerchText {
   position: relative;
-  width: calc(100% - 30px);
+  width: calc(100% - 24px);
   float: left;
 }
 

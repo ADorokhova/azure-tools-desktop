@@ -66,12 +66,17 @@
 .forRedis .split-panes.vertical {
   left: 1px;
   right: 0px;
-  top: 76px;
+  top: 70px;
   bottom: 0px;
-  margin: 8px 9px;
+  margin: 0px;
 }
 .forRedis .split-panes.vertical > .split-handler {
-  left: -9px;
-  right: -9px;
   border-top: 1px solid #e2e2e2;
+}
+.forRedis .split-panes.vertical > .split-pane1 {
+  padding: 0px 9px 1px 9px;
+}
+.forRedis .split-panes.vertical > .split-pane2 {
+  padding: 0px 9px 8px 9px;
+  background: #f8f8f8;
 }

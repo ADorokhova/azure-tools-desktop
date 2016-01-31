@@ -19,10 +19,6 @@
 
 #block-Database {
 	float: left;
-	// .fa {
-	// 	float: left;
-	// 	padding: 6px 9px;
-	// }
 	span:not(.caret) {
 		float: left;
 		color: #000;
@@ -40,6 +36,10 @@
 		font-family: $fontFamily;
 		&:active, &:hover {
 			background-color: lighten($bg-colorTile-Redis, 10%) !important;
+		}
+		&:active {
+			transform: perspective(200px) rotateX(0.2rad);
+			transform-origin: 50% bottom;
 		}
 		&:focus {
 			border: 1px transparent solid;
@@ -74,16 +74,11 @@
 	}
 }
 
-.typeValue {
-	margin-bottom: 10px;
-}
-
 .metro .typeValue {
 	p {
-		padding: 0px 6px 4px 0;
 		font-size: 15px;
 		margin: 0; 
-		line-height: 32px;
+		line-height: 25px;
 		color: #2A2A2A;
 	}
 	span {
@@ -121,7 +116,7 @@
 }
 
 #value-String {
-	height: calc(100% - 38px);
+	height: calc(100% - 22px);
 	.form-control {
 		height: calc(100% - 71px);
 	}

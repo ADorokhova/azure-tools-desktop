@@ -67,7 +67,7 @@
 	color: #ffffff;
 	margin: 10px 10px 10px 0px;
 	&:active {
-		transform: perspective(400px) rotateX(0.2rad);
+		transform: perspective(200px) rotateX(0.2rad);
 		transform-origin: 50% bottom;
 	}
 	a {
@@ -200,11 +200,6 @@
 	line-height: 28px;
 	font-size: 16px;
 	white-space: nowrap;
-	// .fa {
-	// 	padding: 0 9px;
-	// 	font-size: 18px;
-	// 	vertical-align: -10%;
-	// } 
 }
 
 #navbarFunction {
@@ -232,22 +227,16 @@
 		height: 100%;
 		position: relative;
 		text-align: center;
+		color: #fff;
 		&:hover {
 			text-decoration: none;
-			transition: color ease 0.5s;
-			.fa {
-				font-size: 26px;
-				margin-top:-3px;
-			} 
+			border: 1px solid;
+			margin: -1px 0 0 0px;
 		}
 		&:active {
-			.fa {
-				font-size: 18px;
-				margin-top: 2px;
-			} 
+			transform: perspective(200px) rotateX(0.2rad);
+			transform-origin: 50% bottom;
 		}
-		color: #fff;
-		transition: color ease 1s;
 	}
 	.fa {
 		font-size: 20px;
@@ -287,24 +276,32 @@
 		width: 100%;
 		resize: vertical;
 	}
-	.tileFunction {
+	.functionButton {
 		width: 24px;
 		height: 24px;
-		margin: 0 0 0 6px;
-		&:active {
-			transform: perspective(50px) rotateX(0.2rad);
-			transform-origin: 50% bottom;
+		margin: 0;
+		float: left;
+		a {
+			&:hover {
+				border: none;
+				margin: 0px; 
+			}
+			&:active {
+				transform: perspective(200px) rotateX(0.2rad);
+				transform-origin: 50% bottom;
+			}
 		}
 		.fa {
-			font-size: 18px;
-			padding-top: 3px;
+			font-size: 22px;
+			padding-top: 0px;
+			padding-left: 2px;
 		}
 	}
 }
 
 .saerchText {
 	position: relative;
-	width: calc(100% - 30px);
+	width: calc(100% - 24px);
 	float: left;
 }
 

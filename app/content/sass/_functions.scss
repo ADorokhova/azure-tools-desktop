@@ -67,8 +67,21 @@
 		background: $colorHead;
 	}
 
-	.functionButton a:hover {
+	.functionButton {
+		a:active, a:hover {
 		color: hsl(hue($colorTile), 100%, 92%);
+	}
+	}
+
+	.searchBar {
+		.functionButton {
+			a {
+				color: $colorTile;
+				&:hover {
+					color: lighten($colorTile, 10%);
+				}
+			}
+		}
 	}
 	
 	.dataTables_scrollHead {
