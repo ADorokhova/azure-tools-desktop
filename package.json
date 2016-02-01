@@ -7,7 +7,9 @@
     "test": "grunt browserify && karma start karma.config.js",
     "lint": "eslint app/**/*.js app/*.js",
     "build": "grunt browserify",
-    "start": "electron main.js"
+    "start": "electron main.js",
+    "package:linux": "grunt linux",
+    "package:osx": "grunt osx"
   },
   "repository": {
     "type": "git",

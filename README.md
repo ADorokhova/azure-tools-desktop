@@ -7,11 +7,16 @@
 #### OSX
 
 ```
-grunt osx
+npm run package:osx
 ```
 
-Result azuretools.dmg will be in builds/Azure Tools-darwin-x64.
+Result: builds/Azure Tools-darwin-x64/azuretools.dmg.
 
+#### Linux
 
+```
+npm run package:linux
+```
 
+Result: builds/azuretools-linux-ia32.
 
