@@ -52,7 +52,7 @@ module.exports = function(grunt) {
             }
         },
         electron: {
-            osxBuild: {
+            osx: {
                 options: {
                     name: 'azuretools',
                     dir: 'electronbuildcache',
@@ -61,6 +61,17 @@ module.exports = function(grunt) {
                     overwrite: true,
                     platform: 'darwin',
                     arch: 'x64'
+                }
+            },
+            linux: {
+                options: {
+                    name: 'azuretools',
+                    dir: 'electronbuildcache',
+                    out: 'builds',
+                    version: '0.36.7',
+                    overwrite: true,
+                    platform: 'linux',
+                    arch: 'ia32'
                 }
             }
         },
@@ -97,5 +108,6 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', 'build', ['create-windows-installer']);
-    grunt.registerTask('osx', ['clean', 'copy:app', 'electron', 'appdmg']);
+    grunt.registerTask('osx', ['clean', 'copy:app', 'electron:osx', 'appdmg']);
+    grunt.registerTask('linux', ['clean', 'copy:app', 'electron:linux'])
 };
