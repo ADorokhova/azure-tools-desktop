@@ -64,10 +64,14 @@ table.dataTable td {
 }
 .ui-grid-header .ui-grid-cell-contents {
   font-size: 13px;
-  padding: 2px 6px;
+  padding: 2px 0px 2px 6px;
 }
 .ui-grid-header .ui-grid-cell-contents .ui-grid-header-cell-label {
   font-weight: bold;
+}
+
+.ui-grid-header-cell:last-child .ui-grid-column-resizer.right {
+  border-right: none;
 }
 
 .ui-grid-header-cell {
@@ -99,9 +103,6 @@ table.dataTable td {
 }
 
 /*Body table*/
-.ui-grid-canvas .ui-grid-row:last-child .ui-grid-cell {
-  border-bottom: 1px #DDDDDD solid !important;
-}
 .ui-grid-canvas .ui-grid-cell-contents {
   font-size: 14px;
   line-height: 16px;
@@ -115,8 +116,16 @@ table.dataTable td {
   border-right: none;
 }
 
+.ui-grid-row:nth-child(even) .ui-grid-cell, .ui-grid-row:nth-child(odd) .ui-grid-cell {
+  background-color: #fff;
+}
+
 .ui-grid-cell-contents {
   color: black;
+}
+
+#value-HashSet .ui-grid-row:last-child .ui-grid-cell {
+  border-bottom: 1px #DDDDDD solid !important;
 }
 
 .forBlobs .ui-grid-canvas .ui-grid-cell-contents {
@@ -127,6 +136,54 @@ table.dataTable td {
 }
 .forBlobs .ui-grid-canvas .ui-grid-cell {
   border-bottom: 1px #DDDDDD solid;
-  font-size: 13px;
-  line-height: 16px;
+}
+.forBlobs .bodyRightBlock .ui-grid-row:last-child .ui-grid-cell {
+  border-bottom: 1px #DDDDDD solid !important;
+}
+.forBlobs .bodyLeftBlock .ui-grid-canvas .ui-grid-cell-contents {
+  padding: 6px 4px;
+}
+.forBlobs .bodyLeftBlock .ui-grid-canvas .ui-grid-cell {
+  border-bottom: none;
+}
+.forBlobs .bodyLeftBlock .ui-grid-canvas .ui-grid-cell-contents:before {
+  font: 15px FontAwesome;
+  content: "\f114";
+  padding-right: 6px;
+  color: #777777;
+}
+
+.bodyLeftBlock .ui-grid {
+  border: none;
+  margin-right: -10px;
+  margin-left: -4px;
+}
+.bodyLeftBlock .ui-grid .ui-grid-top-panel {
+  background: #F1F1F1;
+}
+.bodyLeftBlock .ui-grid .ui-grid-header-cell {
+  background: #F1F1F1;
+}
+.bodyLeftBlock .ui-grid-header {
+  border: none;
+}
+.bodyLeftBlock .ui-grid-header .ui-grid-cell-contents {
+  padding: 2px 0px 2px 2px;
+}
+.bodyLeftBlock .ui-grid-header-cell .sortable {
+  border: 1px solid #F1F1F1;
+  border-bottom: 1px solid #b4b4b4;
+}
+.bodyLeftBlock .ui-grid-row:nth-child(even) .ui-grid-cell, .bodyLeftBlock .ui-grid-row:nth-child(odd) .ui-grid-cell {
+  background-color: #F1F1F1;
+}
+.bodyLeftBlock .ui-grid-canvas .ui-grid-cell-contents {
+  padding: 0px 4px;
+}
+
+.forRedis .bodyLeftBlock .ui-grid-canvas .ui-grid-cell-contents:before {
+  font: 12px iconFont;
+  content: "\e045";
+  padding-right: 6px;
+  color: #777777;
 }

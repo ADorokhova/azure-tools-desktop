@@ -138,14 +138,21 @@
 .forRedis .ui-grid-header-cell-primary-focus:focus {
   outline-color: #039BC1;
 }
-.forRedis .ui-grid-row:nth-child(even) .ui-grid-cell, .forRedis .ui-grid-row:nth-child(odd) .ui-grid-cell {
-  background-color: #fff;
-}
 .forRedis .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forRedis .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
   background-color: #f2fdff;
 }
 .forRedis .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forRedis .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
   background-color: #ebfcff;
+}
+.forRedis .bodyLeftBlock .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forRedis .bodyLeftBlock .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
+  background: #e5fbff;
+}
+.forRedis .bodyLeftBlock .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forRedis .bodyLeftBlock .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
+  background: #dfeef1;
+}
+.forRedis .bodyLeftBlock .ui-grid-header-cell-primary-focus:focus {
+  outline-color: #edf6f7;
+  background: #edf6f7;
 }
 .forRedis .bodyLeftBlock {
   display: flex;
@@ -163,10 +170,11 @@
   float: left;
   color: #000;
   padding-top: 3px;
+  margin-left: -1px;
 }
 #block-Database .dropdown {
   float: left;
-  margin: 0px 9px 0px 4px;
+  margin: 0px 6px 0px 4px;
 }
 #block-Database button {
   padding: 3px 3px 3px 1px;
@@ -337,14 +345,21 @@
 .forTables .ui-grid-header-cell-primary-focus:focus {
   outline-color: #039BC1;
 }
-.forTables .ui-grid-row:nth-child(even) .ui-grid-cell, .forTables .ui-grid-row:nth-child(odd) .ui-grid-cell {
-  background-color: #fff;
-}
 .forTables .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forTables .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
   background-color: #f2fdff;
 }
 .forTables .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forTables .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
   background-color: #ebfcff;
+}
+.forTables .bodyLeftBlock .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forTables .bodyLeftBlock .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
+  background: #e5fbff;
+}
+.forTables .bodyLeftBlock .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forTables .bodyLeftBlock .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
+  background: #dfeef1;
+}
+.forTables .bodyLeftBlock .ui-grid-header-cell-primary-focus:focus {
+  outline-color: #edf6f7;
+  background: #edf6f7;
 }
 .forTables .bodyLeftBlock {
   padding: 4px 9px 8px 5px;
@@ -362,7 +377,7 @@
   white-space: pre;
   font-size: 12px;
   line-height: 26px;
-  color: #2A2A2A;
+  color: #000;
   letter-spacing: 0;
   padding-left: 4px;
   cursor: pointer;
@@ -637,14 +652,21 @@
 .forBlobs .ui-grid-header-cell-primary-focus:focus {
   outline-color: #039BC1;
 }
-.forBlobs .ui-grid-row:nth-child(even) .ui-grid-cell, .forBlobs .ui-grid-row:nth-child(odd) .ui-grid-cell {
-  background-color: #fff;
-}
 .forBlobs .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forBlobs .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
   background-color: #f2fdff;
 }
 .forBlobs .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forBlobs .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
   background-color: #ebfcff;
+}
+.forBlobs .bodyLeftBlock .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forBlobs .bodyLeftBlock .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
+  background: #e5fbff;
+}
+.forBlobs .bodyLeftBlock .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forBlobs .bodyLeftBlock .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
+  background: #dfeef1;
+}
+.forBlobs .bodyLeftBlock .ui-grid-header-cell-primary-focus:focus {
+  outline-color: #edf6f7;
+  background: #edf6f7;
 }
 .forBlobs .bodyLeftBlock {
   padding: 8px 9px 10px 9px;
@@ -919,6 +941,9 @@
   margin: 0;
   float: left;
 }
+.searchBar .functionButton a {
+  text-align: left;
+}
 .searchBar .functionButton a:hover {
   border: none;
   margin: 0px;
@@ -928,9 +953,9 @@
   transform-origin: 50% bottom;
 }
 .searchBar .functionButton .fa {
-  font-size: 22px;
-  padding-top: 0px;
-  padding-left: 2px;
+  font-size: 18px;
+  padding-top: 3px;
+  padding-left: 3px;
 }
 
 .saerchText {
@@ -953,8 +978,8 @@
 
 .forRedis .searchBar {
   float: left;
-  width: calc(100% - 104px);
-  margin-right: -1px;
+  width: calc(100% - 97px);
+  margin-right: -4px;
 }
 
 .forTables .searchclear {

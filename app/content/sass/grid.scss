@@ -74,11 +74,15 @@ table.dataTable td {
 	border-bottom: $borderTH;
 	.ui-grid-cell-contents {
 		font-size: 13px;
-		padding: 2px 6px;
+		padding: 2px 0px 2px 6px;
 		.ui-grid-header-cell-label {
 			font-weight: bold;
 		}
 	}
+}
+
+.ui-grid-header-cell:last-child .ui-grid-column-resizer.right {
+    border-right: none;
 }
 
 .ui-grid-header-cell {
@@ -111,12 +115,6 @@ table.dataTable td {
 
 /*Body table*/
 .ui-grid-canvas {
-	
-
-	.ui-grid-row:last-child .ui-grid-cell {
-		border-bottom: $borderTD !important;
-	}
-
 	.ui-grid-cell-contents {
 		font-size: 14px;
 		line-height: 16px;
@@ -132,9 +130,21 @@ table.dataTable td {
 	}
 }
 
+.ui-grid-row:nth-child(even), .ui-grid-row:nth-child(odd) {
+	.ui-grid-cell {
+		background-color: #fff;
+	}
+}
+
 .ui-grid-cell-contents {
   // padding: 1px 6px 1px 6px !important;
   color: black;
+}
+
+#value-HashSet {
+	.ui-grid-row:last-child .ui-grid-cell {
+		border-bottom: $borderTD !important;
+	}
 }
 
 .forBlobs {
@@ -147,11 +157,84 @@ table.dataTable td {
 		}
 		.ui-grid-cell {
 			border-bottom: $borderTD;
-			font-size: 13px;
-			line-height: 16px;
+		}
+	}
+	.bodyRightBlock {
+		.ui-grid-row:last-child .ui-grid-cell {
+			border-bottom: $borderTD !important;
+		}
+	}
+	.bodyLeftBlock {
+		.ui-grid-canvas {
+			.ui-grid-cell-contents {
+				padding: 6px 4px;
+			}
+			.ui-grid-cell {
+				border-bottom: none;
+			}
+			.ui-grid-cell-contents:before {
+				font: 15px FontAwesome;
+				// content: "\f07b";
+				content: "\f114";
+				// font: 15px iconFont;
+				// content: "\e012";
+				padding-right: 6px;
+				color: #777777;
+			}
 		}
 	}
 }
+
+.bodyLeftBlock {
+	.ui-grid {
+		border: none;
+		margin-right: -10px;
+		margin-left: -4px;
+		.ui-grid-top-panel {
+			background: $bg-colorBlock;
+		}
+		.ui-grid-header-cell {
+			background: $bg-colorBlock; 
+		}
+	}
+	.ui-grid-header {
+		border: none;
+		.ui-grid-cell-contents {
+			padding: 2px 0px 2px 2px;
+		}
+	}
+	.ui-grid-header-cell .sortable {
+		border: 1px solid $bg-colorBlock;
+		border-bottom: $borderTH;
+	}
+	.ui-grid-row:nth-child(even), .ui-grid-row:nth-child(odd) {
+		.ui-grid-cell {
+			background-color: $bg-colorBlock;
+		}
+	}
+	.ui-grid-canvas {
+		.ui-grid-cell-contents {
+			padding: 0px 4px;
+		}
+	}
+}
+
+.forRedis {
+	.bodyLeftBlock {
+		.ui-grid-canvas {
+			.ui-grid-cell-contents:before {
+				font: 12px iconFont;
+				content: "\e045";
+				padding-right: 6px;
+				color: #777777;
+			}
+		}
+	}
+}
+
+
+
+
 
 
 

@@ -282,6 +282,7 @@
 		margin: 0;
 		float: left;
 		a {
+			text-align: left;
 			&:hover {
 				border: none;
 				margin: 0px; 
@@ -292,9 +293,9 @@
 			}
 		}
 		.fa {
-			font-size: 22px;
-			padding-top: 0px;
-			padding-left: 2px;
+			font-size: 18px;
+			padding-top: 3px;
+			padding-left: 3px;
 		}
 	}
 }
@@ -320,8 +321,8 @@
 .forRedis {
 	.searchBar {
 		float: left;
-		width: calc(100% - 104px);
-		margin-right: -1px;
+		width: calc(100% - 97px);
+		margin-right: -4px;
 	}
 	
 }
