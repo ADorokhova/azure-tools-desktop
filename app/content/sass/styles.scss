@@ -7,7 +7,7 @@
 
 #wrapperAzure {
 	font-family: $fontFamily;
-	height: calc(100% - 20px);
+	height: 100%;
 }
 
 /*Header*/
@@ -19,7 +19,7 @@
 
 .navbar-brand {
 	height: 40px;
-	padding: 2px 10px 10px 9px;
+	padding: 2px 9px 10px 8px;
 	font-size: 19px;
 	.icon-cloud {
 		font-size: 40px;
@@ -40,34 +40,14 @@
 	color: #ffffff;  
 }
 
-/*Functional panel*/
-
-#navbarTilesFunction {
-	margin: 0px;
-	padding: 0px;
-	border-right: $borderBlock;
-	overflow: hidden !important;
-	.navbar-nav {
-		margin: 0px;
-		padding-left: 9px;
-		background: $bg-colorBlock;
-		border: $borderBlock;
-		width: 100%;
-		min-width: 1170px;
-	}
-}
-
 .tileFunction {
 	display: block;
 	cursor: pointer;
 	float: left;
-	width: 60px;
-	height: 60px;
 	text-align: center;	
 	color: #ffffff;
-	margin: 10px 10px 10px 0px;
 	&:active {
-		transform: perspective(400px) rotateX(0.2rad);
+		transform: perspective(200px) rotateX(0.2rad);
 		transform-origin: 50% bottom;
 	}
 	a {
@@ -78,29 +58,7 @@
 		&:hover {
 			text-decoration: none;
 		}
-	}
-	.fa {
-		padding-top: 6px;
-		font-size: 32px;
-		padding-bottom: 0px;
-		margin-bottom: 0px;
-	} 
-	span {
-		padding-top: 0px;
-		margin-top: 0px;
-		font-size: 13px;
-		line-height: 0px;
-	}
-	&.longText span {
-		letter-spacing: -0.5px;
-	}
-}
-
-
-.delimiter-tiles {
-	border-left: $borderBlock;
-	height: 70px;
-	margin: 5px 9px 5px -1px;
+	}	
 }
 
 /*Dialog windows*/
@@ -187,19 +145,11 @@
 
 /*Body*/
 
-#content {
-}
-
-.wrapLeftBlock {
+.wrapLeftBlock, .wrapRightBlock{
 	height: 100%;
 }
 
-.wrapRightBlock {
-	height: 100%;
-	.headBlock .fa {
-		padding-right: 4px;
-	} 
-}
+/*Begin Functional panel*/
 
 .headBlock {
 	color: #ffffff;
@@ -207,63 +157,151 @@
 	line-height: 28px;
 	font-size: 16px;
 	white-space: nowrap;
+}
+
+#navbarFunction {
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden !important;
+	min-width: 500px;
+	.navbar-nav {
+		margin: 0px;
+		padding: 0px 5px;
+		li {
+			padding: 2px 2px 0 0;
+		}		
+	}
+}
+
+.functionButton {
+	display: block;
+	cursor: pointer;
+	width: 26px;
+	height: 26px;
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+		position: relative;
+		text-align: center;
+		color: #fff;
+		&:hover {
+			text-decoration: none;
+			border: 1px solid;
+			margin: -1px 0 0 0px;
+		}
+		&:active {
+			transform: perspective(200px) rotateX(0.2rad);
+			transform-origin: 50% bottom;
+		}
+	}
 	.fa {
-		padding: 0 8px 0 10px;
-		font-size: 18px;
-		vertical-align: -10%;
+		font-size: 20px;
+		vertical-align: -3px;
 	} 
 }
 
+
+.delimiter-tiles {
+	border-left: $borderBlock;
+	height: 20px;
+    margin: 4px 6px 2px 6px;
+}
+
+/*End functional panel*/
+
 .bodyLeftBlock, .bodyRightBlock {
 	background: $bg-colorBlock;
-	border: $borderBlock;
 	height: calc(100% - 30px);
-	padding: 8px;
+	padding: 8px 9px;
+}
+
+.bodyRightBlock {
+	background: #fff;
+	padding: 8px 9px 8px 10px;
+}
+
+.wrapRightBlock {
+	#navbarFunction .navbar-nav {
+		padding: 0px 6px;
+	}
+}
+
+.forBlobs {
+	.wrapRightBlock #navbarFunction .navbar-nav {
+		padding: 0px 8px;
+	}
 }
 
 .searchBar {
-	margin-bottom: 10px;
+	margin-bottom: 8px;
 	.form-control { 
 		float: none; 
 		max-height: 250px; 
-		height: 36px;
-		border: $borderTable;
-		padding: 7px 30px 7px 12px;
+		height: 24px;
+		border: 1px solid #b4b4b4;
+		padding: 1px 22px 1px 6px;
 		font-size: 13px;
 		width: 100%;
 		resize: vertical;
 	}
-	.tileFunction {
-		width: 36px;
-		height: 36px;
-		margin: 0 0 0 8px;
+	.functionButton {
+		width: 24px;
+		height: 24px;
+		margin: 0;
+		float: left;
+		a {
+			text-align: left;
+			&:hover {
+				border: none;
+				margin: 0px; 
+			}
+			&:active {
+				transform: perspective(200px) rotateX(0.2rad);
+				transform-origin: 50% bottom;
+			}
+		}
 		.fa {
-			font-size: 22px;
+			font-size: 18px;
+			padding-top: 3px;
+			padding-left: 3px;
 		}
 	}
 }
 
 .saerchText {
 	position: relative;
-	width: calc(100% - 45px);
+	width: calc(100% - 24px);
 	float: left;
 }
 
 .searchclear {
 	position: absolute;
-	right: 20px;
-	top: 12px;
+	right: 6px;
+	top: 6px;
 	bottom: 0;
 	margin: 0;
 	height: 14px;
-	font-size: 14px;
+	font-size: 13px;
 	cursor: pointer;
 	color: #ccc;
 }
 
-.forRedis, .forBlobs {
+.forRedis {
+	.searchBar {
+		float: left;
+		width: calc(100% - 97px);
+		margin-right: -4px;
+	}
+	
+}
+
+.forTables {
 	.searchclear {
-		right: 10px;
+		right: 20px;
+	}
+	.searchBar .form-control { 
+		padding-right: 32px;
 	}
 }
 

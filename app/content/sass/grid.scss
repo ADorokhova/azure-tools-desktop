@@ -43,7 +43,7 @@ table.dataTable td {
 		th {
 			font-size: 12px;
 			border-right: $borderTD;
-			padding: 4px 12px 4px 8px;
+			padding: 2px 12px 2px 8px;
 		}
 		thead th {
 			border-bottom: $borderTH;
@@ -74,11 +74,15 @@ table.dataTable td {
 	border-bottom: $borderTH;
 	.ui-grid-cell-contents {
 		font-size: 13px;
-		padding: 6px 4px 6px 8px;
+		padding: 2px 0px 2px 6px;
 		.ui-grid-header-cell-label {
 			font-weight: bold;
 		}
 	}
+}
+
+.ui-grid-header-cell:last-child .ui-grid-column-resizer.right {
+    border-right: none;
 }
 
 .ui-grid-header-cell {
@@ -111,34 +115,137 @@ table.dataTable td {
 
 /*Body table*/
 .ui-grid-canvas {
-	.ui-grid-cell {
-		border-right: $borderTD;
-		border-bottom: $borderTD;
-	}
-
-	.ui-grid-row:last-child .ui-grid-cell {
-		border-bottom: $borderTD !important;
-	}
-
 	.ui-grid-cell-contents {
-		font-size: 13px;
+		font-size: 14px;
 		line-height: 16px;
-		padding: 6px 8px 7px;
+		padding: 0px 6px;
 		-webkit-user-select: text;
-		word-break: break-all;
-		white-space: normal;
-		overflow: visible;
 	}
 
 	.ui-grid-row .ui-grid-cell:last-child {
 		border-right: none;
 	}
-	
-	.ui-grid-row, .ui-grid-cell {
-		height: auto !important;
-	}
-
 }
+
+.ui-grid-row:nth-child(even), .ui-grid-row:nth-child(odd) {
+	.ui-grid-cell {
+		background-color: #fff;
+	}
+}
+
+.ui-grid-cell-contents {
+  color: black;
+}
+
+#value-HashSet {
+	.ui-grid-row:last-child .ui-grid-cell {
+		border-bottom: $borderTD !important;
+	}
+}
+
+.forBlobs {
+	.ui-grid-canvas {
+		.ui-grid-cell-contents {
+			padding: 6px;
+		}
+		.ui-grid-row, .ui-grid-cell {
+			height: auto !important;
+		}
+		.ui-grid-cell {
+			border-bottom: $borderTD;
+		}
+	}
+	.bodyRightBlock {
+		.ui-grid-canvas {
+			.ui-grid-cell-contents {
+				word-break: break-all;
+				white-space: normal;
+				overflow: visible;
+			}
+		}
+		.ui-grid-row:last-child .ui-grid-cell {
+			border-bottom: $borderTD !important;
+		}
+	}
+	.bodyLeftBlock {
+		.ui-grid-canvas {
+			.ui-grid-cell-contents {
+				padding: 6px 4px;
+			}
+			.ui-grid-cell {
+				border-bottom: none;
+			}
+			.ui-grid-cell-contents:before {
+				font: 15px FontAwesome;
+				content: "\f114";
+				padding-right: 6px;
+				color: #777777;
+			}
+		}
+		.ui-grid-row-selected:nth-child(even), .ui-grid-row-selected:nth-child(odd) {
+			.ui-grid-cell-contents {
+				padding: 5px 6px 6px 3px;
+			}
+		}
+	}
+}
+
+.bodyLeftBlock {
+	.ui-grid {
+		border: none;
+		margin-right: -10px;
+		margin-left: -4px;
+		.ui-grid-top-panel {
+			background: $bg-colorBlock;
+		}
+		.ui-grid-header-cell {
+			background: $bg-colorBlock; 
+		}
+	}
+	.ui-grid-header {
+		border: none;
+		.ui-grid-cell-contents {
+			padding: 2px 0px 2px 2px;
+		}
+	}
+	.ui-grid-header-cell .sortable {
+		border: 1px solid $bg-colorBlock;
+		border-bottom: $borderTH;
+	}
+	.ui-grid-row:nth-child(even), .ui-grid-row:nth-child(odd) {
+		.ui-grid-cell {
+			background-color: $bg-colorBlock;
+		}
+	}
+	.ui-grid-row-selected:nth-child(even), .ui-grid-row-selected:nth-child(odd) {
+		.ui-grid-cell-contents {
+			border: $borderTD; 
+			border-right: none;
+			line-height: 14px;
+			padding: 0px 3px;
+		}
+	}
+	.ui-grid-canvas {
+		.ui-grid-cell-contents {
+			padding: 0px 4px;
+		}
+	}
+}
+
+.forRedis {
+	.bodyLeftBlock {
+		.ui-grid-canvas {
+			.ui-grid-cell-contents:before {
+				font: 12px iconFont;
+				content: "\e045";
+				padding-right: 6px;
+				color: #777777;
+			}
+		}
+	}
+}
+
+
 
 
 

@@ -1,12 +1,45 @@
 <div class="metro grid" ng-controller="TablesController">
     <bg-splitter orientation="horizontal">
-        <bg-pane min-size="50" init-percentage="26.2">
+        <bg-pane min-size="64" init-percentage="26.2">
             <div class="wrapLeftBlock">
                 <div class="headBlock">
-                    <i class="fa fa-th-large"></i><span id="accountName">{{TablesViewModel.Settings.AccountName}}</span>
+                    <div class="collapse navbar-collapse" id="navbarFunction">
+                         <ul class="nav navbar-nav" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'tables'">
+                            <li ng-show="ActionBarItems.IsSettingsVisible">
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Account storage" ng-click="ActionBarItems.changeSettings()">
+                                        <i class="fa fa-cog"></i><br /><span>Setting</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li ng-show="ActionBarItems.IsRefreshVisible">
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Refresh table list" ng-click="ActionBarItems.refresh()">
+                                        <i class="fa fa-refresh"></i><br /><span>Refresh</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="delimiter-tiles"></li>
+                            <li>
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Create new table" ng-click="ActionBarItems.createTable()">
+                                        <i class="fa fa-table"></i><br /><span>Create</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Delete selected table" ng-click="ActionBarItems.deleteTable()">
+                                        <i class="fa fa-trash-o"></i><br /><span>Delete</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul> 
+                    </div>
                 </div>
                 <div class="bodyLeftBlock">
-                    <ul id="tableList">
+                    <!-- <i class="fa fa-th-large"></i><span id="accountName">{{TablesViewModel.Settings.AccountName}}</span> -->
+                    <ul id="tableList"> 
                         <li ng-repeat="table in TablesViewModel.TableSelectViewModel.Tables" 
                         ng-click="TablesViewModel.TableSelectViewModel.onSelectedTableChanged(table)"
                         ng-class="{selected: table === TablesViewModel.TableSelectViewModel.SelectedTable}"><i class="fa fa-table"></i>{{table}}</li>
@@ -17,12 +50,38 @@
         <bg-pane min-size="150">
             <div class="wrapRightBlock">
                 <div class="headBlock">
-                    <i class="fa fa-table"></i>
+                    <div class="collapse navbar-collapse" id="navbarFunction">
+                        <ul class="nav navbar-nav" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'tables'">
+                            <li>
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Add entity" ng-click="ActionBarItems.createTableEntity()">
+                                        <i class="fa fa-plus-circle"></i><br /><span>Entity</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Delete entity" ng-click="ActionBarItems.deleteTableEntity()">
+                                        <i class="fa fa-minus-circle"></i><br />
+                                        <span>Entity</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li ng-show="ActionBarItems.Continuation != null">
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Load more" ng-click="ActionBarItems.loadMore()">
+                                        <i class="fa fa-play-circle"></i><br /><span>Entities</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul> 
+                    </div>
+                    <!-- <i class="fa fa-table"></i>
                     <span id="tableName">
                         {{
                         (TablesViewModel.TableSelectViewModel.SelectedTable == null ? '' : TablesViewModel.TableSelectViewModel.SelectedTable)
                         + " " + (TablesViewModel.entries == null || TablesViewModel.entries.length == 0? '' : TablesViewModel.entries.length + ' loaded')}}
-                    </span>
+                    </span> -->
                 </div>
                 <div class="bodyRightBlock">
                     <div class="searchBar" ng-controller="ActionBarController" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'tables'">
@@ -40,7 +99,7 @@
                                 <span id="searchclear" class="searchclear glyphicon glyphicon-remove-circle" ng-click="ActionBarItems.SearchViewModel.clear()" ng-show="ActionBarItems.SearchViewModel.IsClearVisible"></span>
 
                             </div>
-                            <span class="tileFunction">
+                            <span class="functionButton">
                                 <a class="fa-links" title="Search" ng-click="ActionBarItems.SearchViewModel.search()">
                                     <i class="fa fa-search"></i>
                                 </a>

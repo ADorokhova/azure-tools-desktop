@@ -1,15 +1,10 @@
 .forRedis {
 	@include colorsModule($bg-colorHead-Redis, $bg-colorTile-Redis);
 
-	.wrapRightBlock .headBlock span {
-		padding-left: 10px;
-	}
-
 	.bodyLeftBlock {
-		padding-left: 9px;
 		display:flex; 
 		flex-direction: column; 
-		padding-bottom: 56px;
+		padding-bottom: 42px;
 	}
 
 	.bodyRightBlock .ui-grid {
@@ -18,26 +13,30 @@
 }
 
 
-#headBlock-Database {
-	.fa {
-		float: left;
-		padding: 6px 8px 6px 10px;
-	}
+#block-Database {
+	float: left;
 	span:not(.caret) {
 		float: left;
+		color: #000;
+		padding-top: 3px;
+		margin-left: -1px;
 	}
 	.dropdown {
 		float: left;
-		margin: -1px 2px -1px 8px; 
+		margin: 0px 6px 0px 4px; 
 	}
 	button {
-		padding: 3px 9px 3px 5px;
-		width: 46px;
+		padding: 3px 3px 3px 1px;
+		width: 34px;
 		background-color: $bg-colorTile-Redis;
 		color: #ffffff;
 		font-family: $fontFamily;
 		&:active, &:hover {
 			background-color: lighten($bg-colorTile-Redis, 10%) !important;
+		}
+		&:active {
+			transform: perspective(200px) rotateX(0.2rad);
+			transform-origin: 50% bottom;
 		}
 		&:focus {
 			border: 1px transparent solid;
@@ -72,16 +71,11 @@
 	}
 }
 
-.typeValue {
-	margin-bottom: 10px;
-}
-
 .metro .typeValue {
 	p {
-		padding: 0px 6px 4px 0;
 		font-size: 15px;
 		margin: 0; 
-		line-height: 32px;
+		line-height: 25px;
 		color: #2A2A2A;
 	}
 	span {
@@ -93,17 +87,20 @@
 .editValue {
 	height: 100%;
 	p {
-		margin: 0 0 8px;
-		
+		margin: 5px 0;	
 	}
 	.form-control {
-		height: calc(100% - 66px);
+		height: calc(50% - 49px);
 		border: $borderTable;
-		padding: 8px 12px;
+		padding: 4px 8px;
 		font-size: 13px;
 		width: 100%;
 		min-height: 36px;
 		resize: none;
+	}
+
+	.set-form-control {
+		height: calc(100% - 68px);
 	}
 	.tileFunction {
 		width: 48px;
@@ -111,13 +108,13 @@
 		-webkit-user-select: none;
 		line-height: 30px;
 		float: right;
-		margin: 8px 0 7px 8px;
+		margin: 8px 0 8px 8px;
 	}
 }
 
 #value-String {
-	height: 100%;
+	height: calc(100% - 22px);
 	.form-control {
-		height: calc(100% - 112px);
+		height: calc(100% - 71px);
 	}
 }

@@ -8562,7 +8562,7 @@ a {
 }
 @font-face {
   font-family: 'metroSysIcons';
-  src: url('/content/css/metro-ui-css/metroSysIcons.woff') format('woff'), url('/content/css/metro-ui-css/metroSysIcons.ttf') format('truetype'), url('/content/css/metro-ui-css/metroSysIcons.svg#metroSysIcons') format('svg');
+  src: url('metroSysIcons.woff') format('woff'), url('metroSysIcons.ttf') format('truetype'), url('metroSysIcons.svg#metroSysIcons') format('svg');
   font-weight: normal;
   font-style: normal;
 }

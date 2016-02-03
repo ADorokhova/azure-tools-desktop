@@ -66,6 +66,23 @@
 	.headBlock {
 		background: $colorHead;
 	}
+
+	.functionButton {
+		a:active, a:hover {
+			color: hsl(hue($colorTile), 100%, 92%);
+		}
+	}
+
+	.searchBar {
+		.functionButton {
+			a {
+				color: $colorTile;
+				&:hover {
+					color: lighten($colorTile, 10%);
+				}
+			}
+		}
+	}
 	
 	.dataTables_scrollHead {
 		th {
@@ -97,11 +114,8 @@
 			outline-color: $colorHead; 
 		}
 	}
-	
+
 	.ui-grid-row:nth-child(even), .ui-grid-row:nth-child(odd) {
-		.ui-grid-cell {
-			background-color: #fff;
-		}
 		&:hover {
 			.ui-grid-cell {
 				background-color: hsl(hue($colorTile), 100%, 97.5%);
@@ -113,6 +127,26 @@
 			background-color: hsl(hue($colorTile), 100%, 96%);
 		}
 	}
+
+	.bodyLeftBlock {
+		.ui-grid-row:nth-child(even), .ui-grid-row:nth-child(odd) {
+			&:hover {
+				.ui-grid-cell {
+					background: hsl(hue($colorTile), 100%, 95%);
+				}
+			}
+		}
+		.ui-grid-row-selected:nth-child(even), .ui-grid-row-selected:nth-child(odd) {
+			.ui-grid-cell {
+				background: darken(hsl(hue($colorTile), 40%, 95%), 4%); 
+			}
+		}
+		.ui-grid-header-cell-primary-focus:focus {
+			outline-color: hsl(hue($colorTile), 40%, 95%);
+			background: hsl(hue($colorTile), 40%, 95%);
+		}	
+	}
+
 }
 
 @function z-ind($layer) {
