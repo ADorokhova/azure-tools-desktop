@@ -1,10 +1,6 @@
 .forRedis {
 	@include colorsModule($bg-colorHead-Redis, $bg-colorTile-Redis);
 
-	// .wrapRightBlock .headBlock span {
-	// 	padding-left: 10px;
-	// }
-
 	.bodyLeftBlock {
 		display:flex; 
 		flex-direction: column; 

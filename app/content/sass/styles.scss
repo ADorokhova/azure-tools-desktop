@@ -40,32 +40,12 @@
 	color: #ffffff;  
 }
 
-/*Functional panel*/
-
-// #navbarTilesFunction {
-// 	margin: 0px;
-// 	padding: 0px;
-// 	border-right: $borderBlock;
-// 	overflow: hidden !important;
-// 	.navbar-nav {
-// 		margin: 0px;
-// 		padding-left: 9px;
-// 		background: $bg-colorBlock;
-// 		border: $borderBlock;
-// 		width: 100%;
-// 		min-width: 1170px;
-// 	}
-// }
-
 .tileFunction {
 	display: block;
 	cursor: pointer;
 	float: left;
-	width: 60px;
-	height: 60px;
 	text-align: center;	
 	color: #ffffff;
-	margin: 10px 10px 10px 0px;
 	&:active {
 		transform: perspective(200px) rotateX(0.2rad);
 		transform-origin: 50% bottom;
@@ -78,22 +58,7 @@
 		&:hover {
 			text-decoration: none;
 		}
-	}
-	.fa {
-		padding-top: 6px;
-		font-size: 32px;
-		padding-bottom: 0px;
-		margin-bottom: 0px;
-	} 
-	span {
-		padding-top: 0px;
-		margin-top: 0px;
-		font-size: 13px;
-		line-height: 0px;
-	}
-	&.longText span {
-		letter-spacing: -0.5px;
-	}
+	}	
 }
 
 /*Dialog windows*/
@@ -180,16 +145,8 @@
 
 /*Body*/
 
-.wrapLeftBlock {
+.wrapLeftBlock, .wrapRightBlock{
 	height: 100%;
-}
-
-.wrapRightBlock {
-	height: 100%;
-	.headBlock .fa {
-		padding-right: 4px;
-		padding-left: 10px;
-	} 
 }
 
 /*Begin Functional panel*/
@@ -209,9 +166,9 @@
 	min-width: 500px;
 	.navbar-nav {
 		margin: 0px;
-		padding: 0px 7px;
+		padding: 0px 5px;
 		li {
-			padding: 4px 6px 0 0;
+			padding: 2px 2px 0 0;
 		}		
 	}
 }
@@ -219,8 +176,8 @@
 .functionButton {
 	display: block;
 	cursor: pointer;
-	width: 22px;
-	height: 22px;
+	width: 26px;
+	height: 26px;
 	a {
 		display: block;
 		width: 100%;
@@ -240,7 +197,7 @@
 	}
 	.fa {
 		font-size: 20px;
-		margin-bottom: 0px;
+		vertical-align: -3px;
 	} 
 }
 
@@ -262,6 +219,18 @@
 .bodyRightBlock {
 	background: #fff;
 	padding: 8px 9px 8px 10px;
+}
+
+.wrapRightBlock {
+	#navbarFunction .navbar-nav {
+		padding: 0px 6px;
+	}
+}
+
+.forBlobs {
+	.wrapRightBlock #navbarFunction .navbar-nav {
+		padding: 0px 8px;
+	}
 }
 
 .searchBar {

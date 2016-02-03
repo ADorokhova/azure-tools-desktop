@@ -17,7 +17,7 @@
 /* Horizontal */
 .split-panes.horizontal > .split-handler {
   width: 5px;
-  top: 6px;
+  top: 0px;
   bottom: 0px;
   border-left: 1px solid #e2e2e2;
   cursor: ew-resize;

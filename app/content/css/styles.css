@@ -721,16 +721,12 @@
   color: #ffffff;
 }
 
-/*Functional panel*/
 .tileFunction {
   display: block;
   cursor: pointer;
   float: left;
-  width: 60px;
-  height: 60px;
   text-align: center;
   color: #ffffff;
-  margin: 10px 10px 10px 0px;
 }
 .tileFunction:active {
   transform: perspective(200px) rotateX(0.2rad);
@@ -744,21 +740,6 @@
 }
 .tileFunction a:hover {
   text-decoration: none;
-}
-.tileFunction .fa {
-  padding-top: 6px;
-  font-size: 32px;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-}
-.tileFunction span {
-  padding-top: 0px;
-  margin-top: 0px;
-  font-size: 13px;
-  line-height: 0px;
-}
-.tileFunction.longText span {
-  letter-spacing: -0.5px;
 }
 
 /*Dialog windows*/
@@ -841,16 +822,8 @@
 }
 
 /*Body*/
-.wrapLeftBlock {
+.wrapLeftBlock, .wrapRightBlock {
   height: 100%;
-}
-
-.wrapRightBlock {
-  height: 100%;
-}
-.wrapRightBlock .headBlock .fa {
-  padding-right: 4px;
-  padding-left: 10px;
 }
 
 /*Begin Functional panel*/
@@ -870,17 +843,17 @@
 }
 #navbarFunction .navbar-nav {
   margin: 0px;
-  padding: 0px 7px;
+  padding: 0px 5px;
 }
 #navbarFunction .navbar-nav li {
-  padding: 4px 6px 0 0;
+  padding: 2px 2px 0 0;
 }
 
 .functionButton {
   display: block;
   cursor: pointer;
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
 }
 .functionButton a {
   display: block;
@@ -901,7 +874,7 @@
 }
 .functionButton .fa {
   font-size: 20px;
-  margin-bottom: 0px;
+  vertical-align: -3px;
 }
 
 .delimiter-tiles {
@@ -920,6 +893,14 @@
 .bodyRightBlock {
   background: #fff;
   padding: 8px 9px 8px 10px;
+}
+
+.wrapRightBlock #navbarFunction .navbar-nav {
+  padding: 0px 6px;
+}
+
+.forBlobs .wrapRightBlock #navbarFunction .navbar-nav {
+  padding: 0px 8px;
 }
 
 .searchBar {

@@ -1,10 +1,27 @@
 <div class="container">
     <div class="metro grid">
         <bg-splitter orientation="horizontal">
-            <bg-pane min-size="160" init-percentage="26.15384615384615">
+            <bg-pane min-size="64" init-percentage="26.2">
                 <div class="wrapLeftBlock">
                     <div class="headBlock">
-                        <i class="fa fa-th-large"></i><span>AccountName</span>
+                        <div class="collapse navbar-collapse" id="navbarFunction">
+                            <ul class="nav navbar-nav" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'blobs'">
+                                <li ng-show="ActionBarItems.IsSettingsVisible">
+                                    <div class="functionButton">
+                                        <a class="fa-links" title="Account storage" ng-click="ActionBarItems.changeSettings()">
+                                            <i class="fa fa-cog"></i><br /><span>Setting</span>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li ng-show="ActionBarItems.IsRefreshVisible">
+                                    <div class="functionButton">
+                                        <a class="fa-links" title="Refresh" ng-click="ActionBarItems.refresh()">
+                                            <i class="fa fa-refresh"></i><br /><span>Refresh</span>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="bodyLeftBlock">
                         <div ui-grid="containerOptions" ui-grid-auto-resize ui-grid-selection ng-style="containerOptions.getStyle()"></div>
@@ -15,8 +32,33 @@
             <bg-pane min-size="50">
                 <div class="wrapRightBlock">
                     <div class="headBlock">
-                        <i class="fa fa-folder-open"></i>
-                        <span id="blobName">bikes</span>
+                        <div class="collapse navbar-collapse" id="navbarFunction">
+                            <ul class="nav navbar-nav" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'blobs'">
+                                <li ng-click="ActionBarItems.blobsViewModel.showImage()" ng-show="ActionBarItems.blobsViewModel.blobOptions.selectedBlob !== null">
+                                    <div class="functionButton">
+                                        <a class="fa-links" title="View the image" >
+                                            <i class="fa fa-picture-o"></i><br /><span>Image</span>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li ng-click="ActionBarItems.blobsViewModel.showText()" ng-show="ActionBarItems.blobsViewModel.blobOptions.selectedBlob !== null">
+                                    <div class="functionButton">
+                                        <a class="fa-links" title="View the text">
+                                            <i class="fa fa-file-text-o"></i><br />
+                                            <span>Text</span>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="delimiter-tiles" ng-show="ActionBarItems.blobsViewModel.blobOptions.selectedBlob !== null"></li>
+                                <li ng-click="ActionBarItems.blobsViewModel.download()" ng-show="ActionBarItems.blobsViewModel.blobOptions.selectedBlob !== null">
+                                <div class="functionButton">
+                                        <a class="fa-links" title="Download the blob">
+                                            <i class="fa fa-download"></i><br /><span>Download</span>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="bodyRightBlock">
                         <div class="searchBar">

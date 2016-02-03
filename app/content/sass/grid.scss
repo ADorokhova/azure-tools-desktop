@@ -120,9 +120,6 @@ table.dataTable td {
 		line-height: 16px;
 		padding: 0px 6px;
 		-webkit-user-select: text;
-		word-break: break-all;
-		white-space: normal;
-		overflow: visible;
 	}
 
 	.ui-grid-row .ui-grid-cell:last-child {
@@ -137,7 +134,6 @@ table.dataTable td {
 }
 
 .ui-grid-cell-contents {
-  // padding: 1px 6px 1px 6px !important;
   color: black;
 }
 
@@ -160,6 +156,13 @@ table.dataTable td {
 		}
 	}
 	.bodyRightBlock {
+		.ui-grid-canvas {
+			.ui-grid-cell-contents {
+				word-break: break-all;
+				white-space: normal;
+				overflow: visible;
+			}
+		}
 		.ui-grid-row:last-child .ui-grid-cell {
 			border-bottom: $borderTD !important;
 		}
@@ -174,12 +177,14 @@ table.dataTable td {
 			}
 			.ui-grid-cell-contents:before {
 				font: 15px FontAwesome;
-				// content: "\f07b";
 				content: "\f114";
-				// font: 15px iconFont;
-				// content: "\e012";
 				padding-right: 6px;
 				color: #777777;
+			}
+		}
+		.ui-grid-row-selected:nth-child(even), .ui-grid-row-selected:nth-child(odd) {
+			.ui-grid-cell-contents {
+				padding: 5px 6px 6px 3px;
 			}
 		}
 	}
@@ -210,6 +215,14 @@ table.dataTable td {
 	.ui-grid-row:nth-child(even), .ui-grid-row:nth-child(odd) {
 		.ui-grid-cell {
 			background-color: $bg-colorBlock;
+		}
+	}
+	.ui-grid-row-selected:nth-child(even), .ui-grid-row-selected:nth-child(odd) {
+		.ui-grid-cell-contents {
+			border: $borderTD; 
+			border-right: none;
+			line-height: 14px;
+			padding: 0px 3px;
 		}
 	}
 	.ui-grid-canvas {

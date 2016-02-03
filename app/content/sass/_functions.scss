@@ -69,8 +69,8 @@
 
 	.functionButton {
 		a:active, a:hover {
-		color: hsl(hue($colorTile), 100%, 92%);
-	}
+			color: hsl(hue($colorTile), 100%, 92%);
+		}
 	}
 
 	.searchBar {
@@ -142,8 +142,8 @@
 			}
 		}
 		.ui-grid-header-cell-primary-focus:focus {
-				outline-color: hsl(hue($colorTile), 40%, 95%);
-				background: hsl(hue($colorTile), 40%, 95%);
+			outline-color: hsl(hue($colorTile), 40%, 95%);
+			background: hsl(hue($colorTile), 40%, 95%);
 		}	
 	}
 
