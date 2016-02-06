@@ -1,6 +1,7 @@
 exports.register = function (module) {
     module
         .service('actionBarViewModel', [
+            '$rootScope',
             '$timeout',
             'keyViewModel',
             '$activeDatabase',
@@ -18,9 +19,11 @@ exports.register = function (module) {
             '$validator',
             'uiGridConstants',
             'dialog',
+            '$utils',
             'searchViewModel',
             'Notification',
             function (
+                $rootScope,
                 $timeout,
                 keyViewModel,
                 $activeDatabase,
@@ -38,6 +41,7 @@ exports.register = function (module) {
                 $validator,
                 uiGridConstants,
                 dialog,
+                $utils,
                 searchViewModel,
                 Notification) {
                 var self = this;
@@ -114,16 +118,16 @@ exports.register = function (module) {
                 self.clearCreateKeyDialog = function (dialog) {
                     switch (dialog.BodyViewModel.Type) {
                         case 'string':
-                            Notification.success(String.format('String value was changed to "{0}" successfully', dialog.BodyViewModel.Value));
+                            Notification.success(String.format('String value was changed to "{0}" successfully', $utils.truncate(dialog.BodyViewModel.Value)));
                             dialog.BodyViewModel.Value = '';
                             break;
                         case 'hash':
-                            Notification.success(String.format('Member with name "{0}" was added successfully', dialog.BodyViewModel.Name));
+                            Notification.success(String.format('Member with name "{0}" was added successfully', $utils.truncate(dialog.BodyViewModel.Name)));
                             dialog.BodyViewModel.Name = '';
                             dialog.BodyViewModel.Value = '';
                             break;
                         case 'set':
-                            Notification.success(String.format('Value "{0}" was added to set successfully', dialog.BodyViewModel.Value));
+                            Notification.success(String.format('Value "{0}" was added to set successfully', $utils.truncate(dialog.BodyViewModel.Value)));
                             dialog.BodyViewModel.Value = '';
                             break;
                         default:
@@ -200,6 +204,12 @@ exports.register = function (module) {
                 self.refresh = function () {
                     searchViewModel.search();
                 };
+
+                self.refreshKey = function () {
+                    if (keyViewModel.selectedKeys == null || keyViewModel.selectedKeys.length === 0) return;
+                    keyViewModel.refreshKeyDetails();
+                }
+
                 self.createKey = function (addKeyDialog, cb) {
                     cb = cb || function () { };
                     self.createKeyFromDialogData(addKeyDialog, cb);
@@ -252,6 +262,20 @@ exports.register = function (module) {
                     });
                 };
 
+                self.editKey = function (addKeyDialog, cb) {
+                    var editValueDialog = createEditValueDialog(
+                        addKeyDialog.BodyViewModel.Key,
+                        addKeyDialog.BodyViewModel.Type);
+
+                    editValueDialog.BodyViewModel.save = function () {
+                        self.createKeyFromDialogData(editValueDialog, cb);
+                    };
+                };
+
+                self.addContext = function (ctx) {
+                    $actionBarItems.context = ctx;
+                };
+
                 self.init = function () {
                     $actionBarItems.ModuleName = ': Redis';
                     $actionBarItems.IsActionBarVisible = true;
@@ -260,6 +284,7 @@ exports.register = function (module) {
                     $actionBarItems.IsSettingsVisible = true;
                     $actionBarItems.IsSearchVisible = true;
                     $actionBarItems.IsDatabaseSelectVisible = true;
+                    $actionBarItems.keyViewModel = keyViewModel;
 
                     $actionBarItems.addKey = function () {
                         var addKeyDialog = createAddKeyDialog();
@@ -275,16 +300,78 @@ exports.register = function (module) {
                                 });
                             });
                         };
+                    };
 
-                        addKeyDialog.BodyViewModel.saveAndEdit = function () {
-                            self.createKeyAndEdit(addKeyDialog, function () {
-                                self.clearCreateKeyDialog(addKeyDialog);
-                            });
-                        };
+                    var editKey = function (key, type) {
+                        var addKeyDialog = createAddKeyDialog();
+                        console.log(key);
+                        console.log(type);
+                        addKeyDialog.BodyViewModel.Key = key;
+                        addKeyDialog.BodyViewModel.Type = type;
+                        self.editKey(addKeyDialog, function () {
+                            self.clearCreateKeyDialog(addKeyDialog);
+                        });
+                    };
+
+                    $actionBarItems.editSet = function () {
+                        editKey(keyViewModel.selectedKeys[0].Key, 'set');
+                    };
+
+                    $actionBarItems.editHash = function () {
+                        editKey(keyViewModel.selectedKeys[0].Key, 'hash');
+                    };
+
+                    $actionBarItems.deleteSetItem = function () {
+                        var context = $actionBarItems.context;
+                        $confirmViewModel.Body =
+                                context.setOptions.selectedItems.length === 1
+                                ? 'Are you sure you want to delete "' + $utils.truncate(context.setOptions.selectedItems[0].Value) + '"?'
+                                : 'Are you sure you want to delete ' + context.setOptions.selectedItems.length + ' items?';
+                        $confirmViewModel.show(function () {
+                            var repo = $redisRepositoryFactory('set');
+                            repo.srem(keyViewModel.selectedKeys[0].Key,
+                                _.map(context.setOptions.selectedItems, 'Value'),
+                                function () {
+                                    for (var i = 0; i < context.setOptions.selectedItems.length; i++) {
+                                        _.remove(context.setOptions.data, function (each) {
+                                            return each.Value === context.setOptions.selectedItems[i].Value;
+                                        });
+                                    }
+
+                                    context.setOptions.selectedItems.length = 0;
+                                    context.memberForEdit = null;
+                                    Notification.success('Deleted successfully');
+                                });
+                        });
+                    };
+
+                    $actionBarItems.deleteHashItem = function () {
+                        var context = $actionBarItems.context;
+                        $confirmViewModel.Body =
+                                context.hashOptions.selectedItems.length === 1
+                                ? 'Are you sure you want to delete "' + context.hashOptions.selectedItems[0].Value + '"?'
+                                : 'Are you sure you want to delete ' + context.hashOptions.selectedItems.length + ' items?';
+                        $confirmViewModel.show(function () {
+                            var repo = $redisRepositoryFactory('hash');
+                            repo.hdel(keyViewModel.selectedKeys[0].Key,
+                                _.map(context.hashOptions.selectedItems, 'Name'),
+                                function () {
+                                    for (var i = 0; i < context.hashOptions.selectedItems.length; i++) {
+                                        _.remove(context.hashOptions.data, function (each) {
+                                            return each.Value === context.hashOptions.selectedItems[i].Value;
+                                        });
+                                    }
+
+                                    context.hashOptions.selectedItems.length = 0;
+                                    context.memberForEdit = null;
+                                    Notification.success('Deleted successfully');
+                                });
+                        });
                     };
 
                     $actionBarItems.removeKey = self.removeKey;
                     $actionBarItems.refresh = self.refresh;
+                    $actionBarItems.refreshKey = self.refreshKey;
                     $actionBarItems.changeSettings = self.changeSettings;
                 };
             }

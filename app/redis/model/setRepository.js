@@ -16,6 +16,12 @@
             });
         };
 
+        self.srem = function (key, members, cb) {
+            self.safeRedisCmd(function (client) {
+                client.srem(key, members, cb);
+            });
+        };
+
         self.update = function (key, oldValue, value, cb) {
             self.safeRedisCmd(function (client) {
                 client.multi()

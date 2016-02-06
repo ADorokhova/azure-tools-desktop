@@ -14,5 +14,14 @@
                 }
             }
         };
+
+        self.truncate = function (value) {
+            var truncatedValue = value;
+            if (value.length > 10) {
+                truncatedValue = value.substring(0, 10) + '...';
+            }
+
+            return truncatedValue;
+        }
     };
 };

@@ -39,15 +39,13 @@ module.exports = function(grunt) {
 
         'create-windows-installer': {
             x64: {
-                appDirectory: './node_modules/electron-prebuilt/dist',
-                outputDirectory: '/tmp/build/installer64',
-                authors: 'My App Inc.',
+                appDirectory: 'electronbuildcache/app',
+                outputDirectory: 'builds/installer64',
                 exe: 'myapp.exe'
             },
             ia32: {
                 appDirectory: './',
-                outputDirectory: '/tmp/build/installer32',
-                authors: 'My App Inc.',
+                outputDirectory: 'builds/installer32',
                 exe: 'myapp.exe'
             }
         },
@@ -107,7 +105,7 @@ module.exports = function(grunt) {
         clean: ['./electronbuildcache', './builds']
     });
 
-    grunt.registerTask('default', 'build', ['create-windows-installer']);
+    grunt.registerTask('default', 'build', ['clean', 'copy:app', 'create-windows-installer']);
     grunt.registerTask('osx', ['clean', 'copy:app', 'electron:osx', 'appdmg']);
     grunt.registerTask('linux', ['clean', 'copy:app', 'electron:linux'])
 };

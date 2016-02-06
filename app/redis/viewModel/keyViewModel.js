@@ -53,7 +53,8 @@ exports.register = function(module) {
                     multiSelect: true,
                     enableColumnMenus: false,
                     selectedKeys: [],
-                    modifierKeysToMultiSelect: true
+                    modifierKeysToMultiSelect: true,
+                    virtualizationThreshold: 30,
                 };
             }
         ])

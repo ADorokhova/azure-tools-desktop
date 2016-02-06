@@ -16,6 +16,9 @@ exports.register = function(module) {
             '$validator',
             'uiGridConstants',
             'dialog',
+            '$utils',
+            'actionBarViewModel',
+            'Notification',
             function(
                 $scope,
                 $activeDatabase,
@@ -31,7 +34,10 @@ exports.register = function(module) {
                 $messageBus,
                 $validator,
                 uiGridConstants,
-                dialog) {
+                dialog,
+                $utils,
+                actionBarViewModel,
+                Notification) {
                 var self = this;
                 var repo = $redisRepositoryFactory('set');
 
@@ -79,8 +85,11 @@ exports.register = function(module) {
 
                 // commands
                 self.update = function(key, oldMember, newMember, cb) {
-                    cb = cb ? cb : function() {};
-                    repo.update(key, newMember.Name, newMember, oldMember.Value, cb);
+                    cb = cb ? cb : function () { };
+                    console.log(key);
+                    console.log(oldMember);
+                    console.log(newMember);
+                    repo.update(key, oldMember.Value, newMember.Value, cb);
                 };
 
                 // init
@@ -94,16 +103,22 @@ exports.register = function(module) {
                     };
 
                     $scope.setOptions.data = set;
+
+                    actionBarViewModel.addContext($scope);
                 });
 
-                $scope.$on('redisViewModel-save-set', function(event, key) {
+
+                $scope.$on('redisViewModel-save-set', function (event, key) {
                     var selectedMember = $scope.setOptions.selectedItems.length > 0 ? $scope.setOptions.selectedItems[0] : null;
                     if (selectedMember == null) return;
-
-                    $scope.update(
+                    self.update(
                         key,
+                        selectedMember,
                         $scope.memberForEdit,
-                        selectedMember);
+                        function () {
+                            Notification.success(String.format('Set with key "{0}" was changed successfully', $utils.truncate(key)));
+                            selectedMember.Value = $scope.memberForEdit.Value;
+                        });
                 });
             }
         ]);

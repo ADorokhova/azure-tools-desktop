@@ -81,9 +81,78 @@
             </bg-pane>
             <bg-pane>
                 <div class="wrapRightBlock">
-                    <div class="headBlock">
 
+                    <!--Redis right actions bar-->
+                    <div class="headBlock">
+                        <!--string-->
+                        <ul class="nav navbar-nav" ng-show="ActionBarItems.keyViewModel.selectedKeys.length === 1 &&
+                            ActionBarItems.keyViewModel.selectedKeys[0].Type === 'string'">
+                            <li>
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Refresh string" ng-click="ActionBarItems.refreshKey()">
+                                        <i class="fa fa-refresh"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <!--set-->
+                        <ul class="nav navbar-nav" ng-show="ActionBarItems.keyViewModel.selectedKeys.length === 1 && 
+                            ActionBarItems.keyViewModel.selectedKeys[0].Type === 'set'">
+                            <li>
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Refresh set" ng-click="ActionBarItems.refreshKey()">
+                                        <i class="fa fa-refresh"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Add set member" ng-click="ActionBarItems.editSet()">
+                                        <i class="fa fa-plus-circle"></i><br/>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <li ng-show="ActionBarItems.context.setOptions.selectedItems.length > 0">
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Delete set member" ng-click="ActionBarItems.deleteSetItem()">
+                                        <i class="fa fa-minus-circle"></i><br/>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <!--hash-->
+                        <ul class="nav navbar-nav" ng-show="ActionBarItems.keyViewModel.selectedKeys.length === 1 &&
+                            ActionBarItems.keyViewModel.selectedKeys[0].Type === 'hash'">
+                            <li>
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Refresh set" ng-click="ActionBarItems.refreshKey()">
+                                        <i class="fa fa-refresh"></i>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Add hash member" ng-click="ActionBarItems.editHash()">
+                                        <i class="fa fa-plus-circle"></i><br/>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <li ng-show="ActionBarItems.context.hashOptions.selectedItems.length > 0">
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Delete hash member" ng-click="ActionBarItems.deleteHashItem()">
+                                        <i class="fa fa-minus-circle"></i><br/>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
+
                     <div class="bodyRightBlock">
                         <div id="navbarValue">
                             <div class="typeValue">
@@ -120,9 +189,9 @@
                                 <bg-pane min-size="119">
                                     <div class="editValue">
                                         <p>Edit Value</p>
-                                        <textarea type="text" class="form-control set-form-control" autofocus ng-model="setMemberForEdit.Value"></textarea>
+                                        <textarea type="text" class="form-control set-form-control" autofocus ng-model="memberForEdit.Value"></textarea>
                                         <span class="tileFunction">
-                                            <a class="fa-links" title="Save value" ng-click="updateSet()">Save</a>
+                                            <a class="fa-links" title="Save value" ng-click="redisController.updateKey()">Save</a>
                                         </span>
                                     </div>
                                 </bg-pane>
@@ -239,12 +308,15 @@
     <div class="input-group input-group-sm">
         <div class="input-group input-group-sm">
             <span class="input-group-addon">Key</span>
-            <span ng-model="DialogViewModel.BodyViewModel.Key" class="form-control"></span>
+            <span>{{DialogViewModel.BodyViewModel.Key}}</span>
         </div>
-
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon">Type</span>
+            <span>{{DialogViewModel.BodyViewModel.Type}}</span>
+        </div>
         <div class="input-group input-group-sm">
             <span class="input-group-addon">Member Name</span>
-            <input>{{DialogViewModel.BodyViewModel.Name}}</input>
+            <input ng-model="DialogViewModel.BodyViewModel.Name" class="form-control" />
         </div>
 
         <div class="input-group input-group-sm">

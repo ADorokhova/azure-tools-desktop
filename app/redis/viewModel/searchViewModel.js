@@ -15,6 +15,7 @@ exports.register = function(module) {
             '$validator',
             'uiGridConstants',
             'dialog',
+            'Notification',
 
             function(
                 $rootScope,
@@ -30,7 +31,8 @@ exports.register = function(module) {
                 $messageBus,
                 $validator,
                 uiGridConstants,
-                dialog) {
+                dialog,
+                Notification) {
                 var loadKeysOperation = 'loadKeys';
                 return {
                     onSuccess: function(){},
@@ -47,15 +49,31 @@ exports.register = function(module) {
                             var client = repo.safeRedisCmd(function(client) {
                                 self.beforeSearch();
 
-                                client.keys(pattern ? pattern : '*', function(err, keys) {
-                                    if (err) {
-                                        console.log(err);
-                                        return;
-                                    }
+                                if (pattern) {
+                                    client.keys(pattern ? pattern : '*', function(err, keys) {
+                                        if (err) {
+                                            console.log(err);
+                                            return;
+                                        }
 
-                                    self.onSuccess(keys);
-                                    $busyIndicator.setIsBusy(loadKeysOperation, false);
-                                });
+                                        self.onSuccess(keys);
+                                        $busyIndicator.setIsBusy(loadKeysOperation, false);
+                                    });
+                                } else {
+                                    client.send_command('SCAN', ['0','COUNT', 1000], function (err, keys) {
+                                        if (err) {
+                                            console.log(err);
+                                            return;
+                                        }
+
+                                        if (keys[1].length >= 100) {
+                                            Notification.warning('Only first 1000 keys are loaded. Use search to find specific key');
+                                        }
+
+                                        self.onSuccess(keys[1]);
+                                        $busyIndicator.setIsBusy(loadKeysOperation, false);
+                                    });
+                                }
                             });
 
                             $busyIndicator.setIsBusy(loadKeysOperation, true, function() {

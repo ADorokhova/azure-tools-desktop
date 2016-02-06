@@ -18,6 +18,12 @@
             });
         };
 
+        self.hdel = function (key, members, cb) {
+            self.safeRedisCmd(function (client) {
+                client.hdel(key, members, cb);
+            });
+        };
+
         self.replaceMember = function(key, oldName, name, value, cb) {
             self.safeRedisCmd(function(client) {
                 console.log(key);

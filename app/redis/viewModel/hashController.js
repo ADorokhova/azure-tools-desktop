@@ -16,6 +16,7 @@ exports.register = function(module) {
             '$validator',
             'uiGridConstants',
             'dialog',
+            'actionBarViewModel',
             function(
                 $scope,
                 $activeDatabase,
@@ -31,7 +32,8 @@ exports.register = function(module) {
                 $messageBus,
                 $validator,
                 uiGridConstants,
-                dialog) {
+                dialog,
+                actionBarViewModel) {
                 var self = this;
                 var repo = $redisRepositoryFactory('hash');
 
@@ -112,6 +114,8 @@ exports.register = function(module) {
                     }
 
                     $scope.hashOptions.data = hash;
+                    console.log('JHASSD')
+                    actionBarViewModel.addContext($scope);
                 });
 
                 $scope.$on('redisViewModel-save-hash', function(event, key) {
