@@ -10,10 +10,12 @@
                 cb(client);
             } finally {
             }
+
+            return client;
         };
-        self.delete = function (keyData) {
+        self.delete = function (keys, cb) {
             self.safeRedisCmd(function (client) {
-                client.del(keyData.Key);
+                client.del(keys, cb);
             });
         };
     };

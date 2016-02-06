@@ -44,11 +44,15 @@ exports.register = function(module) {
                             $busyIndicator.Text = 'Loading... ';
 
                             var repo = $redisRepositoryFactory('string');
-                            repo.safeRedisCmd(function(client) {
+                            var client = repo.safeRedisCmd(function(client) {
                                 self.beforeSearch();
 
                                 client.keys(pattern ? pattern : '*', function(err, keys) {
-                                    if (err) return console.log(err);
+                                    if (err) {
+                                        console.log(err);
+                                        return;
+                                    }
+
                                     self.onSuccess(keys);
                                     $busyIndicator.setIsBusy(loadKeysOperation, false);
                                 });

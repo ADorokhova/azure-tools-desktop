@@ -12,6 +12,7 @@
         self.OptionText = '';
         self.IsSaveVisible = true;
         self.AreButtonsDisabled = false;
+        self.ValidationErrorText = '';
         self.onChecked = function() {
 
         };
@@ -28,10 +29,12 @@
         dialog.Body = null;
         dialog.BodyViewModel = {};
         dialog.IsVisible = false;
+        dialog.IsSaveVisible = true;
         dialog.IsChecked = false;
         dialog.WithOption = false;
         dialog.OptionText = '';
         dialog.AreButtonsDisabled = false;
+        dialog.ValidationErrorText = '';
 
         return dialog;
     };

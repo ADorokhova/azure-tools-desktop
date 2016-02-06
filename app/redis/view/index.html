@@ -1,200 +1,320 @@
 <div class="container">
-	<div class="metro grid" ng-controller="RedisController as redisController">
-		<bg-splitter orientation="horizontal">
-			<bg-pane min-size="190" init-percentage="26.2">
-				<div class="wrapLeftBlock">
-					<div class="headBlock">
-						<div class="collapse navbar-collapse" id="navbarFunction">
-							<ul class="nav navbar-nav" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'redis'">
-								<li ng-show="ActionBarItems.IsSettingsVisible">
-									<div class="functionButton">
-										<a class="fa-links" title="Account storage" ng-click="ActionBarItems.changeSettings()">
-											<i class="fa fa-cog"></i>
-										</a>
-									</div>
-								</li>
-								<li ng-show="ActionBarItems.IsRefreshVisible">
-									<div class="functionButton">
-										<a class="fa-links" title="Refresh table key" ng-click="ActionBarItems.refresh()">
-											<i class="fa fa-refresh"></i>
-										</a>
-									</div>
-								</li>
-								<li class="delimiter-tiles"></li>
-								<li ng-show="ActionBarItems.IsAddKeyVisible">
-									<div class="functionButton">
-										<a class="fa-links" title="Add Key" ng-click="ActionBarItems.addKey()">
-											<i class="fa fa-plus-circle"></i>
-										</a>
-									</div>
-								</li>  
-								<li>
-									<div class="functionButton">
-										<a class="fa-links" title="Delete Key"  ng-click="ActionBarItems.removeKey()">
-											<i class="fa fa-trash-o"></i>
-										</a>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
+    <div class="metro grid" ng-controller="RedisController as redisController">
+        <bg-splitter orientation="horizontal">
+            <bg-pane min-size="190" init-percentage="26.2">
+                <div class="wrapLeftBlock">
+                    <div class="headBlock">
+                        <div class="collapse navbar-collapse" id="navbarFunction">
+                            <ul class="nav navbar-nav" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'redis'">
+                                <li ng-show="ActionBarItems.IsSettingsVisible">
+                                    <div class="functionButton">
+                                        <a class="fa-links" title="Account storage" ng-click="ActionBarItems.changeSettings()">
+                                            <i class="fa fa-cog"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li ng-show="ActionBarItems.IsRefreshVisible">
+                                    <div class="functionButton">
+                                        <a class="fa-links" title="Refresh table key" ng-click="ActionBarItems.refresh()">
+                                            <i class="fa fa-refresh"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="delimiter-tiles"></li>
+                                <li ng-show="ActionBarItems.IsAddKeyVisible">
+                                    <div class="functionButton">
+                                        <a class="fa-links" title="Add Key" ng-click="ActionBarItems.addKey()">
+                                            <i class="fa fa-plus-circle"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="functionButton">
+                                        <a class="fa-links" title="Delete Key" ng-click="ActionBarItems.removeKey()">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
-					<div class="bodyLeftBlock">
-						<div>
-						<div id="block-Database">
-							<span>Database</span>
+                    <div class="bodyLeftBlock">
+                        <div>
+                            <div id="block-Database">
+                                <span>Database</span>
 
-							<div class="dropdown">
-								<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									{{DatabaseViewModel.Current}}
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-									<li role="presentation" ng-repeat="n in [0, 1, 2, 3,4,5,6,7,8,9,10]"><a ng-click="DatabaseViewModel.setCurrent(n)">{{n}}</a></li>
-								</ul>
-							</div>
-						</div>
+                                <div class="dropdown">
+                                    <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{DatabaseViewModel.Current}}
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                        <li role="presentation" ng-repeat="n in [0, 1, 2, 3,4,5,6,7,8,9,10]"><a ng-click="DatabaseViewModel.setCurrent(n)">{{n}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
 
-						<div class="searchBar">
-         					<div class="saerchText">
-								<input ng-model="SearchViewModel.Pattern"
-								ng-change="SearchViewModel.onChange()"
-								ng-enter="SearchViewModel.search()"
-								ng-ctrl-enter="SearchViewModel.search()"
-								type="text" class="form-control" autofocus />
-								<i id="searchclear" class="searchclear glyphicon glyphicon-remove-circle" ng-click="SearchViewModel.clear()" ng-show="SearchViewModel.IsClearVisible"></i>
-							</div>
-							<div class="functionButton">
-								<a class="fa-links" title="Search" ng-click="SearchViewModel.search()">
-									<i class="fa fa-search"></i>
-								</a>
-							</div>
-						</div>
-						<div class="clearFloat"></div>
-					</div>
+                            <div class="searchBar">
+                                <div class="saerchText">
+                                    <input ng-model="SearchViewModel.Pattern"
+                                           ng-change="SearchViewModel.onChange()"
+                                           ng-enter="SearchViewModel.search()"
+                                           ng-ctrl-enter="SearchViewModel.search()"
+                                           type="text" class="form-control" autofocus />
+                                    <i id="searchclear" class="searchclear glyphicon glyphicon-remove-circle" ng-click="SearchViewModel.clear()" ng-show="SearchViewModel.IsClearVisible"></i>
+                                </div>
+                                <div class="functionButton">
+                                    <a class="fa-links" title="Search" ng-click="SearchViewModel.search()">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="clearFloat"></div>
+                        </div>
 
-						<!--<table id="data" cellpadding="0" cellspacing="0" border="0" class="table striped hovered dataTable" style="width:100%"></table>-->
+                        <!--<table id="data" cellpadding="0" cellspacing="0" border="0" class="table striped hovered dataTable" style="width:100%"></table>-->
 
-						<div ui-grid="keyOptions" ui-grid-auto-resize ui-grid-selection ng-style="keyOptions.getStyle()"></div>
-					</div>
-				</div>
-			</bg-pane>
-			<bg-pane>
-				<div class="wrapRightBlock">
-					<div class="headBlock">
-						
-					</div>
-					<div class="bodyRightBlock">
-						<div id="navbarValue">
-							<div class="typeValue">
-								<p>Type: <span>{{keyOptions.selectedKeys[0].Type}}</span></p>
-							</div>
-						</div>
-						<div id="value-HashSet" ng-show="keyOptions.selectedKeys[0].Type == 'hash'"  ng-controller="hashController">
-							<bg-splitter orientation="vertical">
-								<bg-pane init-percentage="65" min-size="119">
-					            	<div ui-grid="hashOptions" ui-grid-move-columns ui-grid-resize-columns ui-grid-auto-resize ui-grid-selection ng-style="hashOptions.getStyle()"></div>
-								</bg-pane>
-								<bg-pane min-size="219">
-									<div class="editValue">
-										<p>Member</p>
-										<textarea type="text" class="form-control" autofocus  ng-model="memberForEdit.Name"></textarea>
+                        <div ui-grid="keyOptions" ui-grid-auto-resize ui-grid-selection ng-style="keyOptions.getStyle()"></div>
+                    </div>
+                </div>
+            </bg-pane>
+            <bg-pane>
+                <div class="wrapRightBlock">
+                    <div class="headBlock">
+
+                    </div>
+                    <div class="bodyRightBlock">
+                        <div id="navbarValue">
+                            <div class="typeValue">
+                                <p>Type: <span>{{keyOptions.selectedKeys[0].Type}}</span></p>
+                            </div>
+                        </div>
+                        <div id="value-HashSet" ng-show="keyOptions.selectedKeys[0].Type == 'hash'" ng-controller="hashController">
+                            <bg-splitter orientation="vertical">
+                                <bg-pane init-percentage="65" min-size="119">
+                                    <div ui-grid="hashOptions" ui-grid-move-columns ui-grid-resize-columns ui-grid-auto-resize ui-grid-selection ng-style="hashOptions.getStyle()"></div>
+                                </bg-pane>
+                                <bg-pane min-size="219">
+                                    <div class="editValue">
+                                        <p>Member</p>
+                                        <textarea type="text" class="form-control" autofocus ng-model="memberForEdit.Name"></textarea>
 
 
-										<p>Value</p>
-										<textarea type="text" class="form-control" autofocus  ng-model="memberForEdit.Value"></textarea>
-										<span class="tileFunction">
-											<a class="fa-links" title="Save value" ng-click="redisController.updateKey()">Save</a>
-										
-										</span>
-									</div>
-								</bg-pane>
-							</bg-splitter>
-						</div>
-						
-						<div id="value-Set" ng-show="keyOptions.selectedKeys[0].Type == 'set'" ng-controller="setController">
-							<bg-splitter orientation="vertical">
-								<bg-pane init-percentage="65" min-size="119">
-					            	<div ui-grid="setOptions" ui-grid-resize-columns ui-grid-auto-resize ui-grid-selection ng-style="setOptions.getStyle()"></div>
-								</bg-pane>
-								<bg-pane min-size="119">
-									<div class="editValue">
-										<p>Edit Value</p>
-										<textarea type="text" class="form-control set-form-control" autofocus  ng-model="setMemberForEdit.Value"></textarea>
-										<span class="tileFunction">
-											<a class="fa-links" title="Save value" ng-click="updateSet()">Save</a>
-										</span>
-									</div>
-								</bg-pane>
-							</bg-splitter>
-						</div>  
-						
-						<div id="value-String" ng-show="keyOptions.selectedKeys[0].Type == 'string'">
-							<div class="editValue">
-								<p>Edit Value</p>
-								<textarea type="text" class="form-control" autofocus ng-model="keyOptions.selectedKeys[0].Value"></textarea>
-								<span class="tileFunction">
-									<a class="fa-links" title="Save value" ng-click="updateString()">Save</a>
-								</span>
-							</div>
-						</div>
+                                        <p>Value</p>
+                                        <textarea type="text" class="form-control" autofocus ng-model="memberForEdit.Value"></textarea>
+                                        <span class="tileFunction">
+                                            <a class="fa-links" title="Save value" ng-click="redisController.updateKey()">Save</a>
 
-					</div>
-				</div>
-			</bg-pane>
-		</bg-splitter>
-	</div>
+                                        </span>
+                                    </div>
+                                </bg-pane>
+                            </bg-splitter>
+                        </div>
+
+                        <div id="value-Set" ng-show="keyOptions.selectedKeys[0].Type == 'set'" ng-controller="setController">
+                            <bg-splitter orientation="vertical">
+                                <bg-pane init-percentage="65" min-size="119">
+                                    <div ui-grid="setOptions" ui-grid-resize-columns ui-grid-auto-resize ui-grid-selection ng-style="setOptions.getStyle()"></div>
+                                </bg-pane>
+                                <bg-pane min-size="119">
+                                    <div class="editValue">
+                                        <p>Edit Value</p>
+                                        <textarea type="text" class="form-control set-form-control" autofocus ng-model="setMemberForEdit.Value"></textarea>
+                                        <span class="tileFunction">
+                                            <a class="fa-links" title="Save value" ng-click="updateSet()">Save</a>
+                                        </span>
+                                    </div>
+                                </bg-pane>
+                            </bg-splitter>
+                        </div>
+
+                        <div id="value-String" ng-show="keyOptions.selectedKeys[0].Type == 'string'">
+                            <div class="editValue">
+                                <p>Edit Value</p>
+                                <textarea type="text" class="form-control" autofocus ng-model="keyOptions.selectedKeys[0].Value"></textarea>
+                                <span class="tileFunction">
+                                    <a class="fa-links" title="Save value" ng-click="updateString()">Save</a>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </bg-pane>
+        </bg-splitter>
+    </div>
 </div>
 
 <script type="text/ng-template" id="createKeyTemplate">
-	<div class="input-group input-group-sm">
-		<div class="input-group input-group-sm">
-			<span class="input-group-addon" style="width:97px; border-right:1px; border-right-color:rgb(204, 204, 204); border-right-style:solid">Type</span>
-			<div class="dropdown" style="float:left; margin-left: 5px;">
-				<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" height:29px;">
-					{{DialogViewModel.BodyViewModel.SelectedType}}
-					<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-					<li role="presentation" ng-repeat="type in DialogViewModel.BodyViewModel.Types"><a ng-click="DialogViewModel.BodyViewModel.selectType(type)">{{type}}</a></li>
-				</ul>
-			</div>
-		</div>
+    <div class="input-group input-group-sm">
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon" style="width:97px; border-right:1px; border-right-color:rgb(204, 204, 204); border-right-style:solid">Type</span>
+            <div class="dropdown" style="float:left; margin-left: 5px;">
+                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" height:29px;">
+                    {{DialogViewModel.BodyViewModel.Type}}
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation" ng-repeat="type in DialogViewModel.BodyViewModel.Types"><a ng-click="DialogViewModel.BodyViewModel.selectType(type)">{{type}}</a></li>
+                </ul>
+            </div>
+        </div>
 
-		<div class="input-group input-group-sm">
-			<span class="input-group-addon">Key</span>
-			<input ng-model="DialogViewModel.BodyViewModel.Key" class="form-control" />
-		</div>
-		
-		<div class="input-group input-group-sm">
-			<span class="input-group-addon" style="float:none">Value</span>
-			<textarea ng-model="DialogViewModel.BodyViewModel.Value"
-					  ng-attr-placeholder="{{DialogViewModel.BodyViewModel.ValueExample}}"
-					  class="form-control"
-					  style="height: 100px;" />
-		</div>
-	</div>
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon">Key</span>
+            <input ng-model="DialogViewModel.BodyViewModel.Key" class="form-control" />
+        </div>
+        
+        <!--string-->
+        <div class="input-group input-group-sm" ng-show="DialogViewModel.BodyViewModel.Type === 'string'">
+            <span class="input-group-addon" style="float:none">Value</span>
+            <textarea ng-model="DialogViewModel.BodyViewModel.Value"
+                      class="form-control"
+                      style="height: 100px;" />
+        </div>       
+        
+         <!--hash-->
+        <div class="input-group input-group-sm" ng-show="DialogViewModel.BodyViewModel.Type === 'hash'">
+            <span class="input-group-addon">Member Name</span>
+            <input ng-model="DialogViewModel.BodyViewModel.Name" class="form-control" />
+        </div>
+
+        <div class="input-group input-group-sm" ng-show="DialogViewModel.BodyViewModel.Type === 'hash'">
+            <span class="input-group-addon" style="float:none">Member Value</span>
+            <textarea ng-model="DialogViewModel.BodyViewModel.Value"
+                      class="form-control"
+                      style="height: 100px;" />
+        </div>
+        
+        <!--set-->
+        <div class="input-group input-group-sm" ng-show="DialogViewModel.BodyViewModel.Type === 'set'">
+            <span class="input-group-addon" style="float:none">Member Value</span>
+            <textarea ng-model="DialogViewModel.BodyViewModel.Value"
+                      class="form-control"
+                      style="height: 100px;" />
+        </div>
+        <span style="float:none; color: red;">{{DialogViewModel.ValidationErrorText}}</span>
+        <label class="checkbox" ng-show="DialogViewModel.WithOption">
+            <input type="checkbox" style="float:left;" ng-model="DialogViewModel.IsChecked" ng-change="DialogViewModel.onChecked()">
+            <span class="checkbox-label">{{DialogViewModel.OptionText}}</span>
+        </label>
+
+        <div class="btn-group" ng-disabled="DialogViewModel.AreButtonsDisabled">
+            <button type="button" class="btn btn-default" ng-click="DialogViewModel.BodyViewModel.save()" ng-show="DialogViewModel.IsSaveVisible">Save</button>
+            <!--<button type="button" class="btn btn-default" ng-click="DialogViewModel.BodyViewModel.saveAndEdit()" ng-show="DialogViewModel.IsSaveVisible">Save & Edit</button>-->
+            <button type="button" class="btn btn-default" ng-click="DialogViewModel.cancel()">Cancel</button>
+        </div>
+    </div>
+</script>
+
+<!--string-->
+<script type="text/ng-template" id="editStringTemplate">
+    <div class="input-group input-group-sm">
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon">Key</span>
+            <span>{{DialogViewModel.BodyViewModel.Key}}</span>
+        </div>
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon">Type</span>
+            <span>{{DialogViewModel.BodyViewModel.Type}}</span>
+        </div>
+
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon" style="float:none">Value</span>
+            <textarea ng-model="DialogViewModel.BodyViewModel.Value"
+                      class="form-control"
+                      style="height: 100px;" />
+        </div>
+        
+        <div class="btn-group" ng-disabled="DialogViewModel.AreButtonsDisabled">
+            <button type="button" class="btn btn-default" ng-click="DialogViewModel.BodyViewModel.save()" ng-show="DialogViewModel.IsSaveVisible">Save</button>
+            <button type="button" class="btn btn-default" ng-click="DialogViewModel.cancel()">Cancel</button>
+        </div>
+    </div>
+</script>
+
+<!--hash-->
+<script type="text/ng-template" id="editHashTemplate">
+    <div class="input-group input-group-sm">
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon">Key</span>
+            <span ng-model="DialogViewModel.BodyViewModel.Key" class="form-control"></span>
+        </div>
+
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon">Member Name</span>
+            <input>{{DialogViewModel.BodyViewModel.Name}}</input>
+        </div>
+
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon" style="float:none">Member Value</span>
+            <textarea ng-model="DialogViewModel.BodyViewModel.Value"
+                      class="form-control"
+                      style="height: 100px;" />
+        </div>
+        
+        <div class="btn-group" ng-disabled="DialogViewModel.AreButtonsDisabled">
+            <button type="button" class="btn btn-default" ng-click="DialogViewModel.BodyViewModel.save()" ng-show="DialogViewModel.IsSaveVisible">Save</button>
+            <button type="button" class="btn btn-default" ng-click="DialogViewModel.cancel()">Cancel</button>
+        </div>
+    </div>
+</script>
+
+<!--set-->
+<script type="text/ng-template" id="editSetTemplate">
+    <div class="input-group input-group-sm">
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon">Key</span>
+            <span>{{DialogViewModel.BodyViewModel.Key}}</span>
+        </div>
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon">Type</span>
+            <span>{{DialogViewModel.BodyViewModel.Type}}</span>
+        </div>
+
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon" style="float:none">Member Value</span>
+            <textarea ng-model="DialogViewModel.BodyViewModel.Value"
+                      class="form-control"
+                      style="height: 100px;" />
+        </div>
+        
+        <div class="btn-group" ng-disabled="DialogViewModel.AreButtonsDisabled">
+            <button type="button" class="btn btn-default" ng-click="DialogViewModel.BodyViewModel.save()" ng-show="DialogViewModel.IsSaveVisible">Save</button>
+            <button type="button" class="btn btn-default" ng-click="DialogViewModel.cancel()">Cancel</button>
+        </div>
+    </div>
 </script>
 
 <script type="text/ng-template" id="changeSettingsTemplate">
-	<div class="input-group input-group-sm">
-		<label>Provide credentials to access your Redis storage</label>
-	</div>
+    <div class="input-group input-group-sm">
+        <label>Provide credentials to access your Redis storage</label>
+    </div>
 
-	<div class="input-group input-group-sm">
-		<div class="input-group input-group-sm">
-			<span class="input-group-addon">Host</span>
-			<input ng-model="DialogViewModel.BodyViewModel.Host" class="form-control" />
-		</div>
+    <div class="input-group input-group-sm">
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon">Host</span>
+            <input ng-model="DialogViewModel.BodyViewModel.Host" class="form-control" />
+        </div>
 
-		<div class="input-group input-group-sm">
-			<span class="input-group-addon">Port</span>
-			<input ng-model="DialogViewModel.BodyViewModel.Port" class="form-control" />
-		</div>
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon">Port</span>
+            <input ng-model="DialogViewModel.BodyViewModel.Port" class="form-control" />
+        </div>
 
-		<div class="input-group input-group-sm">
-			<span class="input-group-addon">Auth Password</span>
-			<input ng-model="DialogViewModel.BodyViewModel.Password" class="form-control" />
-		</div>
-	</div>
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon">Auth Password</span>
+            <input ng-model="DialogViewModel.BodyViewModel.Password" class="form-control" />
+        </div>
+    </div>
+
+    <label class="checkbox" ng-show="DialogViewModel.WithOption">
+        <input type="checkbox" style="float:left;" ng-model="DialogViewModel.IsChecked" ng-change="DialogViewModel.onChecked()">
+        <span class="checkbox-label">{{DialogViewModel.OptionText}}</span>
+    </label>
+    <div class="btn-group" ng-disabled="DialogViewModel.AreButtonsDisabled">
+        <button type="button" class="btn btn-default" ng-click="DialogViewModel.save()" ng-show="DialogViewModel.IsSaveVisible">Save</button>
+        <button type="button" class="btn btn-default" ng-click="DialogViewModel.cancel()">Cancel</button>
+    </div>
 </script>

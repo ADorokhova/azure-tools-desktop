@@ -4,7 +4,7 @@
             <div class="wrapLeftBlock">
                 <div class="headBlock">
                     <div class="collapse navbar-collapse" id="navbarFunction">
-                         <ul class="nav navbar-nav" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'tables'">
+                        <ul class="nav navbar-nav" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'tables'">
                             <li ng-show="ActionBarItems.IsSettingsVisible">
                                 <div class="functionButton">
                                     <a class="fa-links" title="Account storage" ng-click="ActionBarItems.changeSettings()">
@@ -34,15 +34,15 @@
                                     </a>
                                 </div>
                             </li>
-                        </ul> 
+                        </ul>
                     </div>
                 </div>
                 <div class="bodyLeftBlock">
                     <!-- <i class="fa fa-th-large"></i><span id="accountName">{{TablesViewModel.Settings.AccountName}}</span> -->
-                    <ul id="tableList"> 
-                        <li ng-repeat="table in TablesViewModel.TableSelectViewModel.Tables" 
-                        ng-click="TablesViewModel.TableSelectViewModel.onSelectedTableChanged(table)"
-                        ng-class="{selected: table === TablesViewModel.TableSelectViewModel.SelectedTable}"><i class="fa fa-table"></i>{{table}}</li>
+                    <ul id="tableList">
+                        <li ng-repeat="table in TablesViewModel.TableSelectViewModel.Tables"
+                            ng-click="TablesViewModel.TableSelectViewModel.onSelectedTableChanged(table)"
+                            ng-class="{selected: table === TablesViewModel.TableSelectViewModel.SelectedTable}"><i class="fa fa-table"></i>{{table}}</li>
                     </ul>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                                     </a>
                                 </div>
                             </li>
-                        </ul> 
+                        </ul>
                     </div>
                     <!-- <i class="fa fa-table"></i>
                     <span id="tableName">
@@ -88,13 +88,13 @@
                         <div ng-show="ActionBarItems.IsSearchVisible">
                             <div class="saerchText">
                                 <textarea ng-model="ActionBarItems.SearchViewModel.Pattern"
-                                ng-change="ActionBarItems.SearchViewModel.onChange()"
-                                ng-ctrl-enter="ActionBarItems.SearchViewModel.search()"
-                                type="text"
-                                class="form-control"
-                                placeholder="PartitionKey eq 'xxx' and RowKey eq 'yyy'"
-                                id="filterArea"
-                                autofocus></textarea>
+                                          ng-change="ActionBarItems.SearchViewModel.onChange()"
+                                          ng-ctrl-enter="ActionBarItems.SearchViewModel.search()"
+                                          type="text"
+                                          class="form-control"
+                                          placeholder="PartitionKey eq 'xxx' and RowKey eq 'yyy'"
+                                          id="filterArea"
+                                          autofocus></textarea>
 
                                 <span id="searchclear" class="searchclear glyphicon glyphicon-remove-circle" ng-click="ActionBarItems.SearchViewModel.clear()" ng-show="ActionBarItems.SearchViewModel.IsClearVisible"></span>
 
@@ -138,6 +138,14 @@
             <input ng-model="DialogViewModel.BodyViewModel.AccountKey" class="form-control" />
         </div>
     </div>
+    <label class="checkbox" ng-show="DialogViewModel.WithOption">
+        <input type="checkbox" style="float:left;" ng-model="DialogViewModel.IsChecked" ng-change="DialogViewModel.onChecked()">
+        <span class="checkbox-label">{{DialogViewModel.OptionText}}</span>
+    </label>
+    <div class="btn-group" ng-disabled="DialogViewModel.AreButtonsDisabled">
+        <button type="button" class="btn btn-default" ng-click="DialogViewModel.save()" ng-show="DialogViewModel.IsSaveVisible">Save</button>
+        <button type="button" class="btn btn-default" ng-click="DialogViewModel.cancel()">Cancel</button>
+    </div>
 </script>
 
 <script type="text/ng-template" id="createTableTemplate">
@@ -146,9 +154,19 @@
             <span class="input-group-addon">Table Name</span>
             <input ng-model="DialogViewModel.BodyViewModel.TableName" class="form-control" />
         </div>
-        <div class="input-group input-group-sm"  
-        ng-show="DialogViewModel.BodyViewModel.ErrorMessage !== undefined && DialogViewModel.BodyViewModel.ErrorMessage !== null">
-        {{ DialogViewModel.BodyViewModel.ErrorMessage }}</div>
+        <div class="input-group input-group-sm"
+             ng-show="DialogViewModel.BodyViewModel.ErrorMessage !== undefined && DialogViewModel.BodyViewModel.ErrorMessage !== null">
+            {{ DialogViewModel.BodyViewModel.ErrorMessage }}
+        </div>
+    </div>
+
+    <label class="checkbox" ng-show="DialogViewModel.WithOption">
+        <input type="checkbox" style="float:left;" ng-model="DialogViewModel.IsChecked" ng-change="DialogViewModel.onChecked()">
+        <span class="checkbox-label">{{DialogViewModel.OptionText}}</span>
+    </label>
+    <div class="btn-group" ng-disabled="DialogViewModel.AreButtonsDisabled">
+        <button type="button" class="btn btn-default" ng-click="DialogViewModel.save()" ng-show="DialogViewModel.IsSaveVisible">Save</button>
+        <button type="button" class="btn btn-default" ng-click="DialogViewModel.cancel()">Cancel</button>
     </div>
 </script>
 
@@ -160,10 +178,10 @@
                 <a class="fa-links" title="Delete selected rows" ng-click="RedisViewModel.updateKey()">Delete</a>
             </span>
             <span class="tileFunction">
-            <a class="fa-links" title="Add row" ng-click="RedisViewModel.updateKey()">Add row</a>
+                <a class="fa-links" title="Add row" ng-click="RedisViewModel.updateKey()">Add row</a>
             </span>
         </div>
-        <div class="wrapListFields"> 
+        <div class="wrapListFields">
             <div>
                 <ul ng-repeat="property in DialogViewModel.BodyViewModel.TableProperties">
                     <li class="input-group input-group-sm">
@@ -178,11 +196,20 @@
                         </div>
                     </li>
                 </ul>
-                <div class="input-group input-group-sm"  
-                ng-show="DialogViewModel.BodyViewModel.ErrorMessage !== undefined && DialogViewModel.BodyViewModel.ErrorMessage !== null">
+                <div class="input-group input-group-sm"
+                     ng-show="DialogViewModel.BodyViewModel.ErrorMessage !== undefined && DialogViewModel.BodyViewModel.ErrorMessage !== null">
                     {{ DialogViewModel.BodyViewModel.ErrorMessage }}
                 </div>
             </div>
+        </div>
+
+        <label class="checkbox" ng-show="DialogViewModel.WithOption">
+            <input type="checkbox" style="float:left;" ng-model="DialogViewModel.IsChecked" ng-change="DialogViewModel.onChecked()">
+            <span class="checkbox-label">{{DialogViewModel.OptionText}}</span>
+        </label>
+        <div class="btn-group" ng-disabled="DialogViewModel.AreButtonsDisabled">
+            <button type="button" class="btn btn-default" ng-click="DialogViewModel.save()" ng-show="DialogViewModel.IsSaveVisible">Save</button>
+            <button type="button" class="btn btn-default" ng-click="DialogViewModel.cancel()">Cancel</button>
         </div>
     </div>
 </script>

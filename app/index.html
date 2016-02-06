@@ -93,16 +93,6 @@
             <div class="panel-body resizable">
                 <div ng-include="DialogViewModel.Body">
                 </div>
-
-                <label class="checkbox" ng-show="DialogViewModel.WithOption">
-                    <input type="checkbox" style="float:left;" ng-model="DialogViewModel.IsChecked" ng-change="DialogViewModel.onChecked()">
-                    <span class="checkbox-label">{{DialogViewModel.OptionText}}</span>
-                </label>
-
-                <div class="btn-group" ng-disabled="DialogViewModel.AreButtonsDisabled">
-                    <button type="button" class="btn btn-default" ng-click="DialogViewModel.save()" ng-show="DialogViewModel.IsSaveVisible">Save</button>
-                    <button type="button" class="btn btn-default" ng-click="DialogViewModel.cancel()">Cancel</button>
-                </div>
             </div>
         </div>
 

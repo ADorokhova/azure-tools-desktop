@@ -36,7 +36,7 @@
                             <ul class="nav navbar-nav" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'blobs'">
                                 <li ng-click="ActionBarItems.blobsViewModel.showImage()" ng-show="ActionBarItems.blobsViewModel.blobOptions.selectedBlob !== null">
                                     <div class="functionButton">
-                                        <a class="fa-links" title="View the image" >
+                                        <a class="fa-links" title="View the image">
                                             <i class="fa fa-picture-o"></i><br /><span>Image</span>
                                         </a>
                                     </div>
@@ -51,7 +51,7 @@
                                 </li>
                                 <li class="delimiter-tiles" ng-show="ActionBarItems.blobsViewModel.blobOptions.selectedBlob !== null"></li>
                                 <li ng-click="ActionBarItems.blobsViewModel.download()" ng-show="ActionBarItems.blobsViewModel.blobOptions.selectedBlob !== null">
-                                <div class="functionButton">
+                                    <div class="functionButton">
                                         <a class="fa-links" title="Download the blob">
                                             <i class="fa fa-download"></i><br /><span>Download</span>
                                         </a>
@@ -64,10 +64,10 @@
                         <div class="searchBar">
                             <div class="saerchText">
                                 <input ng-model="ActionBarItems.SearchViewModel.Pattern" ng-change="ActionBarItems.SearchViewModel.onChange()" ng-enter="ActionBarItems.SearchViewModel.search()"
-                                ng-ctrl-enter="ActionBarItems.SearchViewModel.search()" type="text" class="form-control"
-                                autofocus />
+                                       ng-ctrl-enter="ActionBarItems.SearchViewModel.search()" type="text" class="form-control"
+                                       autofocus />
                                 <span id="searchclear" class="searchclear glyphicon glyphicon-remove-circle" ng-click="ActionBarItems.SearchViewModel.clear()"
-                                ng-show="ActionBarItems.SearchViewModel.IsClearVisible"></span>
+                                      ng-show="ActionBarItems.SearchViewModel.IsClearVisible"></span>
                             </div>
                             <span class="functionButton">
                                 <a class="fa-links" title="Search" ng-click="ActionBarItems.SearchViewModel.search()">
@@ -109,12 +109,30 @@
             <input ng-model="DialogViewModel.BodyViewModel.AccountKey" class="form-control" />
         </div>
     </div>
+    <label class="checkbox" ng-show="DialogViewModel.WithOption">
+        <input type="checkbox" style="float:left;" ng-model="DialogViewModel.IsChecked" ng-change="DialogViewModel.onChecked()">
+        <span class="checkbox-label">{{DialogViewModel.OptionText}}</span>
+    </label>
+    <div class="btn-group" ng-disabled="DialogViewModel.AreButtonsDisabled">
+        <button type="button" class="btn btn-default" ng-click="DialogViewModel.save()" ng-show="DialogViewModel.IsSaveVisible">Save</button>
+        <button type="button" class="btn btn-default" ng-click="DialogViewModel.cancel()">Cancel</button>
+    </div>
 </script>
 
 <script type="text/ng-template" id="blobImage">
-    <img data-ng-src="data:image/png;base64,{{DialogViewModel.BodyViewModel.source}}" />
+    <img data-ng-src="data:image/png;base64,{{DialogViewModel.BodyViewModel.source}}"  class="input-group input-group-sm"/>
+    
+    <div class="btn-group" ng-disabled="DialogViewModel.AreButtonsDisabled">
+        <button type="button" class="btn btn-default" ng-click="DialogViewModel.save()" ng-show="DialogViewModel.IsSaveVisible">Save</button>
+        <button type="button" class="btn btn-default" ng-click="DialogViewModel.cancel()">Cancel</button>
+    </div>
 </script>
 
 <script type="text/ng-template" id="blobText">
     <textarea class="details-textarea" ng-model="DialogViewModel.BodyViewModel.source" />
+    
+    <div class="btn-group" ng-disabled="DialogViewModel.AreButtonsDisabled">
+        <button type="button" class="btn btn-default" ng-click="DialogViewModel.save()" ng-show="DialogViewModel.IsSaveVisible">Save</button>
+        <button type="button" class="btn btn-default" ng-click="DialogViewModel.cancel()">Cancel</button>
+    </div>
 </script>

@@ -118,7 +118,7 @@ exports.register = function(module) {
                     var type = keyViewModel.selectedKeys[0].Type;
                     var repo = $redisRepositoryFactory(type);
                     try {
-                        repo.update(keyViewModel.selectedKeys[0].Key, keyViewModel.selectedKeys[0].Value, function() {})
+                        repo.update(keyViewModel.selectedKeys[0].Key, keyViewModel.selectedKeys[0].Value, function() {});
                     } catch (ex) {
                         showError(ex.message);
                     }
@@ -145,14 +145,15 @@ exports.register = function(module) {
                     //}
                 };
 
+
+                // init
                 $messageBus.subscribe(
                     ['redis-communication-error'],
                     function(event, data) {
                         console.log('Received data: ' + data);
                         showError(data);
                     });
-
-                // init
+                    
                 if ($redisSettings.isEmpty()) {
                     actionBarViewModel.changeSettings();
                 } else {
