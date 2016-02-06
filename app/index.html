@@ -21,6 +21,7 @@
 
     <link href="content/css/metro-ui-css/iconFont.css" rel="stylesheet">
     <link href="content/css/metro-ui-css/font-awesome.css" rel="stylesheet">
+    <link href="content/css/iconWinControl/iconWinControl.css" rel="stylesheet">
 
     <link href="content/css/angular-csp.css" rel="stylesheet">
     <link href="content/css/metro-ui-css/metro-bootstrap.css" rel="stylesheet">
@@ -62,6 +63,38 @@
                         <span>Azure Tools</span>
                         <span ng-show="state.current.name !== 'tiles'">{{ActionBarItems.ModuleName}}</span>
                     </a>
+                </div>
+                <div id="navbar-win-control" class="collapse navbar-collapse" style="-webkit-app-region: no-drag;">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <div class="functionButton">
+                                <a class="fa-links" title="Minimize">
+                                    <i class="fa icon-minimize"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li >
+                            <div class="functionButton">
+                                <a class="fa-links" title="Maximize">
+                                    <i class="fa icon-maximize"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li style="display: none">
+                            <div class="functionButton">
+                                <a class="fa-links" title="Restore">
+                                    <i class="fa icon-restore"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="functionButton">
+                                <a class="fa-links" title="Close">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </li>  
+                    </ul>
                 </div>
             </div>
         </nav>
