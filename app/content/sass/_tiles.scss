@@ -9,6 +9,11 @@
 		background: $bg-colorHead-Tables;
 		background: linear-gradient(to right, $bg-colorHead-Tables 0%, $bg-colorHead-Redis 100%);
 	}
+	.functionButton {
+		a:active, a:hover {
+			color: hsl(hue($bg-colorHead-Redis), 100%, 92%);
+		}
+	}
 }
 
 .tilePreview {

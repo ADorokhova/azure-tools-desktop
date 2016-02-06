@@ -8,6 +8,9 @@
   background: #039BC1;
   background: linear-gradient(to right, #039BC1 0%, #039BC1 100%);
 }
+.forTiles .functionButton a:active, .forTiles .functionButton a:hover {
+  color: #d6f7ff;
+}
 
 .tilePreview {
   display: block;
@@ -721,25 +724,24 @@
   color: #ffffff;
 }
 
-.tileFunction {
-  display: block;
-  cursor: pointer;
-  float: left;
-  text-align: center;
-  color: #ffffff;
+#navbar-win-control {
+  float: right;
+  margin: 0px;
+  padding: 0px;
 }
-.tileFunction:active {
-  transform: perspective(200px) rotateX(0.2rad);
-  transform-origin: 50% bottom;
+#navbar-win-control .navbar-nav {
+  margin: 0px;
+  padding: 6px;
 }
-.tileFunction a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: relative;
+#navbar-win-control .navbar-nav li {
+  padding: 2px 0px 0 0;
 }
-.tileFunction a:hover {
-  text-decoration: none;
+#navbar-win-control [class*="icon-"].fa {
+  font-size: 12px;
+  vertical-align: -2px;
+}
+#navbar-win-control .fa {
+  font-size: 18px;
 }
 
 /*Dialog windows*/
@@ -824,6 +826,27 @@
 /*Body*/
 .wrapLeftBlock, .wrapRightBlock {
   height: 100%;
+}
+
+.tileFunction {
+  display: block;
+  cursor: pointer;
+  float: left;
+  text-align: center;
+  color: #ffffff;
+}
+.tileFunction:active {
+  transform: perspective(200px) rotateX(0.2rad);
+  transform-origin: 50% bottom;
+}
+.tileFunction a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.tileFunction a:hover {
+  text-decoration: none;
 }
 
 /*Begin Functional panel*/

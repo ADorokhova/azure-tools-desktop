@@ -40,25 +40,25 @@
 	color: #ffffff;  
 }
 
-.tileFunction {
-	display: block;
-	cursor: pointer;
-	float: left;
-	text-align: center;	
-	color: #ffffff;
-	&:active {
-		transform: perspective(200px) rotateX(0.2rad);
-		transform-origin: 50% bottom;
+#navbar-win-control {
+	float: right;
+	margin: 0px;
+	padding: 0px;
+	.navbar-nav {
+		margin: 0px;
+		padding: 6px;
+		li {
+			padding: 2px 0px 0 0;
+		}		
 	}
-	a {
-		display: block;
-		width: 100%;
-		height: 100%;
-		position: relative;
-		&:hover {
-			text-decoration: none;
-		}
-	}	
+	[class*="icon-"].fa {
+		font-size: 12px;
+		vertical-align: -2px;
+	} 
+	.fa {
+		font-size: 18px;
+		
+	} 
 }
 
 /*Dialog windows*/
@@ -147,6 +147,27 @@
 
 .wrapLeftBlock, .wrapRightBlock{
 	height: 100%;
+}
+
+.tileFunction {
+	display: block;
+	cursor: pointer;
+	float: left;
+	text-align: center;	
+	color: #ffffff;
+	&:active {
+		transform: perspective(200px) rotateX(0.2rad);
+		transform-origin: 50% bottom;
+	}
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+		position: relative;
+		&:hover {
+			text-decoration: none;
+		}
+	}	
 }
 
 /*Begin Functional panel*/
