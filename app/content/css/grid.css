@@ -121,10 +121,6 @@ table.dataTable td {
   color: black;
 }
 
-#value-HashSet .ui-grid-row:last-child .ui-grid-cell {
-  border-bottom: 1px #DDDDDD solid !important;
-}
-
 .forBlobs .ui-grid-canvas .ui-grid-cell-contents {
   padding: 6px;
 }
@@ -176,7 +172,6 @@ table.dataTable td {
   padding: 2px 0px 2px 2px;
 }
 .bodyLeftBlock .ui-grid-header-cell .sortable {
-  border: 1px solid #F1F1F1;
   border-bottom: 1px solid #b4b4b4;
 }
 .bodyLeftBlock .ui-grid-row:nth-child(even) .ui-grid-cell, .bodyLeftBlock .ui-grid-row:nth-child(odd) .ui-grid-cell {
@@ -197,4 +192,31 @@ table.dataTable td {
   content: "\e045";
   padding-right: 6px;
   color: #777777;
+}
+.forRedis .bodyRightBlock .ui-grid {
+  border: none;
+}
+.forRedis .bodyRightBlock .ui-grid .ui-grid-top-panel {
+  background: #fff;
+}
+.forRedis .bodyRightBlock .ui-grid .ui-grid-header-cell {
+  background: #fff;
+}
+.forRedis .bodyRightBlock .ui-grid-header-cell-primary-focus:focus {
+  outline: none;
+}
+.forRedis .bodyRightBlock .ui-grid-header {
+  border: none;
+}
+.forRedis .bodyRightBlock .ui-grid-header .ui-grid-cell-contents {
+  padding: 2px 0px 2px 9px;
+}
+.forRedis .bodyRightBlock .ui-grid-header-cell .sortable {
+  border-bottom: 1px solid #b4b4b4;
+}
+.forRedis .bodyRightBlock .ui-grid-row:nth-child(even) .ui-grid-cell, .forRedis .bodyRightBlock .ui-grid-row:nth-child(odd) .ui-grid-cell {
+  background-color: #fff;
+}
+.forRedis .bodyRightBlock .ui-grid-canvas .ui-grid-cell-contents {
+  padding: 0px 4px 0px 9px;
 }

@@ -95,13 +95,13 @@
 	
 	.metro {
 		.table.hovered tbody tr:hover {
-			background-color: hsl(hue($colorTile), 100%, 97.5%);
+			background-color: hsl(hue($colorTile), 100%, 97%);
 		}
 	}
 	
 	.table {
 		tr.selected, tr.shown {
-			background-color: hsl(hue($colorTile), 100%, 96%);
+			background-color: darken(hsl(hue($colorTile), 100%, 95%), 3%);
 		}
 	}
 
@@ -118,24 +118,17 @@
 	.ui-grid-row:nth-child(even), .ui-grid-row:nth-child(odd) {
 		&:hover {
 			.ui-grid-cell {
-				background-color: hsl(hue($colorTile), 100%, 97.5%);
+				background-color: hsl(hue($colorTile), 100%, 97%);
 			}
 		}
 	}
-	.ui-grid-row-selected:nth-child(even), .ui-grid-row-selected:nth-child(odd) {
+	.ui-grid-row-selected:nth-child(even).ui-grid-row, .ui-grid-row-selected:nth-child(odd).ui-grid-row {
 		.ui-grid-cell {
-			background-color: hsl(hue($colorTile), 100%, 96%);
+			background: darken(hsl(hue($colorTile), 100%, 95%), 3%);
 		}
 	}
 
 	.bodyLeftBlock {
-		.ui-grid-row:nth-child(even), .ui-grid-row:nth-child(odd) {
-			&:hover {
-				.ui-grid-cell {
-					background: hsl(hue($colorTile), 100%, 95%);
-				}
-			}
-		}
 		.ui-grid-row-selected:nth-child(even), .ui-grid-row-selected:nth-child(odd) {
 			.ui-grid-cell {
 				background: darken(hsl(hue($colorTile), 40%, 95%), 4%); 
@@ -146,7 +139,6 @@
 			background: hsl(hue($colorTile), 40%, 95%);
 		}	
 	}
-
 }
 
 @function z-ind($layer) {

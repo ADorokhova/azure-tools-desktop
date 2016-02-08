@@ -130,10 +130,10 @@
   outline-color: #039BC1;
 }
 .forRedis .metro .table.hovered tbody tr:hover {
-  background-color: #f2fdff;
+  background-color: #f0fdff;
 }
 .forRedis .table tr.selected, .forRedis .table tr.shown {
-  background-color: #ebfcff;
+  background-color: #d6f9ff;
 }
 .forRedis .ui-grid-top-panel {
   background: #edf6f7;
@@ -142,13 +142,10 @@
   outline-color: #039BC1;
 }
 .forRedis .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forRedis .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
-  background-color: #f2fdff;
+  background-color: #f0fdff;
 }
-.forRedis .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forRedis .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
-  background-color: #ebfcff;
-}
-.forRedis .bodyLeftBlock .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forRedis .bodyLeftBlock .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
-  background: #e5fbff;
+.forRedis .ui-grid-row-selected:nth-child(even).ui-grid-row .ui-grid-cell, .forRedis .ui-grid-row-selected:nth-child(odd).ui-grid-row .ui-grid-cell {
+  background: #d6f9ff;
 }
 .forRedis .bodyLeftBlock .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forRedis .bodyLeftBlock .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
   background: #dfeef1;
@@ -161,9 +158,6 @@
   display: flex;
   flex-direction: column;
   padding-bottom: 42px;
-}
-.forRedis .bodyRightBlock .ui-grid {
-  height: calc(100% - 10px) !important;
 }
 
 #block-Database {
@@ -202,9 +196,9 @@
   margin: 7px 0px 5px 4px;
 }
 #block-Database .dropdown-menu {
-  top: 30px;
+  top: 29px;
   z-index: 1100;
-  min-width: 90px;
+  min-width: 86px;
   border: 1px solid #039BC1;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.3);
 }
@@ -337,10 +331,10 @@
   outline-color: #039BC1;
 }
 .forTables .metro .table.hovered tbody tr:hover {
-  background-color: #f2fdff;
+  background-color: #f0fdff;
 }
 .forTables .table tr.selected, .forTables .table tr.shown {
-  background-color: #ebfcff;
+  background-color: #d6f9ff;
 }
 .forTables .ui-grid-top-panel {
   background: #edf6f7;
@@ -349,13 +343,10 @@
   outline-color: #039BC1;
 }
 .forTables .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forTables .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
-  background-color: #f2fdff;
+  background-color: #f0fdff;
 }
-.forTables .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forTables .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
-  background-color: #ebfcff;
-}
-.forTables .bodyLeftBlock .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forTables .bodyLeftBlock .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
-  background: #e5fbff;
+.forTables .ui-grid-row-selected:nth-child(even).ui-grid-row .ui-grid-cell, .forTables .ui-grid-row-selected:nth-child(odd).ui-grid-row .ui-grid-cell {
+  background: #d6f9ff;
 }
 .forTables .bodyLeftBlock .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forTables .bodyLeftBlock .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
   background: #dfeef1;
@@ -386,7 +377,7 @@
   cursor: pointer;
 }
 #tableList li:hover {
-  background: #e5fbff;
+  background: #f0fdff;
 }
 #tableList li.selected {
   background: #dfeef1;
@@ -644,10 +635,10 @@
   outline-color: #039BC1;
 }
 .forBlobs .metro .table.hovered tbody tr:hover {
-  background-color: #f2fdff;
+  background-color: #f0fdff;
 }
 .forBlobs .table tr.selected, .forBlobs .table tr.shown {
-  background-color: #ebfcff;
+  background-color: #d6f9ff;
 }
 .forBlobs .ui-grid-top-panel {
   background: #edf6f7;
@@ -656,13 +647,10 @@
   outline-color: #039BC1;
 }
 .forBlobs .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forBlobs .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
-  background-color: #f2fdff;
+  background-color: #f0fdff;
 }
-.forBlobs .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forBlobs .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
-  background-color: #ebfcff;
-}
-.forBlobs .bodyLeftBlock .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forBlobs .bodyLeftBlock .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
-  background: #e5fbff;
+.forBlobs .ui-grid-row-selected:nth-child(even).ui-grid-row .ui-grid-cell, .forBlobs .ui-grid-row-selected:nth-child(odd).ui-grid-row .ui-grid-cell {
+  background: #d6f9ff;
 }
 .forBlobs .bodyLeftBlock .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forBlobs .bodyLeftBlock .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
   background: #dfeef1;
@@ -778,6 +766,16 @@
   float: left;
 }
 
+.single.input-group-addon {
+  width: 97px;
+  border-right: 1px solid #ccc;
+}
+
+.single + span {
+  margin-left: 10px;
+  line-height: 30px;
+}
+
 .input-group-sm > .input-group-sm {
   margin-top: 2px;
 }
@@ -856,6 +854,7 @@
   line-height: 28px;
   font-size: 16px;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 #navbarFunction {
@@ -869,13 +868,13 @@
   padding: 0px 5px;
 }
 #navbarFunction .navbar-nav li {
-  padding: 2px 2px 0 0;
+  padding: 2px 1px 0 0;
 }
 
 .functionButton {
   display: block;
   cursor: pointer;
-  width: 26px;
+  width: 27px;
   height: 26px;
 }
 .functionButton a {
@@ -919,11 +918,11 @@
 }
 
 .wrapRightBlock #navbarFunction .navbar-nav {
-  padding: 0px 6px;
+  padding: 0px 5px;
 }
 
 .forBlobs .wrapRightBlock #navbarFunction .navbar-nav {
-  padding: 0px 8px;
+  padding: 0px 7px;
 }
 
 .searchBar {

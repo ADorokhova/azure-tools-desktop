@@ -85,72 +85,72 @@
                     <!--Redis right actions bar-->
                     <div class="headBlock">
                         <!--string-->
-                        <ul class="nav navbar-nav" ng-show="ActionBarItems.keyViewModel.selectedKeys.length === 1 &&
-                            ActionBarItems.keyViewModel.selectedKeys[0].Type === 'string'">
-                            <li>
-                                <div class="functionButton">
-                                    <a class="fa-links" title="Refresh string" ng-click="ActionBarItems.refreshKey()">
-                                        <i class="fa fa-refresh"></i>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
+                        <div class="collapse navbar-collapse" id="navbarFunction">
+                        	<ul class="nav navbar-nav" ng-show="ActionBarItems.keyViewModel.selectedKeys.length === 1 &&
+                        	ActionBarItems.keyViewModel.selectedKeys[0].Type === 'string'">
+                        		<li>
+                        			<div class="functionButton">
+                        				<a class="fa-links" title="Refresh string" ng-click="ActionBarItems.refreshKey()">
+                        					<i class="fa fa-refresh"></i>
+                        				</a>
+                        			</div>
+                        		</li>
+                        	</ul>
+	                        <!--set-->
+	                        <ul class="nav navbar-nav" ng-show="ActionBarItems.keyViewModel.selectedKeys.length === 1 && 
+	                            ActionBarItems.keyViewModel.selectedKeys[0].Type === 'set'">
+	                            <li>
+	                                <div class="functionButton">
+	                                    <a class="fa-links" title="Refresh set" ng-click="ActionBarItems.refreshKey()">
+	                                        <i class="fa fa-refresh"></i>
+	                                    </a>
+	                                </div>
+	                            </li>
 
-                        <!--set-->
-                        <ul class="nav navbar-nav" ng-show="ActionBarItems.keyViewModel.selectedKeys.length === 1 && 
-                            ActionBarItems.keyViewModel.selectedKeys[0].Type === 'set'">
-                            <li>
-                                <div class="functionButton">
-                                    <a class="fa-links" title="Refresh set" ng-click="ActionBarItems.refreshKey()">
-                                        <i class="fa fa-refresh"></i>
-                                    </a>
-                                </div>
-                            </li>
+	                            <li>
+	                                <div class="functionButton">
+	                                    <a class="fa-links" title="Add set member" ng-click="ActionBarItems.editSet()">
+	                                        <i class="fa fa-plus-circle"></i><br/>
+	                                    </a>
+	                                </div>
+	                            </li>
 
-                            <li>
-                                <div class="functionButton">
-                                    <a class="fa-links" title="Add set member" ng-click="ActionBarItems.editSet()">
-                                        <i class="fa fa-plus-circle"></i><br/>
-                                    </a>
-                                </div>
-                            </li>
+	                            <li ng-show="ActionBarItems.context.setOptions.selectedItems.length > 0">
+	                                <div class="functionButton">
+	                                    <a class="fa-links" title="Delete set member" ng-click="ActionBarItems.deleteSetItem()">
+	                                        <i class="fa fa-minus-circle"></i><br/>
+	                                    </a>
+	                                </div>
+	                            </li>
+	                        </ul>
 
-                            <li ng-show="ActionBarItems.context.setOptions.selectedItems.length > 0">
-                                <div class="functionButton">
-                                    <a class="fa-links" title="Delete set member" ng-click="ActionBarItems.deleteSetItem()">
-                                        <i class="fa fa-minus-circle"></i><br/>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
+	                        <!--hash-->
+			                <ul class="nav navbar-nav" ng-show="ActionBarItems.keyViewModel.selectedKeys.length === 1 &&	                        ActionBarItems.keyViewModel.selectedKeys[0].Type === 'hash'">
+		                        <li>
+		                        	<div class="functionButton">
+		                        		<a class="fa-links" title="Refresh set" ng-click="ActionBarItems.refreshKey()">
+		                        			<i class="fa fa-refresh"></i>
+		                        		</a>
+		                        	</div>
+		                        </li>
 
-                        <!--hash-->
-                        <ul class="nav navbar-nav" ng-show="ActionBarItems.keyViewModel.selectedKeys.length === 1 &&
-                            ActionBarItems.keyViewModel.selectedKeys[0].Type === 'hash'">
-                            <li>
-                                <div class="functionButton">
-                                    <a class="fa-links" title="Refresh set" ng-click="ActionBarItems.refreshKey()">
-                                        <i class="fa fa-refresh"></i>
-                                    </a>
-                                </div>
-                            </li>
+		                        <li>
+		                        	<div class="functionButton">
+		                        		<a class="fa-links" title="Add hash member" ng-click="ActionBarItems.editHash()">
+		                        			<i class="fa fa-plus-circle"></i><br/>
+		                        		</a>
+		                        	</div>
+		                        </li>
 
-                            <li>
-                                <div class="functionButton">
-                                    <a class="fa-links" title="Add hash member" ng-click="ActionBarItems.editHash()">
-                                        <i class="fa fa-plus-circle"></i><br/>
-                                    </a>
-                                </div>
-                            </li>
-
-                            <li ng-show="ActionBarItems.context.hashOptions.selectedItems.length > 0">
-                                <div class="functionButton">
-                                    <a class="fa-links" title="Delete hash member" ng-click="ActionBarItems.deleteHashItem()">
-                                        <i class="fa fa-minus-circle"></i><br/>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
+		                        <li ng-show="ActionBarItems.context.hashOptions.selectedItems.length > 0">
+		                        	<div class="functionButton">
+		                        		<a class="fa-links" title="Delete hash member" ng-click="ActionBarItems.deleteHashItem()">
+		                        			<i class="fa fa-minus-circle"></i><br/>
+		                        		</a>
+		                        	</div>
+		                        </li>
+		                    </ul>
+                        </div>
                     </div>
 
                     <div class="bodyRightBlock">
@@ -218,9 +218,9 @@
 <script type="text/ng-template" id="createKeyTemplate">
     <div class="input-group input-group-sm">
         <div class="input-group input-group-sm">
-            <span class="input-group-addon" style="width:97px; border-right:1px; border-right-color:rgb(204, 204, 204); border-right-style:solid">Type</span>
-            <div class="dropdown" style="float:left; margin-left: 5px;">
-                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" height:29px;">
+            <span class="input-group-addon single">Type</span>
+            <div class="dropdown" style="float:left; margin-left: 2px;">
+                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" height:30px;">
                     {{DialogViewModel.BodyViewModel.Type}}
                     <span class="caret"></span>
                 </button>
@@ -281,11 +281,11 @@
 <script type="text/ng-template" id="editStringTemplate">
     <div class="input-group input-group-sm">
         <div class="input-group input-group-sm">
-            <span class="input-group-addon">Key</span>
+            <span class="input-group-addon single">Key</span>
             <span>{{DialogViewModel.BodyViewModel.Key}}</span>
         </div>
         <div class="input-group input-group-sm">
-            <span class="input-group-addon">Type</span>
+            <span class="input-group-addon single">Type</span>
             <span>{{DialogViewModel.BodyViewModel.Type}}</span>
         </div>
 
@@ -307,11 +307,11 @@
 <script type="text/ng-template" id="editHashTemplate">
     <div class="input-group input-group-sm">
         <div class="input-group input-group-sm">
-            <span class="input-group-addon">Key</span>
+            <span class="input-group-addon single">Key</span>
             <span>{{DialogViewModel.BodyViewModel.Key}}</span>
         </div>
         <div class="input-group input-group-sm">
-            <span class="input-group-addon">Type</span>
+            <span class="input-group-addon single">Type</span>
             <span>{{DialogViewModel.BodyViewModel.Type}}</span>
         </div>
         <div class="input-group input-group-sm">
@@ -337,11 +337,11 @@
 <script type="text/ng-template" id="editSetTemplate">
     <div class="input-group input-group-sm">
         <div class="input-group input-group-sm">
-            <span class="input-group-addon">Key</span>
+            <span class="input-group-addon single">Key</span>
             <span>{{DialogViewModel.BodyViewModel.Key}}</span>
         </div>
         <div class="input-group input-group-sm">
-            <span class="input-group-addon">Type</span>
+            <span class="input-group-addon single">Type</span>
             <span>{{DialogViewModel.BodyViewModel.Type}}</span>
         </div>
 

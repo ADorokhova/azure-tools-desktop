@@ -137,12 +137,6 @@ table.dataTable td {
   color: black;
 }
 
-#value-HashSet {
-	.ui-grid-row:last-child .ui-grid-cell {
-		border-bottom: $borderTD !important;
-	}
-}
-
 .forBlobs {
 	.ui-grid-canvas {
 		.ui-grid-cell-contents {
@@ -209,7 +203,6 @@ table.dataTable td {
 		}
 	}
 	.ui-grid-header-cell .sortable {
-		border: 1px solid $bg-colorBlock;
 		border-bottom: $borderTH;
 	}
 	.ui-grid-row:nth-child(even), .ui-grid-row:nth-child(odd) {
@@ -240,6 +233,39 @@ table.dataTable td {
 				content: "\e045";
 				padding-right: 6px;
 				color: #777777;
+			}
+		}
+	}
+	.bodyRightBlock {
+		.ui-grid {
+			border: none;
+			.ui-grid-top-panel {
+				background: #fff;
+			}
+			.ui-grid-header-cell {
+				background: #fff; 
+			}
+		}
+		.ui-grid-header-cell-primary-focus:focus {
+			outline: none;
+		}
+		.ui-grid-header {
+			border: none;
+			.ui-grid-cell-contents {
+				padding: 2px 0px 2px 9px;
+			}
+		}
+		.ui-grid-header-cell .sortable {
+			border-bottom: $borderTH;
+		}
+		.ui-grid-row:nth-child(even), .ui-grid-row:nth-child(odd) {
+			.ui-grid-cell {
+				background-color: #fff;
+			}
+		}
+		.ui-grid-canvas {
+			.ui-grid-cell-contents {
+				padding: 0px 4px 0px 9px;
 			}
 		}
 	}
