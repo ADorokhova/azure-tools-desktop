@@ -97,6 +97,16 @@
 	float: left;
 }
 
+.single.input-group-addon {
+	width:97px; 
+	border-right: 1px solid #ccc;
+}
+
+.single+span {
+	margin-left: 10px;
+	line-height: 30px;
+}
+
 .input-group-sm>.input-group-sm {
 	margin-top:2px;
 }
@@ -178,6 +188,7 @@
 	line-height: 28px;
 	font-size: 16px;
 	white-space: nowrap;
+	overflow: hidden;
 }
 
 #navbarFunction {
@@ -189,7 +200,7 @@
 		margin: 0px;
 		padding: 0px 5px;
 		li {
-			padding: 2px 2px 0 0;
+			padding: 2px 1px 0 0;
 		}		
 	}
 }
@@ -197,7 +208,7 @@
 .functionButton {
 	display: block;
 	cursor: pointer;
-	width: 26px;
+	width: 27px;
 	height: 26px;
 	a {
 		display: block;
@@ -244,13 +255,13 @@
 
 .wrapRightBlock {
 	#navbarFunction .navbar-nav {
-		padding: 0px 6px;
+		padding: 0px 5px;
 	}
 }
 
 .forBlobs {
 	.wrapRightBlock #navbarFunction .navbar-nav {
-		padding: 0px 8px;
+		padding: 0px 7px;
 	}
 }
 

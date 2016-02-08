@@ -22,7 +22,7 @@
 		padding-left: 4px;
 		cursor: pointer;
 		&:hover {   
-			background: hsl(hue($bg-colorTile-Tables), 100%, 95%);
+			background: hsl(hue($bg-colorTile-Tables), 100%, 97%);
 		}
 		&.selected {
 			background: darken(hsl(hue($bg-colorTile-Tables), 40%, 95%), 4%); 
