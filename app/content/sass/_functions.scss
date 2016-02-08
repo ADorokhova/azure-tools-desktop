@@ -122,7 +122,7 @@
 			}
 		}
 	}
-	.ui-grid-row-selected:nth-child(even), .ui-grid-row-selected:nth-child(odd) {
+	.ui-grid-row-selected:nth-child(even).ui-grid-row, .ui-grid-row-selected:nth-child(odd).ui-grid-row {
 		.ui-grid-cell {
 			background: darken(hsl(hue($colorTile), 100%, 95%), 3%);
 		}
@@ -139,7 +139,6 @@
 			background: hsl(hue($colorTile), 40%, 95%);
 		}	
 	}
-
 }
 
 @function z-ind($layer) {

@@ -144,7 +144,7 @@
 .forRedis .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forRedis .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
   background-color: #f0fdff;
 }
-.forRedis .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forRedis .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
+.forRedis .ui-grid-row-selected:nth-child(even).ui-grid-row .ui-grid-cell, .forRedis .ui-grid-row-selected:nth-child(odd).ui-grid-row .ui-grid-cell {
   background: #d6f9ff;
 }
 .forRedis .bodyLeftBlock .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forRedis .bodyLeftBlock .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
@@ -158,9 +158,6 @@
   display: flex;
   flex-direction: column;
   padding-bottom: 42px;
-}
-.forRedis .bodyRightBlock .ui-grid {
-  height: calc(100% - 10px) !important;
 }
 
 #block-Database {
@@ -199,9 +196,9 @@
   margin: 7px 0px 5px 4px;
 }
 #block-Database .dropdown-menu {
-  top: 30px;
+  top: 29px;
   z-index: 1100;
-  min-width: 90px;
+  min-width: 86px;
   border: 1px solid #039BC1;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.3);
 }
@@ -348,7 +345,7 @@
 .forTables .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forTables .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
   background-color: #f0fdff;
 }
-.forTables .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forTables .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
+.forTables .ui-grid-row-selected:nth-child(even).ui-grid-row .ui-grid-cell, .forTables .ui-grid-row-selected:nth-child(odd).ui-grid-row .ui-grid-cell {
   background: #d6f9ff;
 }
 .forTables .bodyLeftBlock .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forTables .bodyLeftBlock .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
@@ -652,7 +649,7 @@
 .forBlobs .ui-grid-row:nth-child(even):hover .ui-grid-cell, .forBlobs .ui-grid-row:nth-child(odd):hover .ui-grid-cell {
   background-color: #f0fdff;
 }
-.forBlobs .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forBlobs .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
+.forBlobs .ui-grid-row-selected:nth-child(even).ui-grid-row .ui-grid-cell, .forBlobs .ui-grid-row-selected:nth-child(odd).ui-grid-row .ui-grid-cell {
   background: #d6f9ff;
 }
 .forBlobs .bodyLeftBlock .ui-grid-row-selected:nth-child(even) .ui-grid-cell, .forBlobs .bodyLeftBlock .ui-grid-row-selected:nth-child(odd) .ui-grid-cell {
