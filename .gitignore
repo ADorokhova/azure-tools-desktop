@@ -1,8 +1,10 @@
 node_modules
 builds
+tmp
 electronbuildcache
 app/bundle.js
 .DS_Store
 AzureTools.v12.suo
 app/node_modules/grunt-browserify
 .sass-cache
+.version

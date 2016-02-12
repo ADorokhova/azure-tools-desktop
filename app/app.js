@@ -5,7 +5,7 @@
     var angular = require('angular');
     window.angular = angular;
     window._ = require('lodash');
-
+    
     var angularRoute = require('angular-ui-router'),
         dataTable = require('datatables'),
         uiGrid = require('angular-ui-grid'),
