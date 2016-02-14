@@ -9,8 +9,8 @@
         .factory('$redisScanner', function() {
             return require('redisscan');
         })
-        .factory('$redisSettings', function() {
-            return require('../model/redisSettings.js').create();
+        .factory('$redisSettings', function (appSettings, Notification) {
+            return require('../model/redisSettings.js').create(appSettings, Notification);
         })
         .factory('$redisDataAccess', [
             '$activeDatabase', '$redisClientFactory', '$redisSettings', '$messageBus',

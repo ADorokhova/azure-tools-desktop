@@ -47,12 +47,55 @@ exports.register = function (module) {
                 var loadDetailsOperation = 'loadDetails';
 
                 var databaseViewModel = {
-                    setCurrent: function (n) {
-                        $activeDatabase.Current = n;
-                        this.Current = n;
+                    setCurrent: function (pair) {
+                        $activeDatabase.Current = pair.key;
+                        this.Current = pair;
                         searchViewModel.search();
                     },
-                    Current: $activeDatabase.Current
+                    convertNumToName: function (num) {
+                        var mappings = this.getMappings();
+                        if (mappings) {
+                            return mappings[num];
+                        } else {
+                            return num;
+                        }
+                    },
+                    Current: null,
+                    items: null,
+                    getMappings: function () {
+                        var currentConnection = $redisSettings.get();
+                        if (currentConnection !== undefined
+                            && currentConnection !== null
+                            && currentConnection["database-mappings"] !== undefined
+                             && currentConnection["database-mappings"] !== null) {
+                            var mappings = currentConnection["database-mappings"];
+                            return mappings;
+                        }
+
+                        return null;
+                    },
+                    all: function () {
+                        if (this.items === null) {
+                            this.items = [];
+                            var mappings = this.getMappings();
+                            if (mappings) {
+                                for (var each in mappings) {
+                                    this.items.push({ key: each, value: mappings[each] });
+                                }
+                            } else {
+                                for (var i = 0; i < 10; i++) {
+                                    var item = { key: i, value: i };
+                                    this.items.push(item);
+                                }
+                            }
+                        }
+                       // console.log(this.items)
+                        return this.items;
+                    }
+                };
+                databaseViewModel.Current = {
+                    key: $activeDatabase.Current,
+                    value: databaseViewModel.convertNumToName($activeDatabase.Current)
                 };
 
                 // extend keyViewModel

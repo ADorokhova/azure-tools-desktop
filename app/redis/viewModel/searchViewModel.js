@@ -60,14 +60,15 @@ exports.register = function(module) {
                                         $busyIndicator.setIsBusy(loadKeysOperation, false);
                                     });
                                 } else {
-                                    client.send_command('SCAN', ['0','COUNT', 1000], function (err, keys) {
+                                    var maxLoad = 1000;
+                                    client.send_command('SCAN', ['0', 'COUNT', maxLoad], function (err, keys) {
                                         if (err) {
                                             console.log(err);
                                             return;
                                         }
 
-                                        if (keys[1].length >= 100) {
-                                            Notification.warning('Only first 1000 keys are loaded. Use search to find specific key');
+                                        if (keys[1].length >= maxLoad) {
+                                            Notification.warning(String.format('Only first {0} keys are loaded. Use search to find specific key', maxLoad));
                                         }
 
                                         self.onSuccess(keys[1]);

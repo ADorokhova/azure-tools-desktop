@@ -3,7 +3,7 @@
     var supportEmail = 'azuretools@gmail.com';
     angular
     .module('exceptionOverride', [])
-    .factory('$exceptionHandler', [function () {
+    .factory('$exceptionHandler', ['dialog', function (dialog) {
         return function (exception, cause) {
             var data = {
                 type: 'angular',
@@ -28,6 +28,7 @@
                 + '|' + data.type + '|' + data.url + '|' + data.localtime;
             }
 
+            console.log(exception);
             throw exception;
         };
     }]);

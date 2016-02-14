@@ -42,14 +42,14 @@
     <!--js-->
     <script type="text/javascript">
         window.jQuery = window.$ = require('jquery');
-        window.angular =require('angular');
+        window.angular = require('angular');
         require('bootstrap');
     </script>
     <!--<script type="text/javascript" src="content/js/jquery.js"></script>
     <script type="text/javascript" src="content/js/bootstrap.js"></script>-->
     <script type="text/javascript" src="content/js/ui-grid.min.js"></script>
     <script type="text/javascript" src="content/js/ng-grid-flexible-height.js"></script>
-    
+
     <script type="text/javascript" src="app.js"></script>
 </head>
 
@@ -64,23 +64,23 @@
                         <span ng-show="state.current.name !== 'tiles'">{{ActionBarItems.ModuleName}}</span>
                     </a>
                 </div>
-                <div id="navbar-win-control" class="collapse navbar-collapse" style="-webkit-app-region: no-drag;">
+                <div id="navbar-win-control" class="collapse navbar-collapse" style="-webkit-app-region: no-drag;" ng-show="customWindowButtons">
                     <ul class="nav navbar-nav">
                         <li>
-                            <div class="functionButton">
+                            <div class="functionButton" ng-click="minimize()">
                                 <a class="fa-links" title="Minimize">
                                     <i class="fa icon-minimize"></i>
                                 </a>
                             </div>
                         </li>
-                        <li >
-                            <div class="functionButton">
+                        <li>
+                            <div class="functionButton" ng-click="maximize()" ng-hide="isMaximized">
                                 <a class="fa-links" title="Maximize">
                                     <i class="fa icon-maximize"></i>
                                 </a>
                             </div>
                         </li>
-                        <li style="display: none">
+                        <li ng-click="maximize()" ng-show="isMaximized">
                             <div class="functionButton">
                                 <a class="fa-links" title="Restore">
                                     <i class="fa icon-restore"></i>
@@ -88,27 +88,29 @@
                             </div>
                         </li>
                         <li>
-                            <div class="functionButton">
+                            <div class="functionButton" ng-click="close()">
                                 <a class="fa-links" title="Close">
                                     <i class="fa fa-times"></i>
                                 </a>
                             </div>
-                        </li>  
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <div id="alertArea" class="alert alert-danger" style="display:none; z-index:100;">
+        <div id="alertArea" class="alert alert-danger" style="display:none; z-index:100; position: absolute;">
             Error occured
             <a id="sendEmail" class="alert-link" target="_blank">Click here to send report to developer</a>
+            <br/>
+            <a id="closeReport" class="alert-link" target="_blank" onclick="$('#alertArea').hide();" style="cursor: pointer;">Skip Error</a>
         </div>
 
-      <!--  <div id="errorNotification" class="alert alert-warning" ng-controller="DialogsController" ng-show="NotifyViewModel.IsVisible" style="height: 50px;position: relative; z-index: 999;">
+        <!-- <div id="errorNotification" class="alert alert-warning" ng-controller="DialogsController" ng-show="NotifyViewModel.IsVisible" style="height: 50px;position: relative; z-index: 999;">
             <div style="float: left;">{{NotifyViewModel.Body}}</div>
             <a style="margin-left: 3px; cursor: pointer;" ng-show="NotifyViewModel.CommandText != null" ng-click="NotifyViewModel.Command()">{{NotifyViewModel.CommandText}}</a>
         </div>-->
-        
+
         <div id="content" ui-view>
         </div>
 
@@ -118,18 +120,31 @@
             <a ng-click="BusyIndicator.cancel()">Cancel</a>
         </div>
 
-        <div class="panel panel-primary popup" ng-class="{'popup-createEntity': DialogViewModel.Body === 'createTableEntityTemplate', 'popup-blobImage': DialogViewModel.Body === 'blobImage', 'popup-blobText': DialogViewModel.Body === 'blobText'}" ng-controller="DialogsController" ng-show="DialogViewModel.IsVisible" data-drag="true" jqyoui-draggable data-jqyoui-options="{ containment: 'parent'}" style="display: inline-block">
-            <div class="panel-heading">
+        <div class="panel panel-primary popup"
+             ng-class="{'popup-createEntity': DialogViewModel.Body === 'createTableEntityTemplate', 'popup-blobImage': DialogViewModel.Body === 'blobImage', 'popup-blobText': DialogViewModel.Body === 'blobText'}"
+             ng-controller="DialogsController"
+             ng-show="DialogViewModel.IsVisible"
+             data-drag="true"
+             jqyoui-draggable
+             data-jqyoui-options="{ containment: 'parent'}"
+             style="display: inline-block">
+            <div class="panel-heading" data-drag="false" jqyoui-draggable>
                 {{DialogViewModel.Header}}
             </div>
 
-            <div class="panel-body resizable">
+            <div class="panel-body resizable" ng-mousedown="$event.stopPropagation();">
                 <div ng-include="DialogViewModel.Body">
                 </div>
             </div>
         </div>
 
-        <div id="confirmationDialog" class="panel panel-warning popup" ng-controller="ConfirmationController" ng-show="ConfirmationViewModel.IsVisible">
+        <div id="confirmationDialog"
+             class="panel panel-warning popup"
+             ng-controller="ConfirmationController"
+             ng-show="ConfirmationViewModel.IsVisible"
+             data-drag="true"
+             jqyoui-draggable
+             data-jqyoui-options="{ containment: 'parent'}">
             <div class="panel-heading">
                 {{ConfirmationViewModel.Header}}
             </div>
@@ -145,6 +160,6 @@
             </div>
         </div>
     </div>
-   
+
 </body>
 </html>

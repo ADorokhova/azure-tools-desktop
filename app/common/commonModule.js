@@ -8,6 +8,16 @@
                 return require('./services/busyIndicator.js').create($rootScope, $timeout);
             }
         ])
+        .factory('appSettings', [
+            '$rootScope', '$timeout', 'Notification', 'dialog', 'fileService', function ($rootScope, $timeout, Notification, dialog, fileService) {
+                return require('./services/appSettings.js').create($rootScope, $timeout, Notification, dialog, fileService);
+            }
+        ])
+        .factory('fileService', [
+            '$rootScope', '$timeout', 'Notification', 'dialog', function ($rootScope, $timeout, Notification, dialog) {
+                return require('./services/fileService.js').create(Notification);
+            }
+        ])
         .factory('$validator', [function () {
             return require('./services/validator.js').create();
         }

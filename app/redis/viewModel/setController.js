@@ -1,4 +1,4 @@
-exports.register = function(module) {
+exports.register = function (module) {
     module
         .controller('setController', [
             '$scope',
@@ -19,7 +19,7 @@ exports.register = function(module) {
             '$utils',
             'actionBarViewModel',
             'Notification',
-            function(
+            function (
                 $scope,
                 $activeDatabase,
                 $redisRepositoryFactory,
@@ -61,22 +61,22 @@ exports.register = function(module) {
                     enableColumnMenus: false,
                     selectedItems: [],
                     enableColumnResizing: true,
-                    onRegisterApi: function(gridApi) {
+                    onRegisterApi: function (gridApi) {
                         $scope.setApi = gridApi;
-                        $scope.setApi.selection.on.rowSelectionChanged($scope, function(row) {
+                        $scope.setApi.selection.on.rowSelectionChanged($scope, function (row) {
                             $scope.memberForEdit = {
                                 Value: row.entity.Value
                             };
                             $scope.setOptions.selectedItems = [row.entity];
                         });
-                        gridApi.selection.on.rowSelectionChangedBatch($scope, function(rows) {
+                        gridApi.selection.on.rowSelectionChangedBatch($scope, function (rows) {
                             $scope.setOptions.selectedItems.length = 0;
                             for (var i = 0; i < rows.length; i++) {
                                 $scope.setOptions.selectedItems.push(rows[i].entity);
                             };
                         });
                     },
-                    getStyle: function() {
+                    getStyle: function () {
                         return {
                             height: '100%'
                         };
@@ -84,7 +84,7 @@ exports.register = function(module) {
                 };
 
                 // commands
-                self.update = function(key, oldMember, newMember, cb) {
+                self.update = function (key, oldMember, newMember, cb) {
                     cb = cb ? cb : function () { };
                     console.log(key);
                     console.log(oldMember);
@@ -93,7 +93,16 @@ exports.register = function(module) {
                 };
 
                 // init
-                $scope.$on('redisViewModel-key-selected-type-set', function(event, result) {
+                $scope.$on('reload', function (event) {
+                    $scope.memberForEdit = null;
+                    $scope.setOptions.selectedItems.length = 0;
+                    $scope.setOptions.data.length = 0;
+                });
+
+                $scope.$on('redisViewModel-key-selected-type-set', function (event, result) {
+                    $scope.memberForEdit = null;
+                    $scope.setOptions.selectedItems.length = 0;
+
                     var data = result.Value;
                     var set = [];
                     for (var i = 0; i < data.length; i++) {

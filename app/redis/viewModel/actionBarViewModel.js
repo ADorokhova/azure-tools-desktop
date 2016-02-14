@@ -22,6 +22,8 @@ exports.register = function (module) {
             '$utils',
             'searchViewModel',
             'Notification',
+            'appSettings',
+            'fileService',
             function (
                 $rootScope,
                 $timeout,
@@ -43,7 +45,9 @@ exports.register = function (module) {
                 dialog,
                 $utils,
                 searchViewModel,
-                Notification) {
+                Notification,
+                appSettings,
+                fileService) {
                 var self = this;
                 var dialogFactory = function (header, bodyVm, bodyTemplate, optionText) {
                     var dialog = $dialogViewModel();
@@ -71,7 +75,7 @@ exports.register = function (module) {
                     };
                     var template = 'createKeyTemplate';
                     var optionText = 'Close dialog on save';
-                    var header = 'Add Key';
+                    var header = 'Create New Redis Key';
 
                     return dialogFactory(header, vm, template, optionText);
                 };
@@ -167,6 +171,7 @@ exports.register = function (module) {
                     changeSettingsDialog.WithOption = true;
                     changeSettingsDialog.OptionText = 'Use demo credentials';
                     changeSettingsDialog.IsChecked = false;
+
                     changeSettingsDialog.onChecked = function () {
                         if (changeSettingsDialog.IsChecked) {
                             changeSettingsDialog.BodyViewModel.Host = 'redisdor.redis.cache.windows.net';
@@ -180,27 +185,68 @@ exports.register = function (module) {
                     };
 
                     changeSettingsDialog.IsVisible = true;
+
                     changeSettingsDialog.BodyViewModel = {
-                        Host: $redisSettings.Host,
-                        Port: $redisSettings.Port,
-                        Password: $redisSettings.Password
+                        Host: '',
+                        Port: 6379,
+                        Password: ''
                     };
 
+                    var settingsFromStorage = $redisSettings.get();
+                    if (settingsFromStorage) {
+                        changeSettingsDialog.BodyViewModel.Host = settingsFromStorage.host;
+                        changeSettingsDialog.BodyViewModel.Port = settingsFromStorage.port;
+                        changeSettingsDialog.BodyViewModel.Password = settingsFromStorage.password;
+                    }
+
                     changeSettingsDialog.Body = 'changeSettingsTemplate';
+
+                    var settingsPath = $redisSettings.getSettingsPath();
+                    console.log('Settings Path: ' + settingsPath);
                     changeSettingsDialog.Header = 'Settings';
+
+                    function applySettings() {
+                        changeSettingsDialog.IsVisible = false;
+                        searchViewModel.search();
+                    };
+
                     changeSettingsDialog.save = function () {
                         if ($validator.validatePort(+changeSettingsDialog.BodyViewModel.Port) === false) {
                             showError('Port value is wrong. Port must be in range [1;65535]');
                             return;
                         };
 
-                        $redisSettings.Host = changeSettingsDialog.BodyViewModel.Host;
-                        $redisSettings.Port = +changeSettingsDialog.BodyViewModel.Port;
-                        $redisSettings.Password = changeSettingsDialog.BodyViewModel.Password;
-                        changeSettingsDialog.IsVisible = false;
-                        searchViewModel.search();
+                        $redisSettings.save(
+                            changeSettingsDialog.BodyViewModel.Host,
+                            +changeSettingsDialog.BodyViewModel.Port,
+                            changeSettingsDialog.BodyViewModel.Password);
+
+                        applySettings();
+                    };
+
+
+                    changeSettingsDialog.import = function () {
+                       
+                        dialog.showOpenDialog({
+                            filters: [
+                              { name: 'json', extensions: ['json'] }
+                            ]
+                        }, function (fileNames) {
+                            if (fileNames === undefined) return;
+                            var fileName = fileNames[0];
+                            fileService.readFromFile(fileName, function success(data) {
+                                console.log(String.format('import data {0} to {1}', data, appSettings.current.getConfigFilePath()));
+                                fileService.writeToFile(appSettings.current.getConfigFilePath(), data, function success() {
+                                    console.log("The file was saved!");
+                                    appSettings.recreate(function success() {
+                                        applySettings();
+                                    });
+                                });
+                            });
+                        });
                     };
                 };
+                
                 self.refresh = function () {
                     searchViewModel.search();
                 };
@@ -239,6 +285,9 @@ exports.register = function (module) {
                                         } else {
                                             Notification.warning('Not all keys were deleted');
                                         }
+
+                                        $rootScope.$broadcast('reload');
+                                        keyViewModel.selectedKeys.length = 0;
                                     });
                                 } catch (ex) {
                                     areAllDeleted = false;

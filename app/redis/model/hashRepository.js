@@ -1,19 +1,16 @@
-﻿exports.create = function($redisDataAccess) {
+﻿exports.create = function ($redisDataAccess) {
     'use strict';
 
-    return new function() {
+    return new function () {
         var self = this;
-        self.create = function(key, name, value, cb) {
-                self.safeRedisCmd(function(client) {
-                    client.hset(key, name, value, cb);
-                });
+        self.create = function (key, name, value, cb) {
+            self.safeRedisCmd(function (client) {
+                client.hset(key, name, value, cb);
+            });
         };
 
-        self.hset = function(key, name, value, cb) {
-            self.safeRedisCmd(function(client) {
-                console.log(key);
-                console.log(name);
-                console.log(value);
+        self.hset = function (key, name, value, cb) {
+            self.safeRedisCmd(function (client) {
                 client.hset(key, name, value, cb);
             });
         };
@@ -24,22 +21,19 @@
             });
         };
 
-        self.replaceMember = function(key, oldName, name, value, cb) {
-            self.safeRedisCmd(function(client) {
-                console.log(key);
-                console.log(name);
-                console.log(value);
+        self.replaceMember = function (key, oldName, name, value, cb) {
+            self.safeRedisCmd(function (client) {
                 client.multi()
                     .hset(key, name, value)
                     .hdel(key, oldName)
-                    .exec(function(err, replies) {
+                    .exec(function (err, replies) {
                         cb();
                     });
             });
         };
 
-        self.get = function(key, cb) {
-            self.safeRedisCmd(function(client) {
+        self.get = function (key, cb) {
+            self.safeRedisCmd(function (client) {
                 client.hgetall(key, cb);
             });
         };

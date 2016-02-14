@@ -17,6 +17,8 @@ exports.register = function(module) {
             'uiGridConstants',
             'dialog',
             'actionBarViewModel',
+            '$utils',
+            'Notification',
             function(
                 $scope,
                 $activeDatabase,
@@ -33,7 +35,9 @@ exports.register = function(module) {
                 $validator,
                 uiGridConstants,
                 dialog,
-                actionBarViewModel) {
+                actionBarViewModel,
+                $utils,
+                Notification) {
                 var self = this;
                 var repo = $redisRepositoryFactory('hash');
 
@@ -89,20 +93,23 @@ exports.register = function(module) {
                 $scope.update = function(key, oldMember, newMember, cb) {
                     cb = cb ? cb : function() {};
                     if (oldMember.Name === newMember.Name) {
-                        repo.hset(key, newMember.Name, newMember.Value, function() {});
+                        repo.hset(key, newMember.Name, newMember.Value, cb);
                     } else {
-                        repo.replaceMember(key, newMember.Name, oldMember.Name, oldMember.Value, cb);
+                        repo.replaceMember(key, oldMember.Name, newMember.Name, oldMember.Value, cb);
                     }
                 };
 
                 // init
                 $scope.$on('reload', function(event) {
                     $scope.memberForEdit = null;
-                    $scope.hashOptions.selectedItems = [];
-                    $scope.hashOptions.data = [];
+                    $scope.hashOptions.selectedItems.length = 0;
+                    $scope.hashOptions.data.length = 0;
                 });
 
-                $scope.$on('redisViewModel-key-selected-type-hash', function(event, result) {
+                $scope.$on('redisViewModel-key-selected-type-hash', function (event, result) {
+                    $scope.memberForEdit = null;
+                    $scope.hashOptions.selectedItems.length = 0;
+
                     var data = result.Value;
                     var hash = [];
                     for (var name in data) {
@@ -114,18 +121,23 @@ exports.register = function(module) {
                     }
 
                     $scope.hashOptions.data = hash;
-                    console.log('JHASSD')
                     actionBarViewModel.addContext($scope);
                 });
 
-                $scope.$on('redisViewModel-save-hash', function(event, key) {
+                $scope.$on('redisViewModel-save-hash', function (event, key) {
+                    console.log('-----------SAVEVECSVFDSG')
                     var selectedMember = $scope.hashOptions.selectedItems.length > 0 ? $scope.hashOptions.selectedItems[0] : null;
                     if (selectedMember == null) return;
 
                     $scope.update(
                         key,
+                        selectedMember,
                         $scope.memberForEdit,
-                        selectedMember);
+                        function() {
+                            Notification.success(String.format('Hash with key "{0}" was changed successfully', $utils.truncate(key)));
+                            selectedMember.Name = $scope.memberForEdit.Name;
+                            selectedMember.Value = $scope.memberForEdit.Value;
+                        });
                 });
             }
         ]);

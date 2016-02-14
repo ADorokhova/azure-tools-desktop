@@ -1,10 +1,11 @@
 ﻿exports.create = function ($redisDataAccess, $utils) {
     'use strict';
 
-    return new function () {
+    return new function() {
         var self = this;
         self.Utils = $utils;
-        self.safeRedisCmd = function (cb) {
+
+        self.safeRedisCmd = function(cb) {
             var client = $redisDataAccess.createClient();
             try {
                 cb(client);
@@ -13,8 +14,9 @@
 
             return client;
         };
-        self.delete = function (keys, cb) {
-            self.safeRedisCmd(function (client) {
+
+        self.delete = function(keys, cb) {
+            self.safeRedisCmd(function(client) {
                 client.del(keys, cb);
             });
         };
