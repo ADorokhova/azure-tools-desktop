@@ -52,7 +52,7 @@
                 <div class="headBlock">
                     <div class="collapse navbar-collapse" id="navbarFunction">
                         <ul class="nav navbar-nav" ng-show="ActionBarItems.IsActionBarVisible && state.current.name === 'tables'">
-                            <li>
+                            <!--<li>
                                 <div class="functionButton">
                                     <a class="fa-links" title="Add entity" ng-click="ActionBarItems.createTableEntity()">
                                         <i class="fa fa-plus-circle"></i><br /><span>Entity</span>
@@ -66,7 +66,7 @@
                                         <span>Entity</span>
                                     </a>
                                 </div>
-                            </li>
+                            </li>-->
                             <li ng-show="ActionBarItems.Continuation != null">
                                 <div class="functionButton">
                                     <a class="fa-links" title="Load more" ng-click="ActionBarItems.loadMore()">
@@ -138,10 +138,14 @@
             <input ng-model="DialogViewModel.BodyViewModel.AccountKey" class="form-control" />
         </div>
     </div>
-    <label class="checkbox" ng-show="DialogViewModel.WithOption">
+    <!--<label class="checkbox" ng-show="DialogViewModel.WithOption">
         <input type="checkbox" style="float:left;" ng-model="DialogViewModel.IsChecked" ng-change="DialogViewModel.onChecked()">
         <span class="checkbox-label">{{DialogViewModel.OptionText}}</span>
-    </label>
+    </label>-->
+
+    <div style="float:left; margin-top: 10px">
+        <button type="button" class="btn btn-default" ng-click="DialogViewModel.import()">Import</button>
+    </div>
     <div class="btn-group" ng-disabled="DialogViewModel.AreButtonsDisabled">
         <button type="button" class="btn btn-default" ng-click="DialogViewModel.save()" ng-show="DialogViewModel.IsSaveVisible">Save</button>
         <button type="button" class="btn btn-default" ng-click="DialogViewModel.cancel()">Cancel</button>
