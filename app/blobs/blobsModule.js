@@ -11,9 +11,9 @@
     ]);
 
     require('./viewModel/blobsViewModel.js').register(tablesModule);
-    tablesModule.factory('blobsSettings', function () {
-        return require('./model/blobsSettings.js').create();
-    });
+    tablesModule.factory('blobsSettings', ['appSettings', 'Notification',function (appSettings, Notification) {
+        return require('./model/blobsSettings.js').create(appSettings, Notification);
+    }]);
     tablesModule
        .config(function ($stateProvider) {
            $stateProvider

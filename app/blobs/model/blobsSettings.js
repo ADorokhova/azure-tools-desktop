@@ -1,23 +1,44 @@
-﻿exports.create = function() {
+﻿exports.create = function (appSettings, Notification) {
     'use strict';
 
-    return new function() {
+    return new function () {
         var self = this;
 
-        self.AccountUrl = '';
-        self.AccountName = '';
-        self.AccountKey = '';
-
-        if (isDebugVersion) {
-            self.AccountUrl = 'http://dorphoenixtest.blob.core.windows.net/';
-            self.AccountName = 'dorphoenixtest';
-            self.AccountKey = 'P7YnAD3x84bpwxV0abmguZBXJp7FTCEYj5SYlRPm5BJkf8KzGKEiD1VB1Kv21LGGxbUiLvmVvoChzCprFSWAbg==';
-        }
-
-        self.isEmpty = function() {
-            return (self.AccountUrl === null || self.AccountUrl === '') &&
-            (self.AccountName === null || self.AccountName === '') &&
-            (self.AccountKey === null || self.AccountKey === '');
+        self.save = function (accountName, accountKey) {
+            appSettings.current.set('storage.connections', [{
+                accountName: accountName,
+                accountKey: accountKey
+            }]);
         };
-    };
+
+        self.get = function () {
+            try {
+                if (appSettings && appSettings.current) {
+                    var allConnections = appSettings.current.get('storage.connections');
+                    return allConnections && allConnections.length > 0 ? allConnections[0] : null;
+                } else {
+                    return null;
+                }
+            } catch (e) {
+                Notification.error('Unable to load settings.');
+                return null;
+            }
+        };
+
+        self.getSettingsPath = function () {
+            if (appSettings && appSettings.current) {
+                return appSettings.current.getConfigFilePath();
+            }
+
+            return null;
+        };
+
+        self.isEmpty = function () {
+            var settings = self.get();
+            console.log(settings);
+            return !settings
+               || (settings.accountName === null || settings.accountName === '')
+               && (settings.accountKey === null || settings.accountKey === '');
+        };
+    }
 };

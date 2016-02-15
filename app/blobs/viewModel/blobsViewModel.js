@@ -10,6 +10,8 @@
             'blobsSettings',
             'azureStorage',
             'blobsPresenter',
+            'Notification',
+            'settingsCommands',
             function(
                 $scope,
                 $timeout,
@@ -19,7 +21,9 @@
                 $notifyViewModel,
                 blobsSettings,
                 azureStorage,
-                blobsPresenter) {
+                blobsPresenter,
+                Notification,
+                settingsCommands) {
 
                 var self = this;
                 var listContainersOperation = 'listContainersOperation';
@@ -130,42 +134,53 @@
                 $actionBarItems.SearchViewModel = searchViewModel;
                 $actionBarItems.changeSettings = function() {
                     var changeSettingsDialog = $dialogViewModel();
+
                     changeSettingsDialog.AreButtonsDisabled = false;
                     changeSettingsDialog.WithOption = true;
                     changeSettingsDialog.OptionText = 'Use demo credentials';
                     changeSettingsDialog.IsChecked = false;
-                    changeSettingsDialog.onChecked = function() {
-                        if (changeSettingsDialog.IsChecked) {
-                            changeSettingsDialog.BodyViewModel.AccountUrl = 'http://dorphoenixtest.blob.core.windows.net/';
-                            changeSettingsDialog.BodyViewModel.AccountName = 'dorphoenixtest';
-                            changeSettingsDialog.BodyViewModel.AccountKey = 'P7YnAD3x84bpwxV0abmguZBXJp7FTCEYj5SYlRPm5BJkf8KzGKEiD1VB1Kv21LGGxbUiLvmVvoChzCprFSWAbg==';
-                        } else {
-                            changeSettingsDialog.BodyViewModel.AccountUrl = blobsSettings.AccountUrl;
-                            changeSettingsDialog.BodyViewModel.AccountName = blobsSettings.AccountName;
-                            changeSettingsDialog.BodyViewModel.AccountKey = blobsSettings.AccountKey;
-                        }
-                    };
+
+                    changeSettingsDialog.onChecked = function () { };
+
                     changeSettingsDialog.IsVisible = true;
                     changeSettingsDialog.BodyViewModel = {
-                        AccountUrl: blobsSettings.AccountUrl,
-                        AccountName: blobsSettings.AccountName,
-                        AccountKey: blobsSettings.AccountKey,
+                        AccountUrl: '',
+                        AccountName: '',
+                        AccountKey: '',
                     };
+
+                    var settingsFromStorage = blobsSettings.get();
+                    console.log('settings from storage');
+                    console.log(settingsFromStorage);
+
+                    if (settingsFromStorage) {
+                        changeSettingsDialog.BodyViewModel.AccountName = settingsFromStorage.accountName;
+                        changeSettingsDialog.BodyViewModel.AccountKey = settingsFromStorage.accountKey;
+                    }
 
                     changeSettingsDialog.Body = 'blobsSettingsTemplate';
                     changeSettingsDialog.Header = 'Settings';
-                    changeSettingsDialog.save = function() {
-                        blobsSettings.AccountUrl = changeSettingsDialog.BodyViewModel.AccountUrl;
-                        blobsSettings.AccountName = changeSettingsDialog.BodyViewModel.AccountName;
-                        blobsSettings.AccountKey = changeSettingsDialog.BodyViewModel.AccountKey;
+
+                    function applySettings() {
                         changeSettingsDialog.IsVisible = false;
-                        loadContainerList();
+                        loadTableList();
+                    };
+
+                    changeSettingsDialog.import = function () {
+                        settingsCommands.import(function () {
+                            applySettings();
+                        });
+                    };
+
+                    changeSettingsDialog.save = function() {
+                        blobsSettings.save(changeSettingsDialog.BodyViewModel.AccountName, changeSettingsDialog.BodyViewModel.AccountKey);
+                        applySettings();
                     };
                 };
                 $actionBarItems.blobsViewModel = $scope;
 
                 var isConnectionSettingsSpecified = function() {
-                    return (blobsSettings.AccountUrl !== null && blobsSettings.AccountUrl !== '') && (blobsSettings.AccountKey !== null && blobsSettings.AccountKey !== '') && (blobsSettings.AccountName !== null && blobsSettings.AccountName !== '');
+                    return !blobsSettings.isEmpty();
                 };
 
                 var showError = function(data) {
@@ -202,9 +217,9 @@
                 var defaultClient = null;
                 var defaultClientFactory = function() {
                     console.log(defaultClient);
-                    if (defaultClient == null || (defaultClient.storageAccount !== blobsSettings.AccountName || defaultClient.storageAccessKey !== blobsSettings.AccountKey)) {
-                        defaultClient = azureStorage.createBlobService(blobsSettings.AccountName, blobsSettings.AccountKey, blobsSettings.AccountUrl);
-                        console.log(defaultClient);
+                    var settings = blobsSettings.get();
+                    if (settings && (defaultClient == null || (defaultClient.storageAccount !== settings.accountName || defaultClient.storageAccessKey !== settings.accountKey))) {
+                        defaultClient = azureStorage.createBlobService(settings.accountName, settings.accountKey, String.format('http://{0}.blob.core.windows.net/', settings.accountName));
                     }
                     return defaultClient;
                 };
@@ -222,7 +237,15 @@
                         var selectedContainer = $scope.containerOptions.selectedContainer;
 
                         var buffer = Buffer;
-                        var stream = defaultClientFactory().createReadStream(selectedContainer.name, selectedBlob.name);
+
+                        var client = defaultClientFactory();
+                        if (!client) {
+                            Notification.error('No settings found. Provide access settings');
+                            $actionBarItems.changeSettings();
+                            return;
+                        }
+
+                        var stream = client.createReadStream(selectedContainer.name, selectedBlob.name);
                         var chunks = [];
                         stream.on('data', function(chunk) {
                             chunks.push(chunk);
@@ -336,7 +359,14 @@
 
                             if (data.continuationToken != null) {
                                 token = data.continuationToken;
-                                defaultClientFactory().listContainersSegmented(token, null, containersLoadedCb);
+                                var client = defaultClientFactory();
+                                if (!client) {
+                                    Notification.error('No settings found. Provide access settings');
+                                    $actionBarItems.changeSettings();
+                                    return;
+                                }
+
+                                client.listContainersSegmented(token, null, containersLoadedCb);
                                 return;
                             }
 
@@ -346,7 +376,14 @@
                             $scope.blobOptions.selectedBlob = null;
                         };
 
-                        defaultClientFactory().listContainersSegmented(token, containersLoadedCb);
+                        var client = defaultClientFactory();
+                        if (!client) {
+                            Notification.error('No settings found. Provide access settings');
+                            $actionBarItems.changeSettings();
+                            return;
+                        }
+
+                        client.listContainersSegmented(token, containersLoadedCb);
                     }
                 };
 

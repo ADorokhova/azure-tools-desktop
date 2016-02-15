@@ -94,10 +94,10 @@
     </div>
 
     <div class="input-group input-group-sm">
-        <div class="input-group input-group-sm">
+        <!--<div class="input-group input-group-sm">
             <span class="input-group-addon">Account Url</span>
             <input ng-model="DialogViewModel.BodyViewModel.AccountUrl" class="form-control" />
-        </div>
+        </div>-->
 
         <div class="input-group input-group-sm">
             <span class="input-group-addon">Account Name</span>
@@ -109,10 +109,15 @@
             <input ng-model="DialogViewModel.BodyViewModel.AccountKey" class="form-control" />
         </div>
     </div>
-    <label class="checkbox" ng-show="DialogViewModel.WithOption">
+    <!--<label class="checkbox" ng-show="DialogViewModel.WithOption">
         <input type="checkbox" style="float:left;" ng-model="DialogViewModel.IsChecked" ng-change="DialogViewModel.onChecked()">
         <span class="checkbox-label">{{DialogViewModel.OptionText}}</span>
-    </label>
+    </label>-->
+
+    <div style="float:left; margin-top: 10px">
+        <button type="button" class="btn btn-default" ng-click="DialogViewModel.import()">Import</button>
+    </div>
+
     <div class="btn-group" ng-disabled="DialogViewModel.AreButtonsDisabled">
         <button type="button" class="btn btn-default" ng-click="DialogViewModel.save()" ng-show="DialogViewModel.IsSaveVisible">Save</button>
         <button type="button" class="btn btn-default" ng-click="DialogViewModel.cancel()">Cancel</button>

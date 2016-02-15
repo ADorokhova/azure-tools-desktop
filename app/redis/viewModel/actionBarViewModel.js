@@ -24,6 +24,7 @@ exports.register = function (module) {
             'Notification',
             'appSettings',
             'fileService',
+            'settingsCommands',
             function (
                 $rootScope,
                 $timeout,
@@ -47,7 +48,8 @@ exports.register = function (module) {
                 searchViewModel,
                 Notification,
                 appSettings,
-                fileService) {
+                fileService,
+                settingsCommands) {
                 var self = this;
                 var dialogFactory = function (header, bodyVm, bodyTemplate, optionText) {
                     var dialog = $dialogViewModel();
@@ -172,17 +174,7 @@ exports.register = function (module) {
                     changeSettingsDialog.OptionText = 'Use demo credentials';
                     changeSettingsDialog.IsChecked = false;
 
-                    changeSettingsDialog.onChecked = function () {
-                        if (changeSettingsDialog.IsChecked) {
-                            changeSettingsDialog.BodyViewModel.Host = 'redisdor.redis.cache.windows.net';
-                            changeSettingsDialog.BodyViewModel.Port = 6379;
-                            changeSettingsDialog.BodyViewModel.Password = 'ZaVlBh0AHJmw2r3PfWVKvm7X3FfC5fe+sMKJ93RueNY=';
-                        } else {
-                            changeSettingsDialog.BodyViewModel.Host = $redisSettings.Host;
-                            changeSettingsDialog.BodyViewModel.Port = $redisSettings.Port;
-                            changeSettingsDialog.BodyViewModel.Password = $redisSettings.Password;
-                        }
-                    };
+                    changeSettingsDialog.onChecked = function () { };
 
                     changeSettingsDialog.IsVisible = true;
 
@@ -225,28 +217,13 @@ exports.register = function (module) {
                     };
 
 
-                    changeSettingsDialog.import = function () {
-                       
-                        dialog.showOpenDialog({
-                            filters: [
-                              { name: 'json', extensions: ['json'] }
-                            ]
-                        }, function (fileNames) {
-                            if (fileNames === undefined) return;
-                            var fileName = fileNames[0];
-                            fileService.readFromFile(fileName, function success(data) {
-                                console.log(String.format('import data {0} to {1}', data, appSettings.current.getConfigFilePath()));
-                                fileService.writeToFile(appSettings.current.getConfigFilePath(), data, function success() {
-                                    console.log("The file was saved!");
-                                    appSettings.recreate(function success() {
-                                        applySettings();
-                                    });
-                                });
-                            });
+                    changeSettingsDialog.import = function() {
+                        settingsCommands.import(function() {
+                            applySettings();
                         });
                     };
                 };
-                
+
                 self.refresh = function () {
                     searchViewModel.search();
                 };

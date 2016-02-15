@@ -13,6 +13,11 @@
                 return require('./services/appSettings.js').create($rootScope, $timeout, Notification, dialog, fileService);
             }
         ])
+        .factory('settingsCommands', [
+            '$rootScope', 'dialog', 'fileService', 'appSettings', function ($rootScope, dialog, fileService, appSettings) {
+                return require('./services/settingsCommands.js').create($rootScope, dialog, fileService, appSettings);
+            }
+        ])
         .factory('fileService', [
             '$rootScope', '$timeout', 'Notification', 'dialog', function ($rootScope, $timeout, Notification, dialog) {
                 return require('./services/fileService.js').create(Notification);

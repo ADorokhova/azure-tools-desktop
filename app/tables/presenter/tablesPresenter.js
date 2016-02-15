@@ -58,6 +58,8 @@
             }
 
             $('#tables').empty();
+            console.log('--presenter--');
+            console.log(data);
             self.oTable = $('#tables').DataTable({
                 bFilter: false,
                 bInfo: false,

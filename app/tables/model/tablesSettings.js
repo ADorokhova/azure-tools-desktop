@@ -1,22 +1,48 @@
-﻿exports.create = function() {
+﻿exports.create = function (appSettings, Notification) {
     'use strict';
 
     return new function() {
         var self = this;
-        if (isDebugVersion) {
-            self.AccountUrl = 'http://dorphoenixtest.table.core.windows.net/';
-            self.AccountName = 'dorphoenixtest';
-            self.AccountKey = 'P7YnAD3x84bpwxV0abmguZBXJp7FTCEYj5SYlRPm5BJkf8KzGKEiD1VB1Kv21LGGxbUiLvmVvoChzCprFSWAbg==';
-        } else {
-            self.AccountUrl = '';
-            self.AccountName = '';
-            self.AccountKey = '';
-        }
+        
+        self.save = function (accountName, accountKey) {
+            appSettings.current.set('storage.connections', [{
+                accountName: accountName,
+                accountKey: accountKey
+            }]);
+        };
 
-        self.isEmpty = function() {
-            return (self.AccountUrl === null || self.AccountUrl === '') &&
-            (self.AccountName === null || self.AccountName === '') &&
-            (self.AccountKey === null || self.AccountKey === '');
+        self.get = function () {
+            try {
+                if (appSettings && appSettings.current) {
+                    var allConnections = appSettings.current.get('storage.connections');
+                    console.log('all settings');
+                    console.log(allConnections);
+                    return allConnections && allConnections.length > 0 ? allConnections[0] : null;
+                } else {
+                    console.log('no settings');
+                    console.log(appSettings);
+                    return null;
+                }
+            } catch (e) {
+                Notification.error('Unable to load settings.');
+                return null;
+            }
+        };
+
+        self.getSettingsPath = function () {
+            if (appSettings && appSettings.current) {
+                return appSettings.current.getConfigFilePath();
+            }
+
+            return null;
+        };
+
+        self.isEmpty = function () {
+            var settings = self.get();
+            console.log(settings);
+            return !settings
+               || (settings.accountName === null || settings.accountName === '')
+               && (settings.accountKey === null || settings.accountKey === '');
         };
     }
 };

@@ -1,4 +1,4 @@
-<div class="metro grid" ng-controller="TablesController">
+<div class="metro grid" >
     <bg-splitter orientation="horizontal">
         <bg-pane min-size="64" init-percentage="26.2">
             <div class="wrapLeftBlock">
@@ -40,9 +40,9 @@
                 <div class="bodyLeftBlock">
                     <!-- <i class="fa fa-th-large"></i><span id="accountName">{{TablesViewModel.Settings.AccountName}}</span> -->
                     <ul id="tableList">
-                        <li ng-repeat="table in TablesViewModel.TableSelectViewModel.Tables"
-                            ng-click="TablesViewModel.TableSelectViewModel.onSelectedTableChanged(table)"
-                            ng-class="{selected: table === TablesViewModel.TableSelectViewModel.SelectedTable}"><i class="fa fa-table"></i>{{table}}</li>
+                        <li ng-repeat="table in TableSelectViewModel.Tables"
+                            ng-click="TableSelectViewModel.onSelectedTableChanged(table)"
+                            ng-class="{selected: table === TableSelectViewModel.SelectedTable}"><i class="fa fa-table"></i>{{table}}</li>
                     </ul>
                 </div>
             </div>
@@ -123,10 +123,10 @@
     </div>
 
     <div class="input-group input-group-sm">
-        <div class="input-group input-group-sm">
+        <!--<div class="input-group input-group-sm">
             <span class="input-group-addon">Account Url</span>
             <input ng-model="DialogViewModel.BodyViewModel.AccountUrl" class="form-control" />
-        </div>
+        </div>-->
 
         <div class="input-group input-group-sm">
             <span class="input-group-addon">Account Name</span>
@@ -179,10 +179,10 @@
         <div class="input-group input-group-sm actionRows">
             <label>Fill in the fields to create a new entity</label>
             <span class="tileFunction">
-                <a class="fa-links" title="Delete selected rows" ng-click="RedisViewModel.updateKey()">Delete</a>
+                <a class="fa-links" title="Delete selected rows">Delete</a>
             </span>
             <span class="tileFunction">
-                <a class="fa-links" title="Add row" ng-click="RedisViewModel.updateKey()">Add row</a>
+                <a class="fa-links" title="Add row">Add row</a>
             </span>
         </div>
         <div class="wrapListFields">
