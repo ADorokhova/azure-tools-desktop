@@ -12,6 +12,17 @@ npm run package:osx
 
 Result: builds/Azure Tools-darwin-x64/azuretools.dmg.
 
+#### Windows
+
+```
+grunt installerWindows32
+grunt installerWindows64
+```
+
+Result:
+builds/azuretools-win32-ia32
+builds/azuretools-win32-x64
+
 #### Linux
 
 ```
