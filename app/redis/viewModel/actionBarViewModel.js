@@ -152,6 +152,11 @@ exports.register = function (module) {
                     }
 
                     var repo = $redisRepositoryFactory(dialog.BodyViewModel.Type);
+                    if (!repo) {
+                        Notification.warn('Unsupported Redis data structure');
+                        return;
+                    }
+
                     switch (dialog.BodyViewModel.Type) {
                         case 'string':
                             repo.create(dialog.BodyViewModel.Key, dialog.BodyViewModel.Value, cb);

@@ -15,8 +15,11 @@
         app;
 
     var jqueryUI = require('jquery-ui');
+    var pjson = require('../package.json');
 
     window.isDebugVersion = false;
+    window.productVersion = pjson.version;
+
     require('./exceptionHandling/exceptionHandlingModule.js').register(angular);
     require('./common/commonModule.js').register(angular, angularRoute);
     require('./common/dialogsModule.js').register(angular, angularRoute);

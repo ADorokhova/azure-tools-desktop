@@ -60,9 +60,9 @@
             }
         ])
         .factory('redisRepo', [
-            '$baseRepo', '$redisDataAccess', '$redisRepositoryFactory',
-            function($baseRepo, $redisDataAccess, $redisRepositoryFactory) {
-                var redisRepo = require('../model/redisRepository.js').create($redisDataAccess, $redisRepositoryFactory);
+            '$baseRepo', '$redisDataAccess', '$redisRepositoryFactory', 'Notification',
+            function ($baseRepo, $redisDataAccess, $redisRepositoryFactory, Notification) {
+                var redisRepo = require('../model/redisRepository.js').create($redisDataAccess, $redisRepositoryFactory, Notification);
                 angular.extend(redisRepo, $baseRepo);
                 return redisRepo;
             }

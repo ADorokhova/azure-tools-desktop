@@ -25,6 +25,9 @@
                 self.openBlobs = function() {
                     $state.go('blobs', {});
                 };
+                console.log('VERSIOn')
+                console.log(window.productVersion)
+                self.productVersion = window.productVersion;
             };
         }
     ]);

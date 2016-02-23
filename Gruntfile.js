@@ -6,7 +6,10 @@ module.exports = function (grunt) {
     } else {
         require('load-grunt-tasks')(grunt, { scope: ['devDependencies', 'dependencies'] });
     }
-    var releaseVersion = '0.1.0.0';
+
+    var pjson = require('./package.json');
+    var releaseVersion = pjson.version;
+    console.log('!!! Release version ' + releaseVersion);
     grunt.initConfig({
         'create-windows-installer': {
             x64: {
@@ -15,13 +18,15 @@ module.exports = function (grunt) {
                 exe: 'azuretools.exe',
                 authors: 'Vladimir Dorokhov',
                 setupIcon: './public/icon/icon.ico',
+                loadingGif: './public/icon/installer.gif'
             },
             ia32: {
                 appDirectory: './builds/azuretools-win32-ia32',
                 outputDirectory: './builds/installer32',
                 exe: 'azuretools.exe',
                 authors: 'Vladimir Dorokhov',
-                setupIcon: './public/icon/icon.ico'
+                setupIcon: './public/icon/icon.ico',
+                loadingGif: './public/icon/installer.gif'
             }
         },
         electron: {
@@ -173,8 +178,8 @@ module.exports = function (grunt) {
                 }],
                 options: {
                     replacements: [{
-                        pattern: /\"env\":\"(.*)\"/,
-                        replacement: '"env":"prod"'
+                        pattern: /\"env\": \"(.*)\"/,
+                        replacement: '"env": "prod"'
                     }]
                 }
             },
@@ -185,8 +190,8 @@ module.exports = function (grunt) {
                 }],
                 options: {
                     replacements: [{
-                        pattern: /\"env\":\"(.*)\"/,
-                        replacement: '"env":"prod"'
+                        pattern: /\"env\": \"(.*)\"/,
+                        replacement: '"env": "prod"'
                     }]
                 }
             }

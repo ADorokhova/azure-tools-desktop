@@ -13,7 +13,7 @@
             case 'hash':
                 return hashSetRepo;
             default:
-                throw new Error('Unsupported creating data type: ' + type);
+                return null;
         }
     };
 };

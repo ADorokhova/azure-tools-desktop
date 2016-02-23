@@ -89,7 +89,7 @@ exports.register = function (module) {
                                 }
                             }
                         }
-                       // console.log(this.items)
+
                         return this.items;
                     }
                 };
@@ -105,6 +105,7 @@ exports.register = function (module) {
                         console.log(selectedKey)
                         redisRepo.getKey(selectedKey, function (result) {
                             $busyIndicator.setIsBusy(loadDetailsOperation, false);
+                            if (!result)return;
                             keyViewModel.selectedKeys = [result];
                             $scope.$broadcast('redisViewModel-key-selected-type-' + result.Type, result);
                         });
@@ -194,23 +195,11 @@ exports.register = function (module) {
                     dialog.showErrorBox('Error', data);
                 };
 
-                var showInfo = function (msg) {
-                    //if (msg !== undefined && msg !== null) {
-                    //    $timeout(function() {
-                    //        $notifyViewModel.scope().$apply(function() {
-                    //            $notifyViewModel.showInfo(msg);
-                    //        });
-                    //    });
-                    //}
-                };
-
-
                 // init
                 $messageBus.subscribe(
                     ['redis-communication-error'],
                     function (event, data) {
                         console.log('Received data: ' + data);
-                        showError(data);
                     });
 
                 if ($redisSettings.isEmpty()) {

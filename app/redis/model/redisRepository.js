@@ -1,4 +1,4 @@
-﻿exports.create = function($redisDataAccess, $redisRepositoryFactory) {
+﻿exports.create = function($redisDataAccess, $redisRepositoryFactory, Notification) {
     'use strict';
 
     return new function() {
@@ -30,6 +30,12 @@
                 client.type(key, function(err, res) {
                     var type = res;
                     var repo = $redisRepositoryFactory(type);
+                    if (!repo) {
+                        Notification.warning('Unsupported data structure: ' + type);
+                        cb();
+                        return;
+                    }
+
                     repo.get(key, function(err, result) {
                         if (err) console.log(err);
 

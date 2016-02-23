@@ -6,17 +6,32 @@
         </a>
     </div>
 
-    <div class="tilePreview tilePreview-tables" >
+    <div class="tilePreview tilePreview-tables">
         <a class="fa-links" ng-click="TilesViewModel.openTables()">
             <img src="content/img/azure-tables.png">
             <h4>Tables</h4>
         </a>
     </div>
-    
+
     <div class="tilePreview tilePreview-blobs">
         <a class="fa-links" ng-click="TilesViewModel.openBlobs()">
             <img src="content/img/azure-blobs.png">
             <h4>Blobs</h4>
         </a>
     </div>
+
+    <footer class="text-center" style="font-size: 14px;">
+        <i class="fa fa-twitter"></i> Twitter:<a onclick="require('shell').openExternal('https://twitter.com/AzureTools')" style="cursor: pointer;">@AzureTools</a>
+
+        <i class="fa fa-github" style="margin-left: 5px;"></i> Github:
+        <a class="github-button" href="https://github.com/Dorokhov/azure-tools-desktop" data-icon="octicon-eye" aria-label="Watch ntkme/github-buttons on GitHub">Watch</a>
+        <a class="github-button" href="https://github.com/Dorokhov/azure-tools-desktop" data-icon="octicon-star" aria-label="Star ntkme/github-buttons on GitHub" style="margin-bottom: -5px">Star</a>
+
+        <div>
+            <div>Version: {{TilesViewModel.productVersion}}</div>
+        </div>
+
+    </footer>
 </div>
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
