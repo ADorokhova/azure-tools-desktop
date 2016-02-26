@@ -130,6 +130,13 @@
 	width: 500px; 
 } 
 
+.no-value {
+    color: red;
+    position: absolute;
+    top: 6px;
+    right: 0px;
+}
+
 /*Load indicator*/
 
 .loading {

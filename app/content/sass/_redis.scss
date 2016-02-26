@@ -11,7 +11,7 @@
 
 #block-Database {
 	float: left;
-	span:not(.caret) {
+	&>span {
 		float: left;
 		color: #000;
 		padding-top: 3px;
@@ -22,9 +22,9 @@
 		margin: 0px 6px 0px 4px; 
 	}
 	button {
-		padding: 3px 3px 3px 1px;
-		width: 34px;
+		width: 55px;
 		background-color: $bg-colorTile-Redis;
+		padding: 3px 3px 3px 1px;
 		color: #ffffff;
 		font-family: $fontFamily;
 		&:active, &:hover {
@@ -39,8 +39,17 @@
 			background-color: lighten($bg-colorTile-Redis, 10%) !important;
 		}
 	}
+	.db-value {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		width: 40px;
+		display: block;
+	}
 	.caret {
-		float: right;
+		position: absolute;
+		top: 3px;
+		right: 4px;
 		margin: 7px 0px 5px 4px; 
 	}
 	.dropdown-menu {
