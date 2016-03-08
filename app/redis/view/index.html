@@ -45,8 +45,8 @@
                                 <span>Database</span>
 
                                 <div class="dropdown">
-                                    <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 55px;">
-                                        {{DatabaseViewModel.Current.value}}
+                                    <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="db-value">{{DatabaseViewModel.Current.value}}</span>
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -263,7 +263,7 @@
                       class="form-control"
                       style="height: 100px;" />
         </div>
-        <span style="float:none; color: red;">{{DialogViewModel.ValidationErrorText}}</span>
+        <span class="no-value">{{DialogViewModel.ValidationErrorText}}</span>
         <label class="checkbox" ng-show="DialogViewModel.WithOption">
             <input type="checkbox" style="float:left;" ng-model="DialogViewModel.IsChecked" ng-change="DialogViewModel.onChecked()">
             <span class="checkbox-label">{{DialogViewModel.OptionText}}</span>
